@@ -14,7 +14,7 @@ if (isset($_POST['action'])) {
 				AuthController::login($email,$password);
 			break; 
 			case 'logout':
-                // echo 'weghgnegwfq';
+             echo 'weghgnegwfq';
                 $email = $_SESSION['email'];
                 AuthController::logout($email);
                 break;
@@ -29,16 +29,18 @@ if (isset($_POST['action'])) {
 Class AuthController{
 
 
-/* 	$pass = 'A9*27rh6%#271N';
-$email = 'crve_19@alu.uabcs.mx';
-                                    ?>
-        <form action="app/AuthController.php" id="login_form" method="POST">
+/* 
+
+$pass = 'A9*27rh6%#271N'; $email = 'crve_19@alu.uabcs.mx';
+?>
+                <form action="app/AuthController.php" id="login_form" method="POST">
         <input type="text" name="email" value="<?= $email?>">
         <input type="text" name="password" value="<?= $pass?>">
         <input type="hidden" name="action" value="access">   
         <input type="hidden" name="global_token" value="<?= $_SESSION['global_token']?>">
         <input type="submit" value="GO!">
-    </form> */
+    </form>
+ */
 
 	public static function login($email,$password)
 	{
@@ -85,8 +87,14 @@ $email = 'crve_19@alu.uabcs.mx';
 
 	}
 
+/*  
+<form action="<?=BASE_PATH?>auth" method="POST">
+        <input type="hidden" name="action" value='logout'>
+        <input type="hidden" name='global_token' value="<?= $_SESSION['global_token']?>">
+        <input type="submit"value='cerrar sesion'>
+    </form> */
 
-	public static function logout($email){
+    public static function logout($email){
         
         $curl = curl_init();
 
@@ -106,9 +114,17 @@ $email = 'crve_19@alu.uabcs.mx';
         ));
         $response = curl_exec($curl);
         curl_close($curl);
-        echo $response;
+        
+        $response = json_decode($response);
+        if(isset($response->code) && $response->code > 0 ){
+        	header("Location:".BASE_PATH);
+            //return $response->data;
+        }else{
+            return array();
+        }
 
     }
+
 
 
     public static function getProfile(){
@@ -132,7 +148,12 @@ $email = 'crve_19@alu.uabcs.mx';
         $response = curl_exec($curl);
 
         curl_close($curl);
-        echo $response;
+        $response = json_decode($response);
+        if(isset($response->code) && $response->code > 0 ){
+            return $response->data;
+        }else{
+            return array();
+        }
 
     }
 }
