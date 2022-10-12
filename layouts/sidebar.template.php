@@ -1,4 +1,4 @@
-        <div class="app-menu navbar-menu">
+<div class="app-menu navbar-menu">
             <!-- LOGO -->
             <div class="navbar-brand-box">
                 <!-- Dark Logo-->
@@ -23,7 +23,6 @@
                     <i class="ri-record-circle-line"></i>
                 </button>
             </div>
-
             <div id="scrollbar">
                 <div class="container-fluid">
 
@@ -35,70 +34,53 @@
 
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="widgets.html">
-                                <i class="mdi mdi-puzzle-outline"></i> <span data-key="t-widgets">Usuarios</span>
+                                <i class=" bx bx-user-circle"></i> <span data-key="t-widgets">Usuarios</span>
                             </a>
                         </li>
 
                         <li class="nav-item">
+                            <a class="nav-link menu-link" href="widgets.html">
+                                <i class="bx bxs-user-rectangle"></i> <span data-key="t-widgets">Cliente</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="widgets.html">
+                                <i class="bx bxs-user-rectangle"></i> <span data-key="t-widgets">Productos</span>
+                            </a>
+                        </li>
+
+
+                        <li class="nav-item">
                             <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
-                                <i class="mdi mdi-speedometer"></i> <span data-key="t-dashboards">Dashboards</span>
+                                <i class="bx bxs-cart"></i> <span data-key="t-dashboards">Catálogos</span>
                             </a>
                             <div class="collapse menu-dropdown" id="sidebarDashboards">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="dashboard-analytics.html" class="nav-link" data-key="t-analytics"> Analytics </a>
+                                        <a href="dashboard-analytics.html" class="nav-link" data-key="t-analytics"> Categorías </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="dashboard-crm.html" class="nav-link" data-key="t-crm"> CRM </a>
+                                        <a href="dashboard-crm.html" class="nav-link" data-key="t-crm"> Marcas </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="index.html" class="nav-link" data-key="t-ecommerce"> Ecommerce </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="dashboard-crypto.html" class="nav-link" data-key="t-crypto"> Crypto </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="dashboard-projects.html" class="nav-link" data-key="t-projects"> Projects </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="dashboard-nft.html" class="nav-link" data-key="t-nft"> NFT</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li> <!-- end Dashboard Menu -->
-                        
-
-                        <li class="nav-item">
-                            <a class="nav-link menu-link" href="widgets.html">
-                                <i class="mdi mdi-puzzle-outline"></i> <span data-key="t-widgets">Widgets</span>
-                            </a>
-                        </li> 
-
-                        <li class="nav-item">
-                            <a class="nav-link menu-link" href="#sidebarMaps" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarMaps">
-                                <i class="mdi mdi-map-marker-outline"></i> <span data-key="t-maps">Catálogos</span>
-                            </a>
-                            <div class="collapse menu-dropdown" id="sidebarMaps">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a href="maps-google.html" class="nav-link" data-key="t-google">
-                                            Categorías
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="maps-vector.html" class="nav-link" data-key="t-vector">
-                                            Marcas
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="maps-leaflet.html" class="nav-link" data-key="t-leaflet">
-                                            Etiquetas
-                                        </a>
+                                        <a href="index.html" class="nav-link" data-key="t-ecommerce"> Tags </a>
                                     </li>
                                 </ul>
                             </div>
                         </li>
- 
+
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="widgets.html">
+                                <i class=" ri-ticket-2-fill"></i> <span data-key="t-widgets">Cupones</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="widgets.html">
+                                <i class="bx bxs-shopping-bag"></i> <span data-key="t-widgets">Órdenes</span>
+                            </a>
+                        </li>
 
                     </ul>
                 </div>
