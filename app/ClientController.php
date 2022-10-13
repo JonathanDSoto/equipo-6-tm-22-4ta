@@ -1,7 +1,11 @@
 <?php 
 include 'config.php';
 
-$methodAction = ['create' => 'ClientController::create'];// arreglo que tiene una asociacion entre la accion que se manda desde el formulario  y el metodo que se llama aqui
+// arreglo que tiene una asociacion entre la accion que se manda desde el formulario  y el metodo que se llama aqui
+$methodAction = [
+    'create' => 'ClientController::create',
+    'delete' => 'ClientController::delete'
+];
 // 'accion' => 'metodo'
 if (isset($_POST['global_token']) && ($_POST['global_token'] == $_SESSION['global_token'])){
     /// echo 'primer if';
@@ -76,6 +80,31 @@ class ClientController{
         }else{
             return array();
         }
+    }
+
+    public static function delete($args){
+        
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://crud.jonathansoto.mx/api/clients/'.$args['id'],
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'DELETE',
+        CURLOPT_HTTPHEADER => array(
+            'Authorization: Bearer '.$_SESSION['token']
+        ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        echo $response;
+
     }
 }
 
