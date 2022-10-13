@@ -42,7 +42,6 @@
                 </svg>
             </div>
         </div>
-
         <!-- auth page content -->
         <div class="auth-page-content">
             <div class="container">
@@ -52,7 +51,6 @@
                     </div>
                 </div>
                 <!-- end row -->
-
                 <div class="row justify-content-center">
                     <div class="col-md-8 col-lg-6 col-xl-5">
                         <div class="card mt-4">

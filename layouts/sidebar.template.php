@@ -46,7 +46,7 @@
 
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="widgets.html">
-                                <i class="bx bxs-user-rectangle"></i> <span data-key="t-widgets">Productos</span>
+                                <i class=" bx bxs-shopping-bag-alt"></i> <span data-key="t-widgets">Productos</span>
                             </a>
                         </li>
 

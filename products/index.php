@@ -35,9 +35,7 @@
         <!-- ========== App Menu ========== -->
         <?php include "../layouts/sidebar.template.php"; ?>
         <?php include "../layouts/add.product.modal.php";?>
-        <!-- ============================================================== -->
-        <!-- Start right Content here -->
-        <!-- ============================================================== -->
+
         <div class="main-content">
 
             <?php include "../layouts/bread.template.php"; ?>
@@ -193,14 +191,14 @@
             </div>
         </div>
     </div>
- 
+
 
     <?php include "../layouts/scripts.template.php"; ?>
 
     <!-- nouisliderribute js -->
     <script src="<?= BASE_PATH ?>public/libs/nouislider/nouislider.min.js"></script>
     <script src="<?= BASE_PATH ?>public/libs/wnumb/wNumb.min.js"></script>
-
+    
     <!-- gridjs js -->
     <script src="<?= BASE_PATH ?>public/libs/gridjs/gridjs.umd.js"></script>
     <!-- ecommerce product list -->
