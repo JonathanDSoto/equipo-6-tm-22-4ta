@@ -14,10 +14,11 @@ if (isset($_POST['action'])) {
 				$description = strip_tags($_POST['description']);
 				$features = strip_tags($_POST['features']);
 				$brand_id = strip_tags($_POST['brand_id']);
+				$image = $_FILES['cover']['tmp_name'];
 
 				$productController = new ProductsController();
 
-				$productController->createProduct($name,$slug,$description,$features,$brand_id);
+				$productController->createProduct($name,$slug,$description,$features,$brand_id, $image);
 				 
 			break; 
 
@@ -29,6 +30,7 @@ if (isset($_POST['action'])) {
 				$features = strip_tags($_POST['features']);
 				$brand_id = strip_tags($_POST['brand_id']);
 				$id = strip_tags($_POST['id']);
+
 
 				$productController = new ProductsController();
 
@@ -112,7 +114,7 @@ Class ProductsController
 		}
 	}
 
-	public function createProduct($name,$slug,$description,$features,$brand_id)
+	public function createProduct($name,$slug,$description,$features,$brand_id, $image)
 	{
  
 
@@ -133,7 +135,7 @@ Class ProductsController
 		  	'description' => $description,
 		  	'features' => $features,
 		  	'brand_id' => $brand_id,
-		  	'cover'=> new CURLFILE($_FILES['cover']['tmp_name'])
+		  	'cover'=> new CURLFILE($image)
 		  ),
 		  CURLOPT_HTTPHEADER => array(
 		    'Authorization: Bearer '.$_SESSION['token']
@@ -170,7 +172,8 @@ Class ProductsController
 		  CURLOPT_FOLLOWLOCATION => true,
 		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		  CURLOPT_CUSTOMREQUEST => 'PUT',
-		  CURLOPT_POSTFIELDS => 'name='.$name.'&slug='.$slug.'&description='.$description.'&features='.$features.'&brand_id='.$brand_id.'&id='.$id,
+		  CURLOPT_POSTFIELDS => 'name='.$name.'&slug='.$slug.'&description='
+		  .$description.'&features='.$features.'&brand_id='.$brand_id.'&id='.$id,
 		  CURLOPT_HTTPHEADER => array(
 		    'Authorization: Bearer '.$_SESSION['token'],
 		    'Content-Type: application/x-www-form-urlencoded'
