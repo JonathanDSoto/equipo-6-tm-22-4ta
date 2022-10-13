@@ -33,12 +33,6 @@
         <!-- ============================================================== -->
         <div class="main-content">
 
-            <?php include "../layouts/bread.template.php"; ?>
-
-            <!-- End Page-content -->
-
-
-            <!-- End Page-content -->
 
 
 
@@ -68,6 +62,4 @@
 
     <?php include "../layouts/scripts.template.php"; ?>
 </body>
-
-
 </html>
