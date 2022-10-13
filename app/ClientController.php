@@ -4,7 +4,9 @@ include 'config.php';
 // arreglo que tiene una asociacion entre la accion que se manda desde el formulario  y el metodo que se llama aqui
 $methodAction = [
     'create' => 'ClientController::create',
-    'delete' => 'ClientController::delete'
+    'delete' => 'ClientController::delete',
+    'get' => 'ClientController::get',
+    'edit' => 'ClientController::edit'
 ];
 // 'accion' => 'metodo'
 if (isset($_POST['global_token']) && ($_POST['global_token'] == $_SESSION['global_token'])){
@@ -65,14 +67,16 @@ class ClientController{
     CURLOPT_FOLLOWLOCATION => true,
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => 'POST',
+    CURLOPT_POSTFIELDS => array('name' =>'namaaaaaaaaaaaaaaaaae','email' =>'emaideaefafal','password' =>  'papasswordessword','phone_number' =>   'phone_number','is_suscribed' => '1','level_id' => '1'),
 
-    CURLOPT_POSTFIELDS => array('name' =>   $args['name'],'email' => $args['email'],'password' =>   $args['password'],'phone_number' =>   $args['phone_number'],'is_suscribed' => '1','level_id' => '1'),
+//    CURLOPT_POSTFIELDS => array('name' =>   $args['name'],'email' => $args['email'],'password' =>   $args['password'],'phone_number' =>   $args['phone_number'],'is_suscribed' => '1','level_id' => '1'),
     CURLOPT_HTTPHEADER => array(
         'Authorization: Bearer '.$_SESSION['token']
     ),
     ));
 
         $response = curl_exec($curl);
+            // echo $response;
         curl_close($curl);
         $response = json_decode($response);
         if(isset($response->code) && $response->code > 0 ){
@@ -103,7 +107,72 @@ class ClientController{
         $response = curl_exec($curl);
 
         curl_close($curl);
-        echo $response;
+        $response = json_decode($response);
+        if(isset($response->code) && $response->code > 0 ){
+            return $response->data;
+        }else{
+            return array();
+        }
+    }
+
+    //     echo json_encode( ClientController::get(['id' => '3']));
+    public static function get($args){
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://crud.jonathansoto.mx/api/clients/'.$args['id'],
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'GET',
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: Bearer '.$_SESSION['token']
+            ),
+          ));
+          
+          $response = curl_exec($curl);
+          
+          curl_close($curl);
+          $response = json_decode($response);
+          if(isset($response->code) && $response->code > 0 ){
+              return $response->data;
+          }else{
+              return array();
+          }
+    }
+
+    public static function edit($args){
+        echo 'alagerga esto no jala >:V';
+       // extract($args);
+                
+
+        // echo $id;
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://crud.jonathansoto.mx/api/clients',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'PUT',
+      //  CURLOPT_POSTFIELDS => 'name='.$args['name'].'&email='.$args['email'].'&password='.$args['password'].'&phone_number='.$args['phone_number'].'&is_suscribed=1&level_id=1&id='.$args['id'],
+
+        CURLOPT_POSTFIELDS => 'name=jonathan%20soto&email=jsoto%40uabcs.mx&password=Th3_P4ssW0rd_4nt!_h4ck_2000&phone_number=6120000000&is_suscribed=1&level_id=1&id='.$args['id'],
+        CURLOPT_HTTPHEADER => array(
+            'Authorization: Bearer '.$_SESSION['token'],
+            'Content-Type: application/x-www-form-urlencoded'
+        ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        echo $response; 
 
     }
 }
