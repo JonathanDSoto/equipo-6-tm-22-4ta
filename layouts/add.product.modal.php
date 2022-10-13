@@ -2,34 +2,34 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 		    <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+		        <h5 class="modal-title" id="exampleModalLabel">Ingresar un Nuevo Producto</h5>
 		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		    </div>
 
 		    <form enctype="multipart/form-data" method="post" action="../app/ProductsController.php">
 			    <div class="modal-body">
 			      	<div class="input-group mb-3">
-					    <span class="input-group-text" id="basic-addon1">@</span>
+					    <span class="input-group-text" id="basic-addon1">Nombre</span>
 					    <input id="name" name="name" type="text" class="form-control" placeholder="Product name" aria-label="Username" aria-describedby="basic-addon1">
 					</div>
 
 					<div class="input-group mb-3">
-					    <span class="input-group-text" id="basic-addon1">@</span>
+					    <span class="input-group-text" id="basic-addon1">Slug</span>
 					    <input id="slug" name="slug" type="text" class="form-control" placeholder="Product slug" aria-label="Username" aria-describedby="basic-addon1">
 					</div>
 
 					<div class="input-group mb-3">
-					    <span class="input-group-text" id="basic-addon1">@</span>
+					    <span class="input-group-text" id="basic-addon1">Descripcion</span>
 					    <input id="description" name="description" type="text" class="form-control" placeholder="Product description" aria-label="Username" aria-describedby="basic-addon1">
 					</div>
 
 					<div class="input-group mb-3">
-					    <span class="input-group-text" id="basic-addon1">@</span>
+					    <span class="input-group-text" id="basic-addon1">Features</span>
 					    <input id="features" name="features" type="text" class="form-control" placeholder="Product features" aria-label="Username" aria-describedby="basic-addon1">
 					</div>
 
 					<div class="input-group mb-3">
-					    <span class="input-group-text" id="basic-addon1">@</span>
+					    <span class="input-group-text" id="basic-addon1">Brand_id</span>
 					    <select id="brand_id" class="form-control" name="brand_id">
                             <option value="">Escoge una Opcion</option>
                             <option value="">Opcion 1</option>
@@ -38,7 +38,7 @@
 					</div>
 
 					<div class="input-group mb-3">
-					  <span class="input-group-text" id="basic-addon1">@</span>
+					  <span class="input-group-text" id="basic-addon1">Imagen</span>
 					  <input name="cover" type="file" class="form-control" placeholder="Product features" aria-label="Username" aria-describedby="basic-addon1">
 					</div>
 					

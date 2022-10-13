@@ -83,80 +83,108 @@
                                                             <h5 class="card-title">Nombre del Producto</h5>
                                                             <p class="card-text">Descripcion del Producto</p>
                                                             <a href="#" class="btn btn-primary"><i class="bx bxs-comment-detail"></i> Detalles del Producto</a>
-                                                            <a href="" class="btn btn-secondary mt-2"><i class="mdi mdi-square-edit-outline"></i> Editar</a>
-                                                            <a href="" class="btn btn-danger mt-2"><i class="mdi mdi-delete"></i> Eliminar</a>
+                                                            <button type="button" class="btn btn-secondary mt-2" data-bs-toggle="modal" data-bs-target="#add-product">
+                                                                <i class="mdi mdi-square-edit-outline"></i><a> Editar</a>
+                                                            </button>
+                                                            <button type="button" class="btn btn-danger mt-2">
+                                                                <i class="mdi mdi-square-edit-outline"></i><a> Eliminar</a>
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col">
-                                                    <div class="card border" style="width: 18rem;">
+                                                    <div class="card border rounded-2" style="width: 18rem;">
                                                         <img src="../public/images/laptop.png" class="card-img-top" alt="...">
                                                         <div class="card-body">
                                                             <h5 class="card-title">Nombre del Producto</h5>
                                                             <p class="card-text">Descripcion del Producto</p>
                                                             <a href="#" class="btn btn-primary"><i class="bx bxs-comment-detail"></i> Detalles del Producto</a>
-                                                            <a href="" class="btn btn-secondary mt-2"><i class="mdi mdi-square-edit-outline"></i> Editar</a>
-                                                            <a href="" class="btn btn-danger mt-2"><i class="mdi mdi-delete"></i> Eliminar</a>
+                                                            <button type="button" class="btn btn-secondary mt-2" data-bs-toggle="modal" data-bs-target="#add-product">
+                                                                <i class="mdi mdi-square-edit-outline"></i><a> Editar</a>
+                                                            </button>
+                                                            <button type="button" class="btn btn-danger mt-2">
+                                                                <i class="mdi mdi-square-edit-outline"></i><a> Eliminar</a>
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col">
-                                                    <div class="card border" style="width: 18rem;">
+                                                    <div class="card border rounded-2" style="width: 18rem;">
                                                         <img src="../public/images/laptop.png" class="card-img-top" alt="...">
                                                         <div class="card-body">
                                                             <h5 class="card-title">Nombre del Producto</h5>
                                                             <p class="card-text">Descripcion del Producto</p>
                                                             <a href="#" class="btn btn-primary"><i class="bx bxs-comment-detail"></i> Detalles del Producto</a>
-                                                            <a href="" class="btn btn-secondary mt-2"><i class="mdi mdi-square-edit-outline"></i> Editar</a>
-                                                            <a href="" class="btn btn-danger mt-2"><i class="mdi mdi-delete"></i> Eliminar</a>
+                                                            <button type="button" class="btn btn-secondary mt-2" data-bs-toggle="modal" data-bs-target="#add-product">
+                                                                <i class="mdi mdi-square-edit-outline"></i><a> Editar</a>
+                                                            </button>
+                                                            <button type="button" class="btn btn-danger mt-2">
+                                                                <i class="mdi mdi-square-edit-outline"></i><a> Eliminar</a>
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col">
-                                                    <div class="card border" style="width: 18rem;">
+                                                    <div class="card border rounded-2" style="width: 18rem;">
                                                         <img src="../public/images/laptop.png" class="card-img-top" alt="...">
                                                         <div class="card-body">
                                                             <h5 class="card-title">Nombre del Producto</h5>
                                                             <p class="card-text">Descripcion del Producto</p>
                                                             <a href="#" class="btn btn-primary"><i class="bx bxs-comment-detail"></i> Detalles del Producto</a>
-                                                            <a href="" class="btn btn-secondary mt-2"><i class="mdi mdi-square-edit-outline"></i> Editar</a>
-                                                            <a href="" class="btn btn-danger mt-2"><i class="mdi mdi-delete"></i> Eliminar</a>
+                                                            <button type="button" class="btn btn-secondary mt-2" data-bs-toggle="modal" data-bs-target="#add-product">
+                                                                <i class="mdi mdi-square-edit-outline"></i><a> Editar</a>
+                                                            </button>
+                                                            <button type="button" class="btn btn-danger mt-2">
+                                                                <i class="mdi mdi-square-edit-outline"></i><a> Eliminar</a>
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col">
-                                                    <div class="card border" style="width: 18rem;">
+                                                    <div class="card border rounded-2" style="width: 18rem;">
                                                         <img src="../public/images/laptop.png" class="card-img-top" alt="...">
                                                         <div class="card-body">
                                                             <h5 class="card-title">Nombre del Producto</h5>
                                                             <p class="card-text">Descripcion del Producto</p>
                                                             <a href="#" class="btn btn-primary"><i class="bx bxs-comment-detail"></i> Detalles del Producto</a>
-                                                            <a href="" class="btn btn-secondary mt-2"><i class="mdi mdi-square-edit-outline"></i> Editar</a>
-                                                            <a href="" class="btn btn-danger mt-2"><i class="mdi mdi-delete"></i> Eliminar</a>
+                                                            <button type="button" class="btn btn-secondary mt-2" data-bs-toggle="modal" data-bs-target="#add-product">
+                                                                <i class="mdi mdi-square-edit-outline"></i><a> Editar</a>
+                                                            </button>
+                                                            <button type="button" class="btn btn-danger mt-2">
+                                                                <i class="mdi mdi-square-edit-outline"></i><a> Eliminar</a>
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col">
-                                                    <div class="card border" style="width: 18rem;">
+                                                    <div class="card border rounded-2" style="width: 18rem;">
                                                         <img src="../public/images/laptop.png" class="card-img-top" alt="...">
                                                         <div class="card-body">
                                                             <h5 class="card-title">Nombre del Producto</h5>
                                                             <p class="card-text">Descripcion del Producto</p>
                                                             <a href="#" class="btn btn-primary"><i class="bx bxs-comment-detail"></i> Detalles del Producto</a>
-                                                            <a href="" class="btn btn-secondary mt-2"><i class="mdi mdi-square-edit-outline"></i> Editar</a>
-                                                            <a href="" class="btn btn-danger mt-2"><i class="mdi mdi-delete"></i> Eliminar</a>
+                                                            <button type="button" class="btn btn-secondary mt-2" data-bs-toggle="modal" data-bs-target="#add-product">
+                                                                <i class="mdi mdi-square-edit-outline"></i><a> Editar</a>
+                                                            </button>
+                                                            <button type="button" class="btn btn-danger mt-2">
+                                                                <i class="mdi mdi-square-edit-outline"></i><a> Eliminar</a>
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col">
-                                                    <div class="card border" style="width: 18rem;">
+                                                    <div class="card border rounded-2" style="width: 18rem;">
                                                         <img src="../public/images/laptop.png" class="card-img-top" alt="...">
                                                         <div class="card-body">
                                                             <h5 class="card-title">Nombre del Producto</h5>
                                                             <p class="card-text">Descripcion del Producto</p>
                                                             <a href="#" class="btn btn-primary"><i class="bx bxs-comment-detail"></i> Detalles del Producto</a>
-                                                            <a href="" class="btn btn-secondary mt-2"><i class="mdi mdi-square-edit-outline"></i> Editar</a>
-                                                            <a href="" class="btn btn-danger mt-2"><i class="mdi mdi-delete"></i> Eliminar</a>
+                                                            <button type="button" class="btn btn-secondary mt-2" data-bs-toggle="modal" data-bs-target="#add-product">
+                                                                <i class="mdi mdi-square-edit-outline"></i><a> Editar</a>
+                                                            </button>
+                                                            <button type="button" class="btn btn-danger mt-2">
+                                                                <i class="mdi mdi-square-edit-outline"></i><a> Eliminar</a>
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
