@@ -259,7 +259,7 @@ class ClientController{
          return $newArray;
       }
 
-
+// print_r(ClientController::getClient(1)
       public static function getClient($id){
                 
         $curl = curl_init();
