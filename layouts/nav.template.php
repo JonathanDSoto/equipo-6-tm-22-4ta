@@ -66,16 +66,22 @@
 		                        <span class="d-flex align-items-center">
 		                            <img class="rounded-circle header-profile-user" src="<?= BASE_PATH ?>public/images/users/avatar-1.jpg" alt="Header Avatar">
 		                            <span class="text-start ms-xl-2">
-		                                <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">Anna Adame</span>
+		                                <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text"><?php echo $_SESSION['name']?></span>
 
 		                            </span>
 		                        </span>
 		                    </button>
 		                    <div class="dropdown-menu dropdown-menu-end">
-		                        <h6 class="dropdown-header">Hola de Nuevo Anna!</h6>
+		                        <h6 class="dropdown-header">Hola de Nuevo <?php echo $_SESSION['name']?>!</h6>
 								<!-- Colocar href a base_path/profile -->
-		                        <a class="dropdown-item" href=""><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Mi Perfil</span></a>
-		                        <a class="dropdown-item" href="auth-logout-basic.html"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Salir</span></a>
+		                        <a class="dropdown-item" href="<?php echo BASE_PATH?>profile"><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Mi Perfil</span></a>
+		                        <form method="post" action="<?= BASE_PATH ?>auth">
+                                    <button name="action" value="logout" class="dropdown-item" type="submit">
+                                        <i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> 
+                                        <span class="align-middle" data-key="t-logout">Logout</span>
+                                    </button>
+                                    <input type="hidden" value="<?= $_SESSION['global_token'] ?>" name="global_token">
+                                </form>
 		                    </div>
 		                </div>
 		            </div>
