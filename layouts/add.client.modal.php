@@ -15,12 +15,17 @@
 
 					<div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Correo Electrónico</span>
-					    <input id="email" name="mail" type="text" class="form-control" placeholder="Correo Electronico" aria-label="Username" aria-describedby="basic-addon1">
+					    <input id="email" name="email" type="text" class="form-control" placeholder="Correo Electronico" aria-label="Username" aria-describedby="basic-addon1">
+					</div>
+					
+					<div class="input-group mb-3">
+					    <span class="input-group-text" id="basic-addon1">Contraseña</span>
+					    <input id="password" name="password" type="text" class="form-control" placeholder="Contraseña" aria-label="Username" aria-describedby="basic-addon1">
 					</div>
 
 					<div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">No. Teléfono</span>
-					    <input id="description" name="description" type="text" class="form-control" placeholder="No. Telefono" aria-label="Username" aria-describedby="basic-addon1">
+					    <input id="phone_number" name="phone_number" type="text" class="form-control" placeholder="No. Telefono" aria-label="Username" aria-describedby="basic-addon1">
 					</div>
 
 					<div class="input-group mb-3">
@@ -33,17 +38,12 @@
                         </select>
 					</div>				
 
-			      </div>
-			      <div class="modal-footer">
+			    </div>
+			    <div class="modal-footer">
 			        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
 			        <button type="submit" class="btn btn-primary">Guardar</button>
-			      </div>
-
-			      <input id="oculto_input" type="hidden" name="action" value="create">
-
-			      <input type="hidden" id="id" name="id">
-
-		      </form>
-		    </div>
-		  </div>
+			    </div>
+		    </form>
 		</div>
+	</div>
+</div>
