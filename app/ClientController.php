@@ -46,6 +46,11 @@ if (isset($_POST['action'])) {
                 echo  json_encode(['errors' => $validationResult]); /// regresamos un json con los datos que estaban incorrectos
              }
             break; 
+
+            case 'delete':{
+                echo json_encode(ClientController::delete($_POST['id']));
+            break;
+            }
         }
     }
 }
@@ -123,12 +128,12 @@ class ClientController{
         } 
     }
 
-    public static function delete($args){
+    public static function delete($id){
         
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://crud.jonathansoto.mx/api/clients/'.$args['id'],
+        CURLOPT_URL => 'https://crud.jonathansoto.mx/api/clients/'.$id,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -146,7 +151,7 @@ class ClientController{
         curl_close($curl);
         $response = json_decode($response);
         if(isset($response->code) && $response->code > 0 ){
-            return $response->data;
+            return $response;
         }else{
             return array();
         }
