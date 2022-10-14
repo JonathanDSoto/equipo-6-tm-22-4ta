@@ -56,12 +56,15 @@
                             <div class="col-auto">
                                 <div class="avatar-lg">
                                     <img src="<?= BASE_PATH ?>public/images/users/avatar-1.jpg" alt="user-img" class="img-thumbnail rounded-circle" />
+                                    <a type="button" class="text-light mt-2" data-bs-toggle="modal" data-bs-target="#add-product">
+                                        <i class="mdi mdi-square-edit-outline "></i><a class="text-light" href="#"> Editar foto</a>
+                                    </a>
                                 </div>
                             </div>
                             <!--end col-->
                             <div class="col">
                                 <div class="p-2">
-                                    <h3 class="text-white mb-1"><?php echo $p->name?></h3>
+                                    <h3 class="text-white mb-1">Nombre</h3>
                                 </div>
                             </div>
                         </div>
@@ -94,20 +97,25 @@
                                                                 <tbody>
                                                                     <tr>
                                                                         <th class="ps-0" scope="row">Nombre :</th>
-                                                                        <td class="text-muted"><?php echo $p->name?> <?php echo $p->lastname?></td>
+                                                                        <td class="text-muted"></td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th class="ps-0" scope="row">Correo Electrónico :</th>
-                                                                        <td class="text-muted"><?php echo $p->email?></td>
+                                                                        <td class="text-muted"></td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th class="ps-0" scope="row">Número de Teléfono :</th>
-                                                                        <td class="text-muted"><?php echo $p->phone_number?>
+                                                                        <td class="text-muted">
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th class="ps-0" scope="row">Creado por :</th>
-                                                                        <td class="text-muted"><?php echo $p->created_by?>
+                                                                        <td class="text-muted">
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th class="ps-0" scope="row">Nivel de suscripcion :</th>
+                                                                        <td class="text-muted">
                                                                         </td>
                                                                     </tr>
                                                                 </tbody>
@@ -122,6 +130,43 @@
                                     </div>
                                     <!--end tab-pane-->
                                 </div>
+                                
+                                <div class="d-flex">
+                                    <!-- Nav tabs -->
+                                    <ul class="nav nav-pills animation-nav profile-nav gap-2 gap-lg-3 flex-grow-1" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link fs-14 active" data-bs-toggle="tab" href="#overview-tab" role="tab">
+                                                <i class="ri-airplay-fill d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block text-dark">Ódenes Realizadas</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <table class="table table-borderless table-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Folio</th>
+                                        <th scope="col">Total</th>
+                                        <th scope="col">Direccion</th>
+                                        <th scope="col">Método de pago</th> 
+                                        <th scope="col">Estado de la orden</th>
+                                        <th scope="col">Cupón utilizado</th>
+                                        <th scope="col">Productos ordenados</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">6546</th>
+                                        <td>$1596</td>
+                                        <td>Calle 123,Azuqueca de Henares,Guadalajara,19200(codigo postal)</td>
+                                        <td>Deposito</td>
+                                        <td>Pendiente de pago</td>
+                                        <td>10% off</td>
+                                        <td>1xColchón Matrimonial Zero --- 2xComedor Miguel con 4 Sillas</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
                                 <!--end tab-content-->
                             </div>
                         </div>
