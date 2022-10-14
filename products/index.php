@@ -49,7 +49,7 @@
                                     <div class="col-sm-auto">
                                         <div>
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-product">
-                                            + Añanir Producto
+                                            + Añadir Producto
                                         </button>
 
                                         </div>

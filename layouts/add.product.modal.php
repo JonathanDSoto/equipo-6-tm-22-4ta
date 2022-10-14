@@ -10,26 +10,26 @@
 			    <div class="modal-body">
 			      	<div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Nombre</span>
-					    <input id="name" name="name" type="text" class="form-control" placeholder="Product name" aria-label="Username" aria-describedby="basic-addon1">
+					    <input id="name" name="name" type="text" class="form-control" placeholder="Nombre del Producto" aria-label="Username" aria-describedby="basic-addon1">
 					</div>
 
 					<div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Slug</span>
-					    <input id="slug" name="slug" type="text" class="form-control" placeholder="Product slug" aria-label="Username" aria-describedby="basic-addon1">
+					    <input id="slug" name="slug" type="text" class="form-control" placeholder="Slug del Producto" aria-label="Username" aria-describedby="basic-addon1">
 					</div>
 
 					<div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Descripcion</span>
-					    <input id="description" name="description" type="text" class="form-control" placeholder="Product description" aria-label="Username" aria-describedby="basic-addon1">
+					    <input id="description" name="description" type="text" class="form-control" placeholder="Descripción del Producto" aria-label="Username" aria-describedby="basic-addon1">
 					</div>
 
 					<div class="input-group mb-3">
-					    <span class="input-group-text" id="basic-addon1">Features</span>
-					    <input id="features" name="features" type="text" class="form-control" placeholder="Product features" aria-label="Username" aria-describedby="basic-addon1">
+					    <span class="input-group-text" id="basic-addon1">Características</span>
+					    <input id="features" name="features" type="text" class="form-control" placeholder="Caracteristicas del Producto" aria-label="Username" aria-describedby="basic-addon1">
 					</div>
 
 					<div class="input-group mb-3">
-					    <span class="input-group-text" id="basic-addon1">Brand_id</span>
+					    <span class="input-group-text" id="basic-addon1">Id de la Marca</span>
 					    <select id="brand_id" class="form-control" name="brand_id">
                             <option value="">Escoge una Opcion</option>
                             <option value="">Opcion 1</option>
