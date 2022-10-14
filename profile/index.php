@@ -58,7 +58,7 @@
                             <!--end col-->
                             <div class="col">
                                 <div class="p-2">
-                                    <h3 class="text-white mb-1">Anna Adame</h3>
+                                    <h3 class="text-white mb-1"><?php echo $_SESSION['name']?></h3>
                                 </div>
                             </div>
                         </div>
@@ -91,15 +91,15 @@
                                                                 <tbody>
                                                                     <tr>
                                                                         <th class="ps-0" scope="row">Nombre :</th>
-                                                                        <td class="text-muted">Anna Adame</td>
+                                                                        <td class="text-muted"><?php echo $_SESSION['name']?> <?php echo $_SESSION['lastname']?></td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th class="ps-0" scope="row">Correo Electrónico :</th>
-                                                                        <td class="text-muted">daveadame@velzon.com</td>
+                                                                        <td class="text-muted"><?php echo $_SESSION['email']?></td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th class="ps-0" scope="row">Número de Teléfono :</th>
-                                                                        <td class="text-muted">6121610880
+                                                                        <td class="text-muted"><?php echo $_SESSION['phone_number']?>
                                                                         </td>
                                                                     </tr>
                                                                     <tr>

@@ -78,7 +78,7 @@
 		                        <form method="post" action="<?= BASE_PATH ?>auth">
                                     <button name="action" value="logout" class="dropdown-item" type="submit">
                                         <i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> 
-                                        <span class="align-middle" data-key="t-logout">Logout</span>
+                                        <span class="align-middle" data-key="t-logout">Salir</span>
                                     </button>
                                     <input type="hidden" value="<?= $_SESSION['global_token'] ?>" name="global_token">
                                 </form>
