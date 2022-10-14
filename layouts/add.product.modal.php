@@ -1,3 +1,4 @@
+<link href="<?= BASE_PATH ?>public/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
 <div class="modal fade" id="add-product" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -6,7 +7,7 @@
 		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		    </div>
 
-		    <form enctype="multipart/form-data" method="post" action="../app/ProductsController.php">
+		    <form enctype="multipart/form-data">
 			    <div class="modal-body">
 			      	<div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Nombre</span>
@@ -48,7 +49,6 @@
 			        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
 			        <button type="submit" class="btn btn-primary">Guardar</button>
 			      </div>
-
 			      <input id="oculto_input" type="hidden" name="action" value="create">
 
 			      <input type="hidden" id="id" name="id">

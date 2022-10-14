@@ -24,6 +24,8 @@
 
     <!-- gridjs css -->
     <link rel="stylesheet" href="<?= BASE_PATH ?>public/libs/gridjs/theme/mermaid.min.css">
+    
+    
 </head>
 
 <body>
@@ -86,9 +88,7 @@
                                                             <button type="button" class="btn btn-secondary mt-2" data-bs-toggle="modal" data-bs-target="#add-product">
                                                                 <i class="mdi mdi-square-edit-outline"></i><a> Editar</a>
                                                             </button>
-                                                            <button type="button" class="btn btn-danger mt-2">
-                                                                <i class="mdi mdi-square-edit-outline"></i><a> Eliminar</a>
-                                                            </button>
+                                                            <button type="button" class="btn btn-danger mt-2" id="sa-warning"><i class="mdi mdi-square-edit-outline"></i><a> Eliminar</a></button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -102,9 +102,7 @@
                                                             <button type="button" class="btn btn-secondary mt-2" data-bs-toggle="modal" data-bs-target="#add-product">
                                                                 <i class="mdi mdi-square-edit-outline"></i><a> Editar</a>
                                                             </button>
-                                                            <button type="button" class="btn btn-danger mt-2">
-                                                                <i class="mdi mdi-square-edit-outline"></i><a> Eliminar</a>
-                                                            </button>
+                                                            <button type="button" class="btn btn-danger mt-2" id="sa-warning"><i class="mdi mdi-square-edit-outline"></i><a> Eliminar</a></button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -118,9 +116,7 @@
                                                             <button type="button" class="btn btn-secondary mt-2" data-bs-toggle="modal" data-bs-target="#add-product">
                                                                 <i class="mdi mdi-square-edit-outline"></i><a> Editar</a>
                                                             </button>
-                                                            <button type="button" class="btn btn-danger mt-2">
-                                                                <i class="mdi mdi-square-edit-outline"></i><a> Eliminar</a>
-                                                            </button>
+                                                            <button type="button" class="btn btn-danger mt-2" id="sa-warning"><i class="mdi mdi-square-edit-outline"></i><a> Eliminar</a></button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -134,9 +130,7 @@
                                                             <button type="button" class="btn btn-secondary mt-2" data-bs-toggle="modal" data-bs-target="#add-product">
                                                                 <i class="mdi mdi-square-edit-outline"></i><a> Editar</a>
                                                             </button>
-                                                            <button type="button" class="btn btn-danger mt-2">
-                                                                <i class="mdi mdi-square-edit-outline"></i><a> Eliminar</a>
-                                                            </button>
+                                                            <button type="button" class="btn btn-danger mt-2" id="sa-warning"><i class="mdi mdi-square-edit-outline"></i><a> Eliminar</a></button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -150,9 +144,7 @@
                                                             <button type="button" class="btn btn-secondary mt-2" data-bs-toggle="modal" data-bs-target="#add-product">
                                                                 <i class="mdi mdi-square-edit-outline"></i><a> Editar</a>
                                                             </button>
-                                                            <button type="button" class="btn btn-danger mt-2">
-                                                                <i class="mdi mdi-square-edit-outline"></i><a> Eliminar</a>
-                                                            </button>
+                                                            <button type="button" class="btn btn-danger mt-2" id="sa-warning"><i class="mdi mdi-square-edit-outline"></i><a> Eliminar</a></button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -166,9 +158,7 @@
                                                             <button type="button" class="btn btn-secondary mt-2" data-bs-toggle="modal" data-bs-target="#add-product">
                                                                 <i class="mdi mdi-square-edit-outline"></i><a> Editar</a>
                                                             </button>
-                                                            <button type="button" class="btn btn-danger mt-2">
-                                                                <i class="mdi mdi-square-edit-outline"></i><a> Eliminar</a>
-                                                            </button>
+                                                            <button type="button" class="btn btn-danger mt-2" id="sa-warning"><i class="mdi mdi-square-edit-outline"></i><a> Eliminar</a></button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -214,6 +204,7 @@
     <!-- nouisliderribute js -->
     <script src="<?= BASE_PATH ?>public/libs/nouislider/nouislider.min.js"></script>
     <script src="<?= BASE_PATH ?>public/libs/wnumb/wNumb.min.js"></script>
+    
     
     <!-- gridjs js -->
     <script src="<?= BASE_PATH ?>public/libs/gridjs/gridjs.umd.js"></script>

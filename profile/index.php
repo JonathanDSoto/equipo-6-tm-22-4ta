@@ -8,7 +8,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Profile | Velzon - Admin & Dashboard Template</title>
+    <title>Mi Perfil</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
@@ -59,7 +59,6 @@
                             <div class="col">
                                 <div class="p-2">
                                     <h3 class="text-white mb-1">Anna Adame</h3>
-                                    <p class="text-white-75">Owner & Founder</p>
                                 </div>
                             </div>
                         </div>
@@ -74,7 +73,7 @@
                                     <ul class="nav nav-pills animation-nav profile-nav gap-2 gap-lg-3 flex-grow-1" role="tablist">
                                         <li class="nav-item">
                                             <a class="nav-link fs-14 active" data-bs-toggle="tab" href="#overview-tab" role="tab">
-                                                <i class="ri-airplay-fill d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block">Overview</span>
+                                                <i class="ri-airplay-fill d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block">Detalles</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -103,7 +102,11 @@
                                                                         <td class="text-muted">6121610880
                                                                         </td>
                                                                     </tr>
-                                                                    
+                                                                    <tr>
+                                                                        <th class="ps-0" scope="row">Creado por :</th>
+                                                                        <td class="text-muted">Jonathan Soto
+                                                                        </td>
+                                                                    </tr>
                                                                 </tbody>
                                                             </table>
                                                         </div>

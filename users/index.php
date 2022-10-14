@@ -31,10 +31,10 @@
     <div id="layout-wrapper">
 
     	<?php include "../layouts/nav.template.php"; ?>
-        
         <!-- ========== App Menu ========== -->
         <?php include "../layouts/sidebar.template.php";?>
         <?php include "../layouts/add.client.modal.php";?>
+        
 
         <div class="main-content">
 
@@ -96,7 +96,7 @@
                                         <td>
                                             <div class="hstack gap-3 fs-15">
                                                 <a href="javascript:void(0);" class="link-secondary" data-bs-toggle="modal" data-bs-target="#add-client"><i class="ri-settings-4-line"></i></a>
-                                                <a href="javascript:void(0);" class="link-danger"><i class="ri-delete-bin-5-line"></i></a>
+                                                <a href="javascript:void(0);" class="link-danger" id="sa-warning"><i class="ri-delete-bin-5-line"></i></a>
                                             </div>
                                         </td>
                                     </tr>
@@ -128,6 +128,7 @@
     <script src="<?= BASE_PATH ?>public/libs/gridjs/gridjs.umd.js"></script>
     <!-- ecommerce product list -->
     <script src="<?= BASE_PATH ?>public/js/pages/ecommerce-product-list.init.js"></script>
+    
 
 
 </body>
