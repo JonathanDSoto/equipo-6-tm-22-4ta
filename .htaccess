@@ -16,4 +16,4 @@ RewriteRule ^client/details$ app/ClientController.php
 
 RewriteRule ^products/details/(.+)/$ products/details.php?slug=$1
 
-RewriteRule ^clients/details/(.+)/$ clients/details.php?slug=$1
+# RewriteRule ^clients/details/(.+)/$ clients/details.php?slug=$1
