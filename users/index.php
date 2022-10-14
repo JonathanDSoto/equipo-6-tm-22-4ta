@@ -1,16 +1,6 @@
 <?php 
-
 	include "../app/ProductsController.php";
 	include "../app/BrandController.php";
-
-	$productController = new ProductsController();
-
-	$brandController = new BrandController();
-
-	// $products = $productController->getProducts();
-	// $brands = $brandController->getBrands();
-
-	#echo json_encode($_SESSION);
 ?> 
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
@@ -50,7 +40,7 @@
                                     <div class="col-sm-auto">
                                         <div>
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-client">
-                                            Añadir Cliente
+                                            Añadir Usuario
                                         </button>
 
                                         </div>
@@ -64,7 +54,7 @@
                                         <ul class="nav nav-tabs-custom card-header-tabs border-bottom-0" role="tablist">
                                             <li class="nav-item">
                                                 <a class="nav-link active fw-semibold" data-bs-toggle="tab" href="#productnav-all" role="tab">
-                                                    Clientes <span class="badge badge-soft-danger align-middle rounded-pill ms-1"># de Clientes</span>
+                                                    Usuarios <span class="badge badge-soft-danger align-middle rounded-pill ms-1"># de Usuarios</span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -96,9 +86,7 @@
                                         <td>
                                             <div class="hstack gap-3 fs-15">
                                                 <a href="javascript:void(0);" class="link-secondary" data-bs-toggle="modal" data-bs-target="#add-client"><i class="ri-settings-4-line"></i></a>
-                                                <a href="" class="link-dark"><i class=" ri-eye-line"></i></a>
                                                 <a href="javascript:void(0);" class="link-danger" id="sa-warning"><i class="ri-delete-bin-5-line"></i></a>
-                                                
                                             </div>
                                         </td>
                                     </tr>
