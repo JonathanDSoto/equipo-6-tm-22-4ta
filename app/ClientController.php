@@ -2,20 +2,56 @@
 include 'config.php';
 
 // arreglo que tiene una asociacion entre la accion que se manda desde el formulario  y el metodo que se llama aqui
-$methodAction = [
-    'create' => 'ClientController::create',
-    'delete' => 'ClientController::delete',
-    'get' => 'ClientController::get',
-    'edit' => 'ClientController::edit'
-];
+/* $methodAction = [
+    'create' =>['function' => 'ClientController::create', 'requiresStripTags' => true],
+    'delete' => ['ClientController::delete', 'requiresStripTags' => false],
+    'get' => ['ClientController::get', 'requiresStripTags' => false],
+    'edit' => ['ClientController::edit', 'requiresStripTags' => false],
+    'getAll' =>['function' => 'ClientController::getAll', 'requiresStripTags' => false],
+]; */
 // 'accion' => 'metodo'
-if (isset($_POST['global_token']) && ($_POST['global_token'] == $_SESSION['global_token'])){
+// if (isset($_POST['global_token']) && ($_POST['global_token'] == $_SESSION['global_token'])){
     /// echo 'primer if';
-     if(isset ($_POST['action']) &&  array_key_exists($_POST['action'], $methodAction)){ // revisamos si se envo la accion por post y si esta tiene un metodo asignado 
+/*     if(isset($_POST['action'])){
+        switch()
+    }
+     */
+ /*     if(isset ($_POST['action']) &&  array_key_exists($_POST['action'], $methodAction)){ // revisamos si se envo la accion por post y si esta tiene un metodo asignado 
         // print_r( $_POST );
-        forward_static_call_array($methodAction[$_POST['action']], compact('_POST')); // llamamos al metodo de la accion y pasamos el arreglo post como argumento 
+        if($methodAction[$_POST['action']]['requiresStripTags']){
+            $_POST = array_map(function($v){
+                echo "tags ";
+                return trim(strip_tags($v));
+            }, $_POST);
+        }
+        // forward_static_call_array($methodAction[$_POST['action']]['function'], compact('_POST')); // llamamos al metodo de la accion y pasamos el arreglo post como argumento 
+    } */
+// }
+//   echo $_SESSION['global_token'];
+
+if (isset($_POST['action'])) {
+
+	 if (isset($_POST['global_token']) && 
+		$_POST['global_token'] == $_SESSION['global_token']){
+            // echo 'dfghhjghdgsf';
+	 	    switch ($_POST['action']) {
+            case 'create':
+            $data = ClientController::trim_data($_POST); // quitamos cosas invalidas de los parametros
+            $validationResult = ClientController::validateCreate($data); // validamos que tengan el formato correcto 
+            //  print_r( $data);
+             if (empty($validationResult)){ 
+            //     print_r( $data);
+                 ClientController::create($data); // creamos el registro y regresamos el resultado 
+             }else{
+                echo  json_encode(['errors' => $validationResult]); /// regresamos un json con los datos que estaban incorrectos
+             }
+            break; 
+        }
     }
 }
+
+
+
 
 class ClientController{
     public static function getAll(){ 
@@ -56,7 +92,7 @@ class ClientController{
                 <input type="submit" name="" id="">
             </form> */
     public static function create($args){
-        // print_r( $args);
+     print_r( $args);
     $curl = curl_init();
     curl_setopt_array($curl, array(
     CURLOPT_URL => 'https://crud.jonathansoto.mx/api/clients',
@@ -67,23 +103,24 @@ class ClientController{
     CURLOPT_FOLLOWLOCATION => true,
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => 'POST',
-    CURLOPT_POSTFIELDS => array('name' =>'namaaaaaaaaaaaaaaaaae','email' =>'emaideaefafal','password' =>  'papasswordessword','phone_number' =>   'phone_number','is_suscribed' => '1','level_id' => '1'),
+//   CURLOPT_POSTFIELDS => array('name' =>'namaaaaaaaaaaaaaaaaae','email' =>'emaideaefafal','password' =>  'papasswordessword','phone_number' =>   'phone_number','is_suscribed' => '1','level_id' => '1'),
 
-//    CURLOPT_POSTFIELDS => array('name' =>   $args['name'],'email' => $args['email'],'password' =>   $args['password'],'phone_number' =>   $args['phone_number'],'is_suscribed' => '1','level_id' => '1'),
+    CURLOPT_POSTFIELDS => array('name' => $args['name'],'email' => $args['email'],'password' =>   $args['password'],'phone_number' =>   $args['phone_number'],'is_suscribed' => '1','level_id' => '1'),
     CURLOPT_HTTPHEADER => array(
-        'Authorization: Bearer '.$_SESSION['token']
+        'Authorization: Bearer 364|hkHnsGw8PTqQqyiYxvN74DPEP9NUm0zebeXQ3x1t'
+        // 'Authorization: Bearer '.$_SESSION['token']
     ),
     ));
 
         $response = curl_exec($curl);
-            // echo $response;
+             echo $response;
         curl_close($curl);
         $response = json_decode($response);
         if(isset($response->code) && $response->code > 0 ){
             return $response->data;
         }else{
             return array();
-        }
+        } 
     }
 
     public static function delete($args){
@@ -144,7 +181,7 @@ class ClientController{
     }
 
     public static function edit($args){
-        echo 'alagerga esto no jala >:V';
+    //    echo 'alagerga esto no jala >:V';
        // extract($args);
                 
 
@@ -160,9 +197,9 @@ class ClientController{
         CURLOPT_FOLLOWLOCATION => true,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => 'PUT',
-      //  CURLOPT_POSTFIELDS => 'name='.$args['name'].'&email='.$args['email'].'&password='.$args['password'].'&phone_number='.$args['phone_number'].'&is_suscribed=1&level_id=1&id='.$args['id'],
+       CURLOPT_POSTFIELDS => 'name='.$args['name'].'&email='.$args['email'].'&password='.$args['password'].'&phone_number='.$args['phone_number'].'&is_suscribed=1&level_id=1&id='.$args['id'],
 
-        CURLOPT_POSTFIELDS => 'name=jonathan%20soto&email=jsoto%40uabcs.mx&password=Th3_P4ssW0rd_4nt!_h4ck_2000&phone_number=6120000000&is_suscribed=1&level_id=1&id='.$args['id'],
+      //  CURLOPT_POSTFIELDS => 'name=jonathan%20soto&email=jsoto%40uabcs.mx&password=Th3_P4ssW0rd_4nt!_h4ck_2000&phone_number=6120000000&is_suscribed=1&level_id=1&id='.$args['id'],
         CURLOPT_HTTPHEADER => array(
             'Authorization: Bearer '.$_SESSION['token'],
             'Content-Type: application/x-www-form-urlencoded'
@@ -172,9 +209,55 @@ class ClientController{
         $response = curl_exec($curl);
 
         curl_close($curl);
-        echo $response; 
+        // echo $response; 
+        $response = json_decode($response);
+        if(isset($response->code) && $response->code > 0 ){
+            return $response->data;
+        }else{
+            return array();
+        }
 
     }
+
+    public static function validateCreate($args){
+          extract($args);
+          $response = [];
+//array('name' =>'namaaaaaaaaaaaaaaaaae','email' =>'emaideaefafal','password' =>  'papasswordessword','phone_number' =>  
+// 'phone_number','is_suscribed' => '1','level_id' => '1'),
+
+
+
+
+        //  p}rint_r($name);
+        if(!preg_match("/^[a-zA-Z-']*$/",$name)){
+            array_push($response,'nombre tiene numeros');
+        }
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+            array_push($response,'email en formto incorrecto');
+        }
+        if(!preg_match('/^[0-9]{11}$/', $phone_number)){
+            array_push($response,'telefono en formto incorrecto  (solo se aceptan 11 numeros)');
+        }
+ 
+        return $response;
+    }
+
+
+    static function trim_data($dataArray) {
+/*         foreach($dataArray as $data){
+            $data = trim($data);
+            $data = stripslashes($data);
+            $data = htmlspecialchars($data);
+             echo $data;
+        } */
+        $newArray = array_map(function($v){
+    
+            return trim(strip_tags($v));
+        }, $dataArray);
+
+        // print_r ($newArray;
+         return $newArray;
+      }
 }
 
 
