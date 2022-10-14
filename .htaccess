@@ -4,8 +4,10 @@ RewriteEngine on
 #Rutas
 RewriteRule ^auth$ app/AuthController.php
 
-RewriteRule ^profile$ products/index.php
+RewriteRule ^profile$ profile/index.php
 
 RewriteRule ^products$ products/index.php
 
 RewriteRule ^logout$ app/AuthController.php
+
+RewriteRule ^client$ app/ClientController.php
