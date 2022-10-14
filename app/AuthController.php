@@ -14,7 +14,7 @@ if (isset($_POST['action'])) {
 				AuthController::login($email,$password);
 			break; 
 			case 'logout':
-             echo 'weghgnegwfq';
+          
                 $email = $_SESSION['email'];
                 AuthController::logout($email);
                 break;
@@ -73,6 +73,8 @@ $pass = 'A9*27rh6%#271N'; $email = 'crve_19@alu.uabcs.mx';
 			$_SESSION['lastname']= $response->data->lastname;
 			$_SESSION['avatar']= $response->data->avatar;
 			$_SESSION['token']= $response->data->token;
+			$_SESSION['email']= $response->data->email;
+			$_SESSION['phone_number']= $response->data->phone_number;
 
 			header("Location:".BASE_PATH."products");
 		}else{
@@ -117,6 +119,7 @@ $pass = 'A9*27rh6%#271N'; $email = 'crve_19@alu.uabcs.mx';
         
         $response = json_decode($response);
         if(isset($response->code) && $response->code > 0 ){
+            session_destroy();
         	header("Location:".BASE_PATH);
             //return $response->data;
         }else{
