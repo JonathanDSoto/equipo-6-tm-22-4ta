@@ -1,11 +1,14 @@
 <?php
 	include_once "../app/config.php";
+    include "../app/AuthController.php";
+    
+    $p = AuthController::getProfile();
 ?>
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
 
 
-<head>
+<head>  
 
     <meta charset="utf-8" />
     <title>Mi Perfil</title>
@@ -58,7 +61,7 @@
                             <!--end col-->
                             <div class="col">
                                 <div class="p-2">
-                                    <h3 class="text-white mb-1"><?php echo $_SESSION['name']?></h3>
+                                    <h3 class="text-white mb-1"><?php echo $p->name?></h3>
                                 </div>
                             </div>
                         </div>
@@ -91,20 +94,20 @@
                                                                 <tbody>
                                                                     <tr>
                                                                         <th class="ps-0" scope="row">Nombre :</th>
-                                                                        <td class="text-muted"><?php echo $_SESSION['name']?> <?php echo $_SESSION['lastname']?></td>
+                                                                        <td class="text-muted"><?php echo $p->name?> <?php echo $p->lastname?></td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th class="ps-0" scope="row">Correo Electrónico :</th>
-                                                                        <td class="text-muted"><?php echo $_SESSION['email']?></td>
+                                                                        <td class="text-muted"><?php echo $p->email?></td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th class="ps-0" scope="row">Número de Teléfono :</th>
-                                                                        <td class="text-muted"><?php echo $_SESSION['phone_number']?>
+                                                                        <td class="text-muted"><?php echo $p->phone_number?>
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th class="ps-0" scope="row">Creado por :</th>
-                                                                        <td class="text-muted">Jonathan Soto
+                                                                        <td class="text-muted"><?php echo $p->created_by?>
                                                                         </td>
                                                                     </tr>
                                                                 </tbody>
