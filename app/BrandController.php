@@ -20,7 +20,12 @@ if (isset($_POST['action'])) {
 				}
 
 				case 'update':{
-
+					$name = strip_tags(trim($_POST['name']));
+					$description = strip_tags(trim($_POST['description']));
+					$slug = strip_tags(trim($_POST['slug']));
+					$brand_id = strip_tags(trim($_POST['brand_id']));
+					BrandController::update($name, $description, $slug, $brand_id);
+					break;
 				}
 
 			}
