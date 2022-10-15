@@ -39,7 +39,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="widgets.html">
+                            <a class="nav-link menu-link" href="<?php echo BASE_PATH?>client">
                                 <i class="bx bxs-user-rectangle"></i> <span data-key="t-widgets">Cliente</span>
                             </a>
                         </li>
