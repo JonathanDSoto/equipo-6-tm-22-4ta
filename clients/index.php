@@ -97,7 +97,7 @@
                                             <div class="hstack gap-3 fs-15">
                                                 <a href="javascript:void(0);" class="link-secondary" data-bs-toggle="modal" data-bs-target="#add-client"><i class="ri-settings-4-line"></i></a>
                                                 <a href="" class="link-dark"><i class=" ri-eye-line"></i></a>
-                                                <a href="javascript:void(0);" class="link-danger" id="sa-warning"><i class="ri-delete-bin-5-line"></i></a>
+                                                <a href="javascript:void(0);" class="link-danger"><i class="ri-delete-bin-5-line"></i></a>
                                                 
                                             </div>
                                         </td>
@@ -115,7 +115,9 @@
 
 
     <!--start back-to-top-->
-    <a href="#" class="btn btn-primary"> <i class="ri-arrow-up-line"></i></a>
+    <button onclick="topFunction()" class="btn btn-danger btn-icon" id="back-to-top">
+        <i class="ri-arrow-up-line"></i>
+    </button>
     <!--end back-to-top-->
 
     <?php include "../layouts/scripts.template.php"; ?>
