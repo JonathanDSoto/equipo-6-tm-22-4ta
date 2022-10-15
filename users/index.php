@@ -1,5 +1,9 @@
 <?php 
     include_once "../app/config.php";
+    include "../app/UserController.php";
+
+    $users = new UserController();
+    $users = $users->getAll();
 ?> 
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
@@ -66,23 +70,29 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Jonathan</td>
-                                        <td>Leon</td>
-                                        <td>jonathan@gmail.com</td>
-                                        <td>612000000</td>
-                                        <td>Administrador</td>
-                                        <td>jonathan soto</td>
+                                <?php if (isset($users) && count($users)>0): ?>
+                                    <?php foreach($users as $user): ?>
+
+                                        <tr>
+                                        <th scope="row"><?php echo $user->id?></th>
+                                        <td><?php echo $user->name?></td>
+                                        <td><?php echo $user->lastname?></td>
+                                        <td><?php echo $user->email?></td>
+                                        <td><?php echo $user->phone_number?></td>
+                                        <td>
+                                            <a type="button" class="badge badge-soft-primary">
+                                                <i class="mdi mdi-square-edit-outline"></i> Ver Ódenes
+                                            </a></td>
                                         <td>
                                             <div class="hstack gap-3 fs-15">
-                                                <a href="javascript:void(0);" class="link-secondary" data-bs-toggle="modal" data-bs-target="#add-user"><i class="ri-settings-4-line"></i></a>
-                                                <a href="" class="link-dark"><i class=" ri-eye-line"></i></a>
-                                                <a href="javascript:void(0);" class="link-danger"><i class="ri-delete-bin-5-line"></i></a>
-                                                
+                                                <a href="javascript:void(0);" class="link-secondary" data-bs-toggle="modal" data-bs-target="#add-client"><i class="ri-settings-4-line"></i></a>
+                                                <a href="javascript:void(0);" class="link-danger" id="sa-warning"><i class="ri-delete-bin-5-line"></i></a>
                                             </div>
                                         </td>
                                     </tr>
+
+                                <?php endforeach ?> 
+                                    <?php endif ?>
                                 </tbody>
                             </table>
                         </div>
