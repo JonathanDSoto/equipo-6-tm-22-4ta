@@ -51,6 +51,10 @@ if (isset($_POST['action'])) {
                 echo json_encode(ClientController::delete($_POST['id']));
             break;
             }
+            case 'edit':{
+                echo json_encode(ClientController::edit($_POST));
+                break;
+            }
         }
     }
 }
@@ -112,8 +116,8 @@ class ClientController{
 
     CURLOPT_POSTFIELDS => array('name' => $args['name'],'email' => $args['email'],'password' =>   $args['password'],'phone_number' =>   $args['phone_number'],'is_suscribed' => '1','level_id' => '1'),
     CURLOPT_HTTPHEADER => array(
-        'Authorization: Bearer 364|hkHnsGw8PTqQqyiYxvN74DPEP9NUm0zebeXQ3x1t'
-        // 'Authorization: Bearer '.$_SESSION['token']
+        //'Authorization: Bearer 364|hkHnsGw8PTqQqyiYxvN74DPEP9NUm0zebeXQ3x1t'
+         'Authorization: Bearer '.$_SESSION['token']
     ),
     ));
 
