@@ -1,17 +1,12 @@
 <?php 
-	include "../app/ProductsController.php";
-	include "../app/BrandController.php";
+    include_once "../app/config.php";
 ?> 
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
-
 <head>
-
 	<?php include "../layouts/head.template.php"; ?>
-
     <!-- nouisliderribute css -->
     <link rel="stylesheet" href="<?= BASE_PATH ?>public/libs/nouislider/nouislider.min.css">
-
     <!-- gridjs css -->
     <link rel="stylesheet" href="<?= BASE_PATH ?>public/libs/gridjs/theme/mermaid.min.css">
 </head>
@@ -19,15 +14,11 @@
 <body>
     <!-- Begin page -->
     <div id="layout-wrapper">
-
     	<?php include "../layouts/nav.template.php"; ?>
         <!-- ========== App Menu ========== -->
         <?php include "../layouts/sidebar.template.php";?>
-        <?php include "../layouts/add.client.modal.php";?>
-        
-
+        <?php include "../layouts/add.user.modal.php";?>
         <div class="main-content">
-
             <?php include "../layouts/bread.template.php"; ?>
             <!-- End Page-content -->
             <!-- Tables Without Borders -->
@@ -39,7 +30,7 @@
                                 <div class="row g-4">
                                     <div class="col-sm-auto">
                                         <div>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-client">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-user">
                                             Añadir Usuario
                                         </button>
 
@@ -47,7 +38,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="card-header">
                                 <div class="row align-items-center">
                                     <div class="col">
@@ -67,26 +57,29 @@
                                     <tr>
                                         <th scope="col">Id</th>
                                         <th scope="col">Nombre</th>
-                                        <th scope="col">No. Teléfono</th>
-                                        <th scope="col">Nivel de Subscripción</th>
-                                        <th scope="col">Ordenes</th>
+                                        <th scope="col">Apellidos</th>
+                                        <th scope="col">Correo electrónico</th>
+                                        <th scope="col">No teléfono</th>
+                                        <th scope="col">Role</th>
+                                        <th scope="col">Creado por</th>
                                         <th scope="col">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <th scope="row">1</th>
-                                        <td>Annette Black</td>
-                                        <td>6121234567</td>
-                                        <td>Normal</td>
-                                        <td>
-                                            <a type="button" class="badge badge-soft-primary">
-                                                <i class="mdi mdi-square-edit-outline"></i> Ver Ódenes
-                                            </a></td>
+                                        <td>Jonathan</td>
+                                        <td>Leon</td>
+                                        <td>jonathan@gmail.com</td>
+                                        <td>612000000</td>
+                                        <td>Administrador</td>
+                                        <td>jonathan soto</td>
                                         <td>
                                             <div class="hstack gap-3 fs-15">
-                                                <a href="javascript:void(0);" class="link-secondary" data-bs-toggle="modal" data-bs-target="#add-client"><i class="ri-settings-4-line"></i></a>
+                                                <a href="javascript:void(0);" class="link-secondary" data-bs-toggle="modal" data-bs-target="#add-user"><i class="ri-settings-4-line"></i></a>
+                                                <a href="" class="link-dark"><i class=" ri-eye-line"></i></a>
                                                 <a href="javascript:void(0);" class="link-danger" id="sa-warning"><i class="ri-delete-bin-5-line"></i></a>
+                                                
                                             </div>
                                         </td>
                                     </tr>
@@ -103,17 +96,12 @@
 
 
     <!--start back-to-top-->
-    <button onclick="topFunction()" class="btn btn-danger btn-icon" id="back-to-top">
-        <i class="ri-arrow-up-line"></i>
-    </button>
+    <a href="#" class="btn btn-primary"> <i class="ri-arrow-up-line"></i></a>
     <!--end back-to-top-->
-
     <?php include "../layouts/scripts.template.php"; ?>
-
     <!-- nouisliderribute js -->
     <script src="<?= BASE_PATH ?>public/libs/nouislider/nouislider.min.js"></script>
     <script src="<?= BASE_PATH ?>public/libs/wnumb/wNumb.min.js"></script>
-    
     <!-- gridjs js -->
     <script src="<?= BASE_PATH ?>public/libs/gridjs/gridjs.umd.js"></script>
     <!-- ecommerce product list -->

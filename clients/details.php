@@ -53,7 +53,7 @@
                             <div class="col-auto">
                                 <div class="avatar-lg">
                                     <img src="<?= BASE_PATH ?>public/images/users/avatar-1.jpg" alt="user-img" class="img-thumbnail rounded-circle" />
-                                    <a type="button" class="text-light mt-2" data-bs-toggle="modal" data-bs-target="#add-product">
+                                    <a type="button" class="text-light mt-2">
                                         <i class="mdi mdi-square-edit-outline "></i><a class="text-light" href="#"> Editar foto</a>
                                     </a>
                                 </div>
@@ -196,9 +196,7 @@
 
 
     <!--start back-to-top-->
-    <button onclick="topFunction()" class="btn btn-danger btn-icon" id="back-to-top">
-        <i class="ri-arrow-up-line"></i>
-    </button>
+    <a href="#" class="btn btn-primary">Eliminar</a>
     <!--end back-to-top-->
 
 
