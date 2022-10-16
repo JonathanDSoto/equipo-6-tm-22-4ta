@@ -8,7 +8,13 @@ if (isset($_POST['action'])) {
 		
 			switch ($_POST['action']) {
 				case 'delete':{
-					return BrandController::delete($_POST['id']);
+					$validate = Validator::integer($_POST['brand_id']);
+					if($validate){
+						$_SESSION['_MESSAGE'] =  BrandController::delete($_POST['brand_id']);
+					}else{
+						$_SESSION['_MESSAGE'] = 'Hay algo mal con ese ID';
+					}
+					header('Location: '.$_SERVER['HTTP_REFERER']);
 					break;
 				}
 				case 'create':{
@@ -43,11 +49,35 @@ if(!empty($_SESSION['_MESSAGE'])){
 				}
 
 				case 'update':{
-					$name = strip_tags(trim($_POST['name']));
-					$description = strip_tags(trim($_POST['description']));
-					$slug = strip_tags(trim($_POST['slug']));
-					$brand_id = strip_tags(trim($_POST['brand_id']));
-					BrandController::update($name, $description, $slug, $brand_id);
+					//  ejemplo de validacion de update brand
+/* 
+					if(!empty($_SESSION['_MESSAGE'])){
+						print_r($_SESSION['_MESSAGE']);
+						$_SESSION['_MESSAGE'] = [];
+					}
+					// print_r($_SESSION['_MESSAGE']);
+					?>
+					<form action="app/BrandController.php" method="POST">
+					
+						<input type="text" value="naasdmeweew" name="name">
+						<input type="text" value="descqweqweaription" name="description">
+						<input type="text" value="slaawrerwug" name="slug">
+						<input type="text" value="60" name="brand_id">
+						<input type="hidden" name="global_token" value="<?= $_SESSION['global_token']?>">
+						<input type="text" name="action" value="update">
+						<input type="submit">
+					</form> */
+					$validate = Validator::createBrand($_POST['name'], $_POST['slug'],$_POST['description']);
+					if($validate['status'] == 1){
+						$name = strip_tags(trim($_POST['name']));
+						$description = strip_tags(trim($_POST['description']));
+						$slug = strip_tags(trim($_POST['slug']));
+						$brand_id = strip_tags(trim($_POST['brand_id']));
+						$_SESSION['_MESSAGE'] = BrandController::update($name, $description, $slug, $brand_id);
+					}else{
+						 $_SESSION['_MESSAGE'] =  $validate['data']; 
+					}
+					header('Location: '.$_SERVER['HTTP_REFERER']);	
 					break;
 				}
 
@@ -94,11 +124,11 @@ Class BrandController
 
 	}
 
-	public static function delete($brandId){
+	public static function delete($brand_id){
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		CURLOPT_URL => 'https://crud.jonathansoto.mx/api/brands/'.$brandId,
+		CURLOPT_URL => 'https://crud.jonathansoto.mx/api/brands/'.$brand_id,
 		CURLOPT_RETURNTRANSFER => true,
 		CURLOPT_ENCODING => '',
 		CURLOPT_MAXREDIRS => 10,
@@ -106,13 +136,16 @@ Class BrandController
 		CURLOPT_FOLLOWLOCATION => true,
 		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		CURLOPT_CUSTOMREQUEST => 'DELETE',
+		CURLOPT_HTTPHEADER => array(
+		    'Authorization: Bearer '.$_SESSION['token']
+		  ),
 		));
 
 		$response = curl_exec($curl);
 
 		curl_close($curl);
-		echo $response;
-
+		$response = json_encode($response);	
+		return $response ;
 	}
 
 	public static function create($name, $description, $slug){
@@ -170,12 +203,14 @@ Class BrandController
 		$response = curl_exec($curl);
 
 		curl_close($curl);
-		$response = json_decode($response);
+
+		return $response;
+/* 		$response = json_decode($response);
 		if (isset($response->code) && $response->code > 0) {
 			return $response->data;
 		}else{
 			return array();
-		}
+		} */
 	}
 
 }
