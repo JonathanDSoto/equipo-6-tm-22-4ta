@@ -42,10 +42,25 @@ print_r($a);
         $errors['status'] = !empty($errors['data'])?  '2' :'1'; 
         return ($errors);
     }
-    /*    CURLOPT_POSTFIELDS => 'name=Jonathan%20&lastname=Soto%201&email=jsoto%40abcs.mx&
-    phone_number=6123480678&created_by=jonathan%20soto&role=Administrador&password=password123&id=112', */
 
- 
+// CURLOPT_POSTFIELDS => array('name' => $args['name'],'email' => $args['email'],'password' => $args['password'],'phone_number' =>   $args['phone_number'],'is_suscribed' => '1','level_id' => '1'),
+
+    public static function createClient($name, $email, $password, $phone_number, $client_id = '1'){
+        $data = [$name, $email, $password, $phone_number]; 
+        array_walk($data, 'Validator::trim_value');
+        $errors = ['status'=> '', 'data'=> []];
+
+        array_push($errors['data'], Validator::person_name($name) ?  null : 'nombre mal');
+        array_push($errors['data'], Validator::email($email) ?  null : 'correo mal');
+        array_push($errors['data'], Validator::password($password) ?  null : 'contraseña menor a 10 simbolos');
+        array_push($errors['data'], Validator::phone($phone_number) ?  null : 'telefono mal');
+        array_push($errors['data'], Validator::integer($client_id) ?  null : 'client_id mal');
+
+        $errors['data'] = array_filter($errors['data']);
+        $errors['status'] = !empty($errors['data'])?  '2' :'1'; 
+        return ($errors);
+    }
+  
     public static function password($value){
         return strlen($value) >= 10;
     }

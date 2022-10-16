@@ -1,6 +1,6 @@
 <?php 
 include 'config.php';
-
+include_once 'Validator.php';
 // arreglo que tiene una asociacion entre la accion que se manda desde el formulario  y el metodo que se llama aqui
 /* $methodAction = [
     'create' =>['function' => 'ClientController::create', 'requiresStripTags' => true],
@@ -36,25 +36,86 @@ if (isset($_POST['action'])) {
             // echo 'dfghhjghdgsf';
 	 	    switch ($_POST['action']) {
             case 'create':
-            $data = ClientController::trim_data($_POST); // quitamos cosas invalidas de los parametros
+/*             $data = ClientController::trim_data($_POST); // quitamos cosas invalidas de los parametros
             $validationResult = ClientController::validateCreate($data); // validamos que tengan el formato correcto 
-            //  print_r( $data);
+            
              if (empty($validationResult)){ 
             //     print_r( $data);
                  ClientController::create($data); // creamos el registro y regresamos el resultado 
              }else{
                 echo  json_encode(['errors' => $validationResult]); /// regresamos un json con los datos que estaban incorrectos
+             } */
+
+             
+/* <!-- create client test code -->
+<form action="app/ClientController.php" method="post">
+<input type="text" value="name" name="name">
+   
+    <input type="text" value="ema" name="email">
+    <input type="text" value="pass" name="password">
+    <input type="text" value="phone" name="phone_number">
+    <input type="hidden" name="global_token" value="<?= $_SESSION['global_token']?>">
+    <input type="text" name="action" value="create">
+    <input type="submit">
+</form> */
+
+             $validationResult = Validator::createClient($_POST['name'], $_POST['email'], $_POST['password'], $_POST['phone_number']);
+             print_r($validationResult);
+             if($validationResult['status'] == 1){
+                $name = strip_tags(trim($_POST['name']));
+                $email = strip_tags(trim($_POST['email']));
+                $password = strip_tags(trim($_POST['password']));
+                $_SESSION['_MESSAGE'] = ClientController::create($name, $email, $password, $phone_number);
+             }else{
+                $_SESSION['_MESSAGE'] = $validationResult['data'];
              }
+
+            //  print_r($_SESSION['_MESSAGE']);
+
+            header('Location: '.$_SERVER['HTTP_REFERER']);	
             break; 
 
             case 'delete':{
-                echo json_encode(ClientController::delete($_POST['id']));
+                $validationResult = Validator::integer($_POST['client_id']);
+                // echo json_encode(ClientController::delete($_POST['id']));
+                if($validationResult){
+                    $_SESSION['_MESSAGE'] = ClientController::delete($_POST['client_id']);
+                }else{
+                    $_SESSION['_MESSAGE'] = 'Hay algo mal con ese ID';
+                }
+                header('Location: '.$_SERVER['HTTP_REFERER']);	
             break;
             }
-            case 'edit':{
-                echo json_encode(ClientController::edit($_POST));
+
+/*             <!-- html de prueba de ceditar cliente -->
+<form action="app/ClientController.php" method="post">
+<input type="text" value="name" name="name">
+   
+    <input type="text" value="ema" name="email">
+    <input type="text" value="pass" name="password">
+    <input type="text" value="phone" name="phone_number">
+    <input type="text" value="client_id" name="client_id">
+    <input type="hidden" name="global_token" value="<?= $_SESSION['global_token']?>">
+    <input type="text" name="action" value="edit">
+    <input type="submit">
+</form>
+        */     case 'edit':{
+                $validationResult = Validator::createClient($_POST['name'], $_POST['email'], $_POST['password'], $_POST['phone_number'], $_POST['client_id']);
+                if($validationResult['status'] == 1){
+                    $name = strip_tags(trim($_POST['name']));
+                    $email = strip_tags(trim($_POST['email']));
+                    $password = strip_tags(trim($_POST['password']));
+                    $phone_number = strip_tags(trim($_POST['phone_number']));
+                    $client_id = strip_tags(trim($_POST['client_id']));
+                    $_SESSION['_MESSAGE'] = ClientController::edit($name, $email, $password, $phone_number, $client_id);
+                 }else{
+                    $_SESSION['_MESSAGE'] = $validationResult['data'];
+                 }
+                //  print_r($_SESSION['_MESSAGE']);
                 break;
+                header('Location: '.$_SERVER['HTTP_REFERER']);	
             }
+
         }
     }
 }
@@ -100,8 +161,8 @@ class ClientController{
             <input type="hidden" name="global_token" value="<?= $_SESSION['global_token']?>">
                 <input type="submit" name="" id="">
             </form> */
-    public static function create($args){
-     print_r( $args);
+    public static function create($name, $email, $password, $phone_number){
+    //  print_r( $args);
     $curl = curl_init();
     curl_setopt_array($curl, array(
     CURLOPT_URL => 'https://crud.jonathansoto.mx/api/clients',
@@ -114,7 +175,7 @@ class ClientController{
     CURLOPT_CUSTOMREQUEST => 'POST',
 //   CURLOPT_POSTFIELDS => array('name' =>'namaaaaaaaaaaaaaaaaae','email' =>'emaideaefafal','password' =>  'papasswordessword','phone_number' =>   'phone_number','is_suscribed' => '1','level_id' => '1'),
 
-    CURLOPT_POSTFIELDS => array('name' => $args['name'],'email' => $args['email'],'password' =>   $args['password'],'phone_number' =>   $args['phone_number'],'is_suscribed' => '1','level_id' => '1'),
+    CURLOPT_POSTFIELDS => array('name' => $name,'email' => $email,'password' =>   $password,'phone_number' =>   $phone_number,'is_suscribed' => '1','level_id' => '1'),
     CURLOPT_HTTPHEADER => array(
         //'Authorization: Bearer 364|hkHnsGw8PTqQqyiYxvN74DPEP9NUm0zebeXQ3x1t'
          'Authorization: Bearer '.$_SESSION['token']
@@ -125,11 +186,13 @@ class ClientController{
              echo $response;
         curl_close($curl);
         $response = json_decode($response);
-        if(isset($response->code) && $response->code > 0 ){
+
+        return $response;
+/*         if(isset($response->code) && $response->code > 0 ){
             return $response->data;
         }else{
             return array();
-        } 
+        }  */
     }
 
     public static function delete($id){
@@ -189,7 +252,7 @@ class ClientController{
           }
     }
 
-    public static function edit($args){
+    public static function edit($name, $email, $password, $phone_number, $id){
     //    echo 'alagerga esto no jala >:V';
        // extract($args);
                 
@@ -206,7 +269,7 @@ class ClientController{
         CURLOPT_FOLLOWLOCATION => true,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => 'PUT',
-       CURLOPT_POSTFIELDS => 'name='.$args['name'].'&email='.$args['email'].'&password='.$args['password'].'&phone_number='.$args['phone_number'].'&is_suscribed=1&level_id=1&id='.$args['id'],
+        CURLOPT_POSTFIELDS => 'name='.$name.'&email='.$email.'&password='.$password.'&phone_number='.$phone_number.'&is_suscribed=1&level_id=1&id='.$id,
 
       //  CURLOPT_POSTFIELDS => 'name=jonathan%20soto&email=jsoto%40uabcs.mx&password=Th3_P4ssW0rd_4nt!_h4ck_2000&phone_number=6120000000&is_suscribed=1&level_id=1&id='.$args['id'],
         CURLOPT_HTTPHEADER => array(
@@ -220,11 +283,12 @@ class ClientController{
         curl_close($curl);
         // echo $response; 
         $response = json_decode($response);
-        if(isset($response->code) && $response->code > 0 ){
+        return $response;
+/*         if(isset($response->code) && $response->code > 0 ){
             return $response->data;
         }else{
             return array();
-        }
+        } */
 
     }
 
