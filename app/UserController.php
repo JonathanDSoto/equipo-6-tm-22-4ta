@@ -167,7 +167,7 @@ class UserController{
     $response = json_decode($response);
     if(isset($response->code) && $response->code > 0 ){
     //   header('Location: ../index.php');
-        return $response;
+        return $response->data;
     }else{
         return array();
     }
@@ -234,7 +234,7 @@ public static function delete($id){
     curl_close($curl);
     $response = json_decode($response);
 
-    return $response;
+    echo $response;
 /*     if(isset($response->code) && $response->code > 0 ){
         return true;
     }else{
