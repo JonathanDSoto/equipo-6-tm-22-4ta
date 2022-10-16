@@ -12,6 +12,22 @@ if (isset($_POST['global_token']) && ($_POST['global_token'] == $_SESSION['globa
              case 'register':{
                 // print_r($_FILES['avatar']);
                 // $_POST = qu($_POST);
+                /* <form action="app/UserController.php" method="post" enctype="multipart/form-data"> html de prueba create user
+    
+    <input type="text" value="name" name="name">
+    <input type="text" value="last" name="lastname">
+    <input type="text" value="ema" name="email">
+    <!-- <input type="text" value="naasdmeweew" name="phone_numbLlLLer" -->
+    <input type="text" value="phone" name="phone_number">
+    <input type="text" value="role" name="role">
+    <input type="text" value="pass" name="password">
+    <input type="file" name="avatar">
+    
+    
+    <input type="hidden" name="global_token" value="<?= $_SESSION['global_token']?>">
+    <input type="text" name="action" value="register">
+    <input type="submit">
+</form> */
 
                 $validate = Validator::createUser($_POST['name'],$_POST['lastname'], $_POST['email'], $_POST['phone_number'],
                 $_SESSION['name'], $_POST['role'], $_POST['password'],$_FILES['avatar']['type']);
@@ -43,8 +59,26 @@ if (isset($_POST['global_token']) && ($_POST['global_token'] == $_SESSION['globa
             }
 
 
+
+            /* <form action="app/UserController.php" method="post" enctype="multipart/form-data"> html de prueba delete user
+    
+    
+    <input type="text" name="id"  value="ert">
+    <input type="hidden" name="global_token" value="<?= $_SESSION['global_token']?>">
+    <input type="text" name="action" value="delete">
+    <input type="submit"> */
             case 'delete':{
-                UserController::delete($_POST['id']);
+                $result = Validator::integer($_POST['id']);
+                echo $result;
+                if($result){
+                    $_SESSION['_MESSAGE'] = UserController::delete($_POST['id']);
+                }else{ 
+                    $_SESSION['_MESSAGE'] = 'Hay algo mal con ese ID';
+                }
+                print_r(
+                    $_SESSION['_MESSAGE']
+                ); 
+                header('Location: '.$_SERVER['HTTP_REFERER']);
                 break;
             }
             
@@ -152,11 +186,13 @@ public static function delete($id){
     
     curl_close($curl);
     $response = json_decode($response);
-    if(isset($response->code) && $response->code > 0 ){
+
+    return $response;
+/*     if(isset($response->code) && $response->code > 0 ){
         return true;
     }else{
         return false;
-    }
+    } */
     
     }
 
