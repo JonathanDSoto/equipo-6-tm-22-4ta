@@ -35,3 +35,5 @@ RewriteRule ^cupons$ cupons/index.php
 RewriteRule ^orders$ orders/index.php
 
 RewriteRule ^frm$ app/UserController.php
+
+RewriteRule ^cln$ app/ClientController.php
