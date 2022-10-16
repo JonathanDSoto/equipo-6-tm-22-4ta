@@ -38,7 +38,6 @@
     <div id="layout-wrapper">
         <?php include "../layouts/nav.template.php"; ?>
         <?php include "../layouts/sidebar.template.php"; ?>
-        <?php include "../layouts/add.address.modal.php";?>
         <?php include "../layouts/add.photo.modal.php";?>
         <!-- ========== App Menu ========== -->
         <div class="main-content">
@@ -108,7 +107,17 @@
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
+                                                                        <th class="ps-0" scope="row">Creado por :</th>
+                                                                        <td class="text-muted">
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
                                                                         <th class="ps-0" scope="row">Nivel de suscripcion :</th>
+                                                                        <td class="text-muted">
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th class="ps-0" scope="row">Role :</th>
                                                                         <td class="text-muted">
                                                                         </td>
                                                                     </tr>
@@ -124,96 +133,6 @@
                                     </div>
                                     <!--end tab-pane-->
                                 </div>
-                                
-                                <div class="d-flex">
-                                    <!-- Nav tabs -->
-                                    <ul class="nav nav-pills animation-nav profile-nav gap-2 gap-lg-3 flex-grow-1" role="tablist">
-                                        <li class="nav-item">
-                                            <a class="nav-link fs-14 active" data-bs-toggle="tab" href="#overview-tab" role="tab">
-                                                <i class="ri-airplay-fill d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block text-dark">Ódenes Realizadas</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <table class="table table-borderless table-nowrap">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Folio</th>
-                                        <th scope="col">Total</th>
-                                        <th scope="col">Direccion</th>
-                                        <th scope="col">Método de pago</th> 
-                                        <th scope="col">Estado de la orden</th>
-                                        <th scope="col">Cupón utilizado</th>
-                                        <th scope="col">Productos ordenados</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">6546</th>
-                                        <td>$1596</td>
-                                        <td>Calle 123,Azuqueca de Henares,Guadalajara,19200(codigo postal)</td>
-                                        <td>Deposito</td>
-                                        <td>Pendiente de pago</td>
-                                        <td>10% off</td>
-                                        <td>1xColchón Matrimonial Zero --- 2xComedor Miguel con 4 Sillas</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
-                            <div class="card-header border-0">
-                                <div class="row g-4">
-                                    <div class="col-sm-auto">
-                                        <div>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-address">
-                                            Añadir direccion
-                                        </button>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <!-- Direcciones -->
-                            <div class="d-flex">
-                                    <!-- Nav tabs -->
-                                    <ul class="nav nav-pills animation-nav profile-nav gap-2 gap-lg-3 flex-grow-1" role="tablist">
-                                        <li class="nav-item">
-                                            <a class="nav-link fs-14 active" data-bs-toggle="tab" href="#overview-tab" role="tab">
-                                                <i class="ri-airplay-fill d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block text-dark">Direcciones registradas</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <table class="table table-borderless table-nowrap">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Calle y No.</th>
-                                        <th scope="col">Código postal</th>
-                                        <th scope="col">Ciudad</th>
-                                        <th scope="col">Estado</th> 
-                                        <th scope="col">No. teléfono</th>
-                                        <th scope="col">Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">Calle ejemplo #123</th>
-                                        <td>23088</td>
-                                        <td>La paz</td>
-                                        <td>Baja California Sur</td>
-                                        <td>61200000</td>
-                                        <td>
-                                            <div class="hstack gap-3 fs-15">
-                                                <a href="javascript:void(0);" class="link-secondary" data-bs-toggle="modal" data-bs-target="#add-address"><i class="ri-settings-4-line"></i></a>
-                                                <a href="javascript:void(0);" class="link-danger"><i class="ri-delete-bin-5-line"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
-
                                 <!--end tab-content-->
                             </div>
                         </div>

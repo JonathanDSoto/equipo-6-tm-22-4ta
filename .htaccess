@@ -10,10 +10,27 @@ RewriteRule ^products$ products/index.php
 
 RewriteRule ^logout$ app/AuthController.php
 
-RewriteRule ^client$ app/ClientController.php
+RewriteRule ^client$ clients/index.php
 
-RewriteRule ^client/details$ app/ClientController.php
+RewriteRule ^client/details$ clients/details.php
+
+RewriteRule ^users$ users/index.php
+
+RewriteRule ^users/details$ users/details.php
 
 RewriteRule ^products/details/(.+)/$ products/details.php?slug=$1
 
-# RewriteRule ^clients/details/(.+)/$ clients/details.php?slug=$1
+RewriteRule ^clients/details/(.+)/$ clients/details.php?id=$1
+
+RewriteRule ^users/details/(.+)/$ users/details.php?id=$1
+
+RewriteRule ^catalogos/marcas$ catalogs/brands/index.php
+
+RewriteRule ^catalogos/categorias$ catalogs/categories/index.php
+
+RewriteRule ^catalogos/etiquetas$ catalogs/tags/index.php
+
+RewriteRule ^cupons$ cupons/index.php
+
+RewriteRule ^orders$ orders/index.php
+

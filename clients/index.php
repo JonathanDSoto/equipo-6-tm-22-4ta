@@ -2,13 +2,20 @@
 
 	include "../app/ProductsController.php";
 	include "../app/BrandController.php";
-
+    include "../app/ClientController.php";
+    
 	$productController = new ProductsController();
 
 	$brandController = new BrandController();
 
 	// $products = $productController->getProducts();
 	// $brands = $brandController->getBrands();
+
+    
+
+
+	$cliente = new ClientController();
+    $client = $cliente->getAll();
 
 	#echo json_encode($_SESSION);
 ?> 
@@ -84,24 +91,28 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Annette Black</td>
-                                        <td>6121234567</td>
-                                        <td>Normal</td>
-                                        <td>
-                                            <a type="button" class="badge badge-soft-primary">
-                                                <i class="mdi mdi-square-edit-outline"></i> Ver Ódenes
-                                            </a></td>
-                                        <td>
-                                            <div class="hstack gap-3 fs-15">
-                                                <a href="javascript:void(0);" class="link-secondary" data-bs-toggle="modal" data-bs-target="#add-client"><i class="ri-settings-4-line"></i></a>
-                                                <a href="" class="link-dark"><i class=" ri-eye-line"></i></a>
-                                                <a href="javascript:void(0);" class="link-danger"><i class="ri-delete-bin-5-line"></i></a>
-                                                
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    <?php if (isset($client) && count($client)>0): ?>
+                                        <?php foreach($client as $cliente): ?>
+
+                                            <tr>
+                                            <th scope="row"><?php echo $cliente->id?></th>
+                                            <td><?php echo $cliente->name?></td>
+                                            <td><?php echo $cliente->phone_number?></td>
+                                            <td><?php echo $cliente->level->name?></td>
+                                            <td>
+                                                <a type="button" class="badge badge-soft-primary">
+                                                    <i class="mdi mdi-square-edit-outline"></i> Ver Ódenes
+                                                </a></td>
+                                            <td>
+                                                <div class="hstack gap-3 fs-15">
+                                                    <a href="javascript:void(0);" class="link-secondary" data-bs-toggle="modal" data-bs-target="#add-client"><i class="ri-settings-4-line"></i></a>
+                                                    <a href="javascript:void(0);" class="link-danger" id="sa-warning"><i class="ri-delete-bin-5-line"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                    <?php endforeach ?> 
+                                        <?php endif ?>
                                 </tbody>
                             </table>
                         </div>

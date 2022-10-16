@@ -33,19 +33,19 @@
                         
 
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="widgets.html">
+                            <a class="nav-link menu-link" href="<?php echo BASE_PATH?>users">
                                 <i class=" bx bx-user-circle"></i> <span data-key="t-widgets">Usuarios</span>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="widgets.html">
+                            <a class="nav-link menu-link" href="<?php echo BASE_PATH?>client">
                                 <i class="bx bxs-user-rectangle"></i> <span data-key="t-widgets">Cliente</span>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="widgets.html">
+                            <a class="nav-link menu-link" href="<?php echo BASE_PATH?>products">
                                 <i class=" bx bxs-shopping-bag-alt"></i> <span data-key="t-widgets">Productos</span>
                             </a>
                         </li>
