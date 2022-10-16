@@ -78,11 +78,58 @@ if (isset($_POST['global_token']) && ($_POST['global_token'] == $_SESSION['globa
                 print_r(
                     $_SESSION['_MESSAGE']
                 ); 
-                header('Location: '.$_SERVER['HTTP_REFERER']);
+                header('Location: '.$_SERVER['HTTP_REFERER']);  
                 break;
             }
+
+
+             case 'edit':{
+                echo 'dafsv';
+                print_r(strlen($_POST['phone_number']));
+
+                /*  ($name, $lastname ,$email, $phone_number, $created_by, $role, $password, $photo_type = '
+                image/jpeg', $user_id = '999'){
+ */
+
+//  public static function createUser($name, $lastname ,$email, $phone_number, $created_by, $role, $password, $photo_type = 'image/jpeg', $user_id = '999'){
+
+
+    /* <form action="app/UserController.php" method="post">
+<input type="text" value="name" name="name">
+    <input type="text" value="last" name="lastname">
+    <input type="text" value="ema" name="email">
+    <input type="text" value="phone" name="phone_number">
+    <input type="text" value="role" name="role">
+    <input type="text" value="pass" name="password">
+    <input type="text" value="user id" name="user_id">
+   
+    <input type="hidden" name="global_token" value="<?= $_SESSION['global_token']?>">
+    <input type="text" name="action" value="edit">
+    <input type="submit">
+</form> */
+                $validate = Validator::createUser($_POST['name'], $_POST['lastname'], $_POST['email'], $_POST['phone_number'], $_SESSION['name'],$_POST['role'], $_POST['password'],'image/jpeg',$_POST['user_id']);
+                
+                if($validate['status'] == 1){
+                    $name = strip_tags($_POST['name']);
+                    $lastname =  $_POST['lastname'];
+                    $email = strip_tags($_POST['email']);
+                    $phone_number = strip_tags($_POST['phone_number']); 
+                    $created_by = $_SESSION['name'];
+                    $role =  strip_tags( $_POST['role']);
+                    $password = strip_tags( $_POST['password']);
+                    $user_id = strip_tags($_POST['user_id']);
+                    // $profile_photo_file = $_FILES['avatar']['tmp_name']; 
+                    $_SESSION['_MESSAGE'] = UserController::edit($name, $lastname, $email, $phone_number, $created_by, $role, $password, $user_id);
+                }else{
+                    $_SESSION['_MESSAGE'] = $validate['data'];
+                }
+                
+                 print_r( $_SESSION['_MESSAGE']);
+                header('Location: '.$_SERVER['HTTP_REFERER']);
+                break;
+            } 
             
-            
+
 
 
         }
@@ -120,7 +167,7 @@ class UserController{
     $response = json_decode($response);
     if(isset($response->code) && $response->code > 0 ){
     //   header('Location: ../index.php');
-        return $response->data;
+        return $response;
     }else{
         return array();
     }
@@ -194,6 +241,30 @@ public static function delete($id){
         return false;
     } */
     
+    }
+
+    public static function edit($name, $lastname, $email, $phone_number, $created_by, $role, $password, $user_id){  
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://crud.jonathansoto.mx/api/users',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'PUT',
+        CURLOPT_POSTFIELDS => 'name='.$name.'&lastname='.$lastname.'&email='.$email.'&phone_number='.$phone_number.'created_by='.$created_by.'&role='.$role.'&password='.$password.'&id='.$user_id,
+        CURLOPT_HTTPHEADER => array(
+		    'Authorization: Bearer '.$_SESSION['token'],
+		    'Content-Type: application/x-www-form-urlencoded'
+		  ),
+		));
+
+        $response = curl_exec($curl);
+        curl_close($curl);
+        return $response;
     }
 
 }

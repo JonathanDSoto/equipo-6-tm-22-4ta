@@ -21,8 +21,8 @@ print_r($a);
         return ($errors);
     }
 
-    public static function createUser($name, $lastname ,$email, $phone_number, $created_by, $role, $password, $photo_type){
-        $data = [$name, $email, $phone_number, $created_by, $role, $password, $photo_type]; 
+    public static function createUser($name, $lastname ,$email, $phone_number, $created_by, $role, $password, $photo_type = 'image/jpeg', $user_id = '999'){
+        $data = [$name, $lastname ,$email, $phone_number, $created_by, $role, $password, $photo_type, $user_id ]; 
         array_walk($data, 'Validator::trim_value');
         $errors = ['status'=> '', 'data'=> []];
 
@@ -35,15 +35,17 @@ print_r($a);
         array_push($errors['data'], Validator::name($role) ?  null : 'role by mal');
         array_push($errors['data'], Validator::image($photo_type) ?  null : 'image type mal');
         array_push($errors['data'], Validator::password($password) ?  null : 'contraseña menor a 10 simbolos');
+        array_push($errors['data'], Validator::integer($user_id) ?  null : 'user_id mal');
         
-
 
         $errors['data'] = array_filter($errors['data']);
         $errors['status'] = !empty($errors['data'])?  '2' :'1'; 
         return ($errors);
     }
-    
+    /*    CURLOPT_POSTFIELDS => 'name=Jonathan%20&lastname=Soto%201&email=jsoto%40abcs.mx&
+    phone_number=6123480678&created_by=jonathan%20soto&role=Administrador&password=password123&id=112', */
 
+ 
     public static function password($value){
         return strlen($value) >= 10;
     }
@@ -68,7 +70,7 @@ print_r($a);
 
     public static function trim_value(&$value) { 
         $value = trim($value);
-        // echo '$'.$value.'&<br>';
+        echo '$'.$value.'&<br>';
     }
 
     public static function integer($value){
@@ -76,7 +78,8 @@ print_r($a);
     }
 
     public static function phone($value){
-        return preg_match('/^[0-9]{10}$/', $value);
+        echo $value . 'com  telef';
+         return preg_match('/^[0-9]{10}$/', $value);
     }
     public static function email($value){
         return filter_var($value, FILTER_VALIDATE_EMAIL);
