@@ -7,6 +7,8 @@
     <script src="<?= BASE_PATH ?>public/js/plugins.js"></script>
     <script src="<?= BASE_PATH ?>public/libs/sweetalert2/sweetalert2.min.js"></script>
     <script src="<?= BASE_PATH ?>public/js/pages/sweetalerts.init.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min"></script>
 
     <!-- App js -->
     <script src="<?= BASE_PATH ?>public/js/app.js"></script>
