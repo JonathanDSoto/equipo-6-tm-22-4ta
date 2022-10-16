@@ -15,7 +15,7 @@ if (isset($_POST['global_token']) && ($_POST['global_token'] == $_SESSION['globa
                 $name = strip_tags($_POST['name']);
                 $email = strip_tags($_POST['email']);
                 $phone_number = strip_tags($_POST['phone_number']); 
-                $created_by = strip_tags($_POST['created_by']);
+                $created_by = $_SESSION['name'];
                 $role =  strip_tags( $_POST['role']);
                 $password = strip_tags( $_POST['password']);
                 $profile_photo_file = $_FILES['avatar']['tmp_name']; 
