@@ -110,9 +110,12 @@ public static function register($name, $lastname, $email, $phone_number, $create
     $response = json_decode($response);
     if(isset($response->code) && $response->code > 0 ){
     
-        return $response->data;
+        // return $response->data;
+        header("Location:".BASE_PATH.'/users');
+    
     }else{
-        return array();
+        header("Location:".BASE_PATH.'/users?error=true');
+        // return array();
     }
 
 }
