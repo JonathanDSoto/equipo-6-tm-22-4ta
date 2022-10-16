@@ -7,4 +7,6 @@
 	if (!defined('BASE_PATH')) {
 		define('BASE_PATH','http://localhost/equipo-6-tm-22-4ta/');
 	}
+
+	$_SESSION['_MESSAGE'];
 ?>

@@ -1,8 +1,8 @@
 <?php
 include_once "config.php";
-
+include_once 'Validator.php';
 if (isset($_POST['action'])) {
-
+	
 	if (isset($_POST['global_token']) && 
 	   $_POST['global_token'] == $_SESSION['global_token']){
 		
@@ -12,10 +12,33 @@ if (isset($_POST['action'])) {
 					break;
 				}
 				case 'create':{
-					$name = strip_tags(trim($_POST['name']));
-					$description = strip_tags(trim($_POST['description']));
-					$slug = strip_tags(trim($_POST['slug']));
-					BrandController::create($name, $slug, $description);
+					/* 
+
+					// prueba de validacion para crear brand
+if(!empty($_SESSION['_MESSAGE'])){
+    print_r($_SESSION['_MESSAGE']);
+    $_SESSION['_MESSAGE'] = [];
+}
+// print_r($_SESSION['_MESSAGE']);
+?>
+<form action="app/BrandController.php" method="POST">
+
+    <input type="text" value="naasdmeweew" name="name">
+    <input type="text" value="descqweqweaription" name="description">
+    <input type="text" value="slaawrerwug" name="slug">
+    <input type="text" name="global_token" value="<?= $_SESSION['global_token']?>">
+    <input type="text" name="action" value="create">
+    <input type="submit"> */
+					$validate = Validator::createBrand($_POST['name'], $_POST['slug'],$_POST['description']);
+					if($validate['status'] == 1){
+						$name = strip_tags(trim($_POST['name']));
+						$description = strip_tags(trim($_POST['description']));
+						$slug = strip_tags(trim($_POST['slug']));
+						$_SESSION['_MESSAGE'] =  BrandController::create($name, $slug, $description);
+					}else{
+						 $_SESSION['_MESSAGE'] =  $validate['data']; 
+					}
+					header('Location: '.$_SERVER['HTTP_REFERER']);
 					break;
 				}
 
@@ -36,7 +59,7 @@ Class BrandController
 {
 
 
-	public function getBrands()
+	public static function getBrands()
 	{
 		$curl = curl_init();
 
@@ -58,13 +81,17 @@ Class BrandController
 		curl_close($curl);
 		$response = json_decode($response);
 
-		if ( isset($response->code) && $response->code > 0) {
+		// return $response->data;
+
+ 		if ( isset($response->code) && $response->code > 0) {
 			
 			return $response->data;
 		}else{
 
 			return array();
-		}
+		} 
+
+
 	}
 
 	public static function delete($brandId){
@@ -110,11 +137,16 @@ Class BrandController
 
 		curl_close($curl);
 		$response = json_decode($response);
+
+
+		return $response;
+
+/* 		 print_r( $response );
 		if (isset($response->code) && $response->code > 0) {
-			return $response->data;
+			return $response;
 		}else{
 			return array();
-		}
+		} */
 	}
 
 	public static function update($name, $description, $slug, $brand_id){
