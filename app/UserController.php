@@ -1,5 +1,6 @@
 <?php
 include 'config.php';
+include_once 'Validator.php';
 // include 'util/functions.php';
 
 if (isset($_POST['global_token']) && ($_POST['global_token'] == $_SESSION['global_token'])){
@@ -11,15 +12,23 @@ if (isset($_POST['global_token']) && ($_POST['global_token'] == $_SESSION['globa
              case 'register':{
                 // print_r($_FILES['avatar']);
                 // $_POST = qu($_POST);
-                $lastname =  $_POST['lastname'];
-                $name = strip_tags($_POST['name']);
-                $email = strip_tags($_POST['email']);
-                $phone_number = strip_tags($_POST['phone_number']); 
-                $created_by = $_SESSION['name'];
-                $role =  strip_tags( $_POST['role']);
-                $password = strip_tags( $_POST['password']);
-                $profile_photo_file = $_FILES['avatar']['tmp_name']; 
 
+                $validate = Validator::createUser($_POST['name'],$_POST['lastname'], $_POST['email'], $_POST['phone_number'],
+                $_SESSION['name'], $_POST['role'], $_POST['password'],$_FILES['avatar']['type']);
+                if($validate['status'] == 1){
+                    $name = strip_tags($_POST['name']);
+                    $lastname =  $_POST['lastname'];
+                    $email = strip_tags($_POST['email']);
+                    $phone_number = strip_tags($_POST['phone_number']); 
+                    $created_by = $_SESSION['name'];
+                    $role =  strip_tags( $_POST['role']);
+                    $password = strip_tags( $_POST['password']);
+                    $profile_photo_file = $_FILES['avatar']['tmp_name']; 
+                    $_SESSION['_MESSAGE'] = UserController::register($name, $lastname, $email, $phone_number, $created_by, $role, $password, $profile_photo_file);
+                }else{
+                    $_SESSION['_MESSAGE'] = $validate['data'];
+                }   
+                header('Location: '.$_SERVER['HTTP_REFERER']);
 
 /*                 $lastname = 'lastname';
                 $name = 'name';
@@ -29,7 +38,7 @@ if (isset($_POST['global_token']) && ($_POST['global_token'] == $_SESSION['globa
                 $role = 'role';
                 $password ='role';
                 $profile_photo_file = $_FILES['avatar']['tmp_name']; */
-                UserController::register($name, $lastname, $email, $phone_number, $created_by, $role, $password, $profile_photo_file);
+       //         UserController::register($name, $lastname, $email, $phone_number, $created_by, $role, $password, $profile_photo_file);
                 break;
             }
 
@@ -106,17 +115,18 @@ public static function register($name, $lastname, $email, $phone_number, $create
 
     curl_close($curl);
 
-    echo $response;
+    // echo $response;
     $response = json_decode($response);
-    if(isset($response->code) && $response->code > 0 ){
+
+    return $response;
+/*     if(isset($response->code) && $response->code > 0 ){
     
-        // return $response->data;
-        header("Location:".BASE_PATH.'/users');
-    
+        // header("Location:".BASE_PATH.'/users');
+        print_r($response);
     }else{
         header("Location:".BASE_PATH.'/users?error=true');
-        // return array();
-    }
+        return array();
+    } */
 
 }
 

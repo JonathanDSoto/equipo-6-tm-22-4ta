@@ -21,17 +21,20 @@ print_r($a);
         return ($errors);
     }
 
-    public static function createUser($name, $email, $phone_number, $created_by, $role, $password, $photo_path){
-        $data = [$name, $email, $phone_number, $created_by, $role, $password, $photo_path]; 
+    public static function createUser($name, $lastname ,$email, $phone_number, $created_by, $role, $password, $photo_type){
+        $data = [$name, $email, $phone_number, $created_by, $role, $password, $photo_type]; 
         array_walk($data, 'Validator::trim_value');
         $errors = ['status'=> '', 'data'=> []];
 
-        array_push($errors['data'], Validator::name($name) ?  null : 'nombre mal');
+        array_push($errors['data'], Validator::person_name($name) ?  null : 'nombre mal');
+        array_push($errors['data'], Validator::name($lastname) ?  null : 'apellido mal');
         // array_push($errors['data'], Validator::name($lastname) ?  null : 'apellido mal');
         array_push($errors['data'], Validator::email($email) ?  null : 'correo mal');
         array_push($errors['data'], Validator::phone($phone_number) ?  null : 'telefono mal');
-        array_push($errors['data'], Validator::name($created_by) ?  null : 'created by mal');
+        array_push($errors['data'], Validator::person_name($created_by) ?  null : 'created by mal');
         array_push($errors['data'], Validator::name($role) ?  null : 'role by mal');
+        array_push($errors['data'], Validator::image($photo_type) ?  null : 'image type mal');
+        array_push($errors['data'], Validator::password($password) ?  null : 'contraseña menor a 10 simbolos');
         
 
 
@@ -39,10 +42,24 @@ print_r($a);
         $errors['status'] = !empty($errors['data'])?  '2' :'1'; 
         return ($errors);
     }
+    
+
+    public static function password($value){
+        return strlen($value) >= 10;
+    }
+
+    public static function image($value){
+        // echo $value;
+        return preg_match('/image\/jpe?g/',$value);
+    }
 
     public static function name($value){
-        return (preg_match("/^[a-zA-Z-']+$/",$value));// letras mayusculas , minusculas y espacios
+        return (preg_match("/^[a-zA-Z']+$/",$value));// letras mayusculas , minusculas y espacios
 
+    }
+
+    public static function person_name($value){//Nombre único obligatorio, nombres adicionales opcionales, CON espacios, CON caracteres especiales:
+        return  (preg_match("/^[A-Za-z]+((\s)?((\'|\-|\.)?([A-Za-z])+))*$/",$value));
     }
 
     public static function slug($value){
@@ -51,6 +68,7 @@ print_r($a);
 
     public static function trim_value(&$value) { 
         $value = trim($value);
+        // echo '$'.$value.'&<br>';
     }
 
     public static function integer($value){
