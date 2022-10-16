@@ -26,7 +26,20 @@ if (isset($_POST['action'])) {
             case 'delete':{
                 array_walk($_POST , 'PresentationController::trim_value'); 
                 PresentationController::delete($_POST['presentation_id']);  
-                
+                break;
+            }
+            case 'update':{//    public static function update($description, $code,$weight_in_grams, $status, $stock, $stock_min, $stock_max, $product_id, $presentation_id ){
+                array_walk($_POST, 'PresentationController::trim_value');
+                $description = strip_tags($_POST['description']);
+                $code = strip_tags($_POST['code']);
+                $weigth_in_grams = strip_tags($_POST['weigth_in_grams']);
+                $status = strip_tags($_POST['status']);
+                $stock = strip_tags($_POST['stock']);
+                $stock_min = strip_tags($_POST['stock_min']);
+                $stock_max = strip_tags($_POST['stock_max']);
+                $product_id = strip_tags($_POST['product_id']);
+                $presentation_id = strip_tags($_POST['presentation_id']);
+                PresentationController::update($description, $code, $weigth_in_grams, $status, $stock, $stock_min, $stock_max, $product_id, $presentation_id);
             }
        }
     }
@@ -130,8 +143,36 @@ class PresentationController{
         $value = trim($value);
     }
 
-    public static function update(){
+    public static function update($description, $code,$weight_in_grams, $status, $stock, $stock_min, $stock_max, $product_id, $presentation_id ){
+   //  public static function update(){
         
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://crud.jonathansoto.mx/api/presentations',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'PUT',
+  //CURLOPT_POSTFIELDS => 'description=cahudsdsdama%20de%204%20litros&code=khuamon&weight_in_grams=40000&status=active&stock=50&stock_min=10&stock_max=10900&product_id=1&id=52',
+    CURLOPT_POSTFIELDS => 'description='.$description.'&code='.$code.'&weight_in_grams='.$weight_in_grams.'&status='.$status.'&stock='.$stock.'&stock_min='.$stock_min.'&stock_max='.$stock_max.'&product_id='.$product_id.'&id='.$presentation_id,
+  CURLOPT_HTTPHEADER => array(
+    'Authorization: Bearer '.$_SESSION['token']
+),
+)); 
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+$response = json_decode($response);
+if(isset($response->code) && $response->code > 0 ){
+    return $response->data;
+}else{
+    return array();
+}
         
     }
 }
