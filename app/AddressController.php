@@ -12,7 +12,7 @@ if (isset($_POST['action'])) {
                 //    public static function createAddress($first_name, $last_name,$street_and_user_number, $postal_code, $city, $province, $phone_number, $is_billing_address, $client_id){
             case 'create':{
                 $first_name = strip_tags(trim($_POST['first_name']));
-                $last_name = strip_tags(trim($_POST['first_name'])); 
+                $last_name = strip_tags(trim($_POST['last_name'])); 
                 $street_and_use_number = strip_tags(trim($_POST['street_and_use_number'])); 
                 $postal_code = strip_tags(trim($_POST['postal_code'])); 
                 $city = strip_tags(trim($_POST['city'])); 
@@ -51,6 +51,17 @@ if (isset($_POST['action'])) {
                     $_SESSION['_MESSAGE'] = $validation['data'];
                 }
                 
+                header('Location: '.$_SERVER['HTTP_REFERER']);  
+                break;
+            }
+
+            case 'delete':{
+                $validation = Validator::integer($_POST['address_id']);
+                if($validation){
+                    $_SESSION['_MESSAGE'] = AddressController::delete($_POST['address_id']);
+                }else{
+                    $_SESSION['_MESSAGE'] = 'Hay algo mal con ese ID';
+                }
                 header('Location: '.$_SERVER['HTTP_REFERER']);  
                 break;
             }
@@ -170,7 +181,30 @@ class AddressController{
         
         curl_close($curl);
         return $response;
+    }
+    // print_r(AddressController::delete(26));
+    public static function delete($address_id){
         
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://crud.jonathansoto.mx/api/addresses/'.$address_id,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'DELETE',
+        CURLOPT_HTTPHEADER => array(
+            'Authorization: Bearer '.$_SESSION['token'],
+        ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        echo $response;
 
     }
 }
