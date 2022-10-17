@@ -52,7 +52,8 @@
 			        <button type="submit" class="btn btn-primary">Guardar</button>
 			    </div>
 
-				<input type="hidden" name="action" value="register">
+				<input type="hidden" name="action" value="register" id="oculto_input">
+				<input id="id" type="hidden" name="id" value="edit">
 				<input type="hidden" name="global_token" value="<?php echo $_SESSION['global_token'] ?>">
 
 		    </form>

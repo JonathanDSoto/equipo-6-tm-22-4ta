@@ -2,8 +2,9 @@
     include_once "../app/config.php";
     include "../app/UserController.php";
 
-    $users = new UserController();
-    $users = $users->getAll();
+    $us = new UserController();
+    $users = $us->getAll();
+    // var_dump($users);
 ?> 
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
@@ -70,28 +71,29 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <?php if (isset($users) && count($users)>0): ?>
+                                <?php if (isset($users)): ?>
                                     <?php foreach($users as $user): ?>
 
                                         <tr>
-                                        <th scope="row"><?php echo $user->id?></th>
-                                        <td><?php echo $user->name?></td>
-                                        <td><?php echo $user->lastname?></td>
-                                        <td><?php echo $user->email?></td>
-                                        <td><?php echo $user->phone_number?></td>
-                                        <td>
-                                            <a type="button" class="badge badge-soft-primary">
-                                                <i class="mdi mdi-square-edit-outline"></i> Ver Ódenes
-                                            </a></td>
-                                        <td>
-                                            <div class="hstack gap-3 fs-15">
-                                                <a href="javascript:void(0);" class="link-secondary" data-bs-toggle="modal" data-bs-target="#add-client"><i class="ri-settings-4-line"></i></a>
-                                                <a href="javascript:void(0);" class="link-danger" id="sa-warning"><i class="ri-delete-bin-5-line"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                            <th scope="row"><?php echo $user->id?></th>
+                                            <td><?php echo $user->name?></td>
+                                            <td><?php echo $user->lastname?></td>
+                                            <td><?php echo $user->email?></td>
+                                            <td><?php echo $user->phone_number?></td>
+                                            <td>
+                                                <a type="button" class="badge badge-soft-primary">
+                                                    <i class="mdi mdi-square-edit-outline"></i> Ver Ódenes
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <div class="hstack gap-3 fs-15">
+                                                    <a href="#" data-user='<?php echo json_encode($user)?>' onclick="editUser(this)" class="link-secondary" data-bs-toggle="modal" data-bs-target="#add-user"><i class="ri-settings-4-line"></i></a>
+                                                    <a href="#" onclick="remove(<?php echo $user->id ?>)" class="link-danger" id="sa-warning"><i class="ri-delete-bin-5-line"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
 
-                                <?php endforeach ?> 
+                                    <?php endforeach ?> 
                                     <?php endif ?>
                                 </tbody>
                             </table>
@@ -102,6 +104,73 @@
             <?php include "../layouts/footer.template.php"; ?>
         </div>
     </div>
+    
+    <?php
+
+include "../layouts/add.user.modal.php";
+
+?>
+
+<script type="text/javascript"> 
+        
+        function editUser(target){
+
+            console.log(target);
+            document.getElementById("oculto_input").value = "edit";
+
+            let useers = JSON.parse(target.getAttribute("data-user"));
+
+
+            console.log(useers);
+
+            document.getElementById("name").value = useers.name;
+            document.getElementById("lastname").value = useers.lastname;
+            document.getElementById("email").value = useers.email;
+            document.getElementById("password").value = useers.password;
+            document.getElementById("phone_number").value = useers.phone_number;
+            document.getElementById("role").value = useers.role;
+
+        }
+
+        function remove(id)
+        {
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this imaginary file!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                swal("Poof! Your imaginary file has been deleted!", {
+                    icon: "success",
+                });
+                    var bodyFormData = new FormData();
+                    bodyFormData.append('id', id);
+                    console.log(id);
+                    bodyFormData.append('action', 'delete');
+                    bodyFormData.append('global_token', '<?php echo $_SESSION['global_token']?>');
+                    axios.post("<?= BASE_PATH ?>frm", bodyFormData)
+                    .then(function (response){
+                        console.log(response);
+                    })
+                        .catch(function (error){
+                            console.log('error')
+                        })
+                } else {
+                swal("Your imaginary file is safe!");
+                }
+            });
+        }
+        function addUser(){
+
+            document.getElementById("oculto_input").value = "register";
+
+        }
+
+
+    </script>
 
 
 
