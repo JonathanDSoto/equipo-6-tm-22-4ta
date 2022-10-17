@@ -65,6 +65,7 @@ if (isset($_POST['action'])) {
                 $name = strip_tags(trim($_POST['name']));
                 $email = strip_tags(trim($_POST['email']));
                 $password = strip_tags(trim($_POST['password']));
+                $phone_number = strip_tags(trim($_POST['phone_number']));
                 $_SESSION['_MESSAGE'] = ClientController::create($name, $email, $password, $phone_number);
              }else{
                 $_SESSION['_MESSAGE'] = $validationResult['data'];
@@ -105,7 +106,7 @@ if (isset($_POST['action'])) {
                     $name = strip_tags(trim($_POST['name']));
                     $email = strip_tags(trim($_POST['email']));
                     $password = strip_tags(trim($_POST['password']));
-                    $phone_number = strip_tags(trim($_POST['phone_number']));
+                    $phone_number = $_POST['phone_number'];
                     $client_id = strip_tags(trim($_POST['client_id']));
                     $_SESSION['_MESSAGE'] = ClientController::edit($name, $email, $password, $phone_number, $client_id);
                  }else{
@@ -364,28 +365,6 @@ class ClientController{
         }                    
       }
     //   print_r(ClientController::getAddresses(1));
-      public static function getAddresses($client_id){
-        $curl = curl_init();
-
-        curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://crud.jonathansoto.mx/api/addresses/clients/'.$client_id,
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'GET',
-        CURLOPT_HTTPHEADER => array(
-            'Authorization: Bearer '.$_SESSION['token'],
-        ),
-        ));
-        $response = curl_exec($curl);
-        curl_close($curl);
-        // $response = json_encode($response);
-        echo $response;
-        // return $response;
-    }
 }
 
 
