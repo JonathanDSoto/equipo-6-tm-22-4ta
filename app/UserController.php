@@ -304,7 +304,8 @@ public static function delete($id){
 
         $response = curl_exec($curl);
         curl_close($curl);
-        return $response;
+        $response = json_decode($response);
+        return $response->data;
     }
 
 /*     <form action="app/UserController.php" method= 'POST' enctype="multipart/form-data">
