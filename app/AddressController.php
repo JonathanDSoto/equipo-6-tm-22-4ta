@@ -33,7 +33,7 @@ if (isset($_POST['action'])) {
             }
             case 'update':{
                 $first_name = strip_tags(trim($_POST['first_name']));
-                $last_name = strip_tags(trim($_POST['last_name'])); 
+                $last_name = strip_tags(trim($_POST['last_name']));   
                 $street_and_use_number = strip_tags(trim($_POST['street_and_use_number'])); 
                 $postal_code = strip_tags(trim($_POST['postal_code'])); 
                 $city = strip_tags(trim($_POST['city'])); 
