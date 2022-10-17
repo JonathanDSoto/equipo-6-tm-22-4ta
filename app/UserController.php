@@ -128,6 +128,23 @@ if (isset($_POST['global_token']) && ($_POST['global_token'] == $_SESSION['globa
                 header('Location: '.$_SERVER['HTTP_REFERER']);
                 break;
             } 
+
+            case 'update_img':{
+                // header('Location: '.$_SERVER['HTTP_REFERER']);	
+                // && Validator::integer($_POST['client_id']);
+                // update_profile_image($client_id, $file_path){
+                $image_type_correct = Validator::image($_FILES['avatar']['type']);
+                $client_id_correct = Validator::integer($_POST['client_id']);
+/*                echo $image_type_correct;
+               echo $client_id_correct;  */
+                if($image_type_correct && $client_id_correct){
+                       $_SESSION['_MESSAGE'] = UserController::update_profile_image($_POST['client_id'], $_FILES['avatar']['tmp_name']);
+                }else{
+                    $_SESSION['_MESSAGE'] =  'Ha ocurrido un error';
+                }
+                header('Location: '.$_SERVER['HTTP_REFERER']);	
+                break;
+            }
             
 
 
@@ -288,6 +305,40 @@ public static function delete($id){
         $response = curl_exec($curl);
         curl_close($curl);
         return $response;
+    }
+
+/*     <form action="app/UserController.php" method= 'POST' enctype="multipart/form-data">
+        <input type="file" name="avatar" id="">
+        <input type="text" name="client_id" id="">
+        <input type="hidden" name="global_token" value="<?= $_SESSION['global_token']?>">   
+        <input type="text" name="action" value="update_img" id="">
+        <input type="submit" name="" id="">
+    </form> */
+    
+    public static function update_profile_image($client_id, $file_path){
+        
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://crud.jonathansoto.mx/api/users/avatar',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS => array('id' => $client_id,'profile_photo_file'=> new CURLFILE($file_path)),
+        CURLOPT_HTTPHEADER => array(
+            'Authorization: Bearer '.$_SESSION['token'],
+        ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        return $response;
+
     }
 
 }
