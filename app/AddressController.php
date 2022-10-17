@@ -31,6 +31,29 @@ if (isset($_POST['action'])) {
                 header('Location: '.$_SERVER['HTTP_REFERER']);  
                 break;
             }
+            case 'update':{
+                $first_name = strip_tags(trim($_POST['first_name']));
+                $last_name = strip_tags(trim($_POST['last_name'])); 
+                $street_and_use_number = strip_tags(trim($_POST['street_and_use_number'])); 
+                $postal_code = strip_tags(trim($_POST['postal_code'])); 
+                $city = strip_tags(trim($_POST['city'])); 
+                $province = strip_tags(trim($_POST['province'])); 
+                $phone_number = strip_tags(trim($_POST['phone_number'])); 
+                $is_billing_address = strip_tags(trim($_POST['is_billing_address'])); 
+                $client_id = strip_tags(trim($_POST['client_id']));
+                $address_id = strip_tags(trim($_POST['address_id']));
+                $validation  = Validator::createAddress($first_name, $last_name, $street_and_use_number, $postal_code, $city, $province, $phone_number, $is_billing_address, $client_id, $address_id);
+                
+                // print_r($validation);
+                if($validation['status'] == 1){
+                    $_SESSION['_MESSAGE'] = AddressController::update($first_name, $last_name, $street_and_use_number, $postal_code, $city, $province, $phone_number, $is_billing_address, $client_id, $address_id);
+                }else{
+                    $_SESSION['_MESSAGE'] = $validation['data'];
+                }
+                
+                header('Location: '.$_SERVER['HTTP_REFERER']);  
+                break;
+            }
             }
     }
 }
@@ -62,6 +85,22 @@ class AddressController{
         // echo $response;
          return $response;
     }
+/*   <form action="app/AddressController.php" method="POST">
+    
+    <input type="text" name="first_name" value="first n" id="">
+    <input type="text" name="last_name" value="last n" id="">
+    <input type="text" name="street_and_use_number" value="calle y n" id="">
+    <input type="text" name="postal_code" value="cod post" id="">
+    <input type="text" name="city" value="city" id="">
+    <input type="text" name="province" value="province" id="">
+    <input type="text" name="phone_number" value="tel" id="">
+    <input type="text" name="is_billing_address" value="is bill" id="">
+    <input type="text" name="client_id" value="id client" id="">
+    <input type="hidden" name="global_token" value="<?= $_SESSION['global_token']?>">
+    <input type="text" name="action" value="create">
+    <input type="submit">
+    
+    </form> */
 
     public static function createAddress($first_name, $last_name,$street_and_user_number, $postal_code, $city, $province, $phone_number, $is_billing_address, $client_id){
         $curl = curl_init();
@@ -87,6 +126,24 @@ class AddressController{
         return $response;
 
     }
+    /* 
+    <form action="app/AddressController.php" method="POST">
+    
+    <input type="text" name="first_name" value="first n" id="">
+    <input type="text" name="last_name" value="last n" id="">
+    <input type="text" name="street_and_use_number" value="calle y n" id="">
+    <input type="text" name="postal_code" value="cod post" id="">
+    <input type="text" name="city" value="city" id="">
+    <input type="text" name="province" value="province" id="">
+    <input type="text" name="phone_number" value="tel" id="">
+    <input type="text" name="is_billing_address" value="is bill" id="">
+    <input type="text" name="client_id" value="id client" id="">
+    <input type="text" name="address_id" value="id dir" id="">
+    <input type="hidden" name="global_token" value="<?= $_SESSION['global_token']?>">
+    <input type="text" name="action" value="update">
+    <input type="submit">
+    
+    </form> */
 
     public static function update($first_name, $last_name, $street_and_user_number, $postal_code, $city, $province, $phone_number, $is_billing_address, $client_id, $address_id){
         
@@ -112,7 +169,7 @@ class AddressController{
         $response = curl_exec($curl);
         
         curl_close($curl);
-        echo $response;
+        return $response;
         
 
     }
