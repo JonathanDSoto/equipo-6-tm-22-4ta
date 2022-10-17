@@ -60,6 +60,26 @@ print_r($a);
         $errors['status'] = !empty($errors['data'])?  '2' :'1'; 
         return ($errors);
     }
+
+    public static function createPresentation($description, $code, $weigth_in_grams, $status, $cover, $stock, $stock_min, $stock_max, $product_id){
+        $data = [$description, $code, $weigth_in_grams, $status, $cover, $stock, $stock_min, $stock_max, $product_id]; 
+        array_walk($data, 'Validator::trim_value');
+        $errors = ['status'=> '', 'data'=> []];
+
+        array_push($errors['data'] ,Validator::name($description) ? null: 'descripcion mal');
+        array_push($errors['data'] ,Validator::name($code) ? null: 'codigo mal');
+        array_push($errors['data'] ,Validator::integer($weigth_in_grams) ? null: 'peso en gramos mal');
+        array_push($errors['data'] ,Validator::name($status) ? null: 'status mal');
+        array_push($errors['data'] ,Validator::image($cover) ? null: 'cover mal');
+        array_push($errors['data'] ,Validator::integer($stock) ? null: 'inventario mal');
+        array_push($errors['data'] ,Validator::integer($stock_min) ? null: 'inventario minimo mal');
+        array_push($errors['data'] ,Validator::integer($stock_max) ? null: 'inventario maximo mal');
+        array_push($errors['data'] ,Validator::integer($product_id) ? null: 'product id mal');
+
+        $errors['data'] = array_filter($errors['data']);
+        $errors['status'] = !empty($errors['data'])?  '2' :'1'; 
+        return ($errors);
+    }
   
     public static function password($value){
         return strlen($value) >= 10;
@@ -71,7 +91,7 @@ print_r($a);
     }
 
     public static function name($value){
-        return (preg_match("/^[a-zA-Z']+$/",$value));// letras mayusculas , minusculas y espacios
+        return (preg_match("/^[a-zA-Z]+$/",$value));// letras mayusculas , minusculas y espacios
 
     }
 
