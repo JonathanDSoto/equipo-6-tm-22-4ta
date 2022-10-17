@@ -80,6 +80,38 @@ print_r($a);
         $errors['status'] = !empty($errors['data'])?  '2' :'1'; 
         return ($errors);
     }
+
+         //    public static function createAddress($first_name, $last_name,$street_and_user_number, $postal_code, $city, $province, $phone_number, $is_billing_address, $client_id){
+    public static function createAddress($first_name, $last_name, $street_and_user_number, $postal_code, $city, $province, $phone_number, $is_billing_address, $client_id){
+        $data = [$first_name, $last_name, $street_and_user_number, $postal_code, $city, $province, $phone_number, $is_billing_address, $client_id]; 
+        array_walk($data, 'Validator::trim_value');
+        $errors = ['status'=> '', 'data'=> []];
+
+        array_push($errors['data'] ,Validator::name($first_name) ? null: 'primer nombre mal');
+        array_push($errors['data'] ,Validator::name($last_name) ? null: 'apellido mal');
+        array_push($errors['data'] ,Validator::street_and_user_number($street_and_user_number) ? null: 'calle y numero mal');
+        array_push($errors['data'] ,Validator::codigo_postal($postal_code) ? null: 'codigo postal mal (4 enteros)');
+        array_push($errors['data'] ,Validator::letters_spaces($city) ? null: 'ciudad mal');
+        array_push($errors['data'] ,Validator::letters_spaces($province) ? null: 'provincia mal');
+        array_push($errors['data'] ,Validator::phone($phone_number) ? null: 'Telefono mal');
+        array_push($errors['data'] ,Validator::integer($is_billing_address) ? null: '{es direccion de facturacion} mal');
+        array_push($errors['data'] ,Validator::integer($client_id) ? null: 'ID del cliente mal');
+
+        $errors['data'] = array_filter($errors['data']);
+        $errors['status'] = !empty($errors['data'])?  '2' :'1'; 
+        return ($errors);
+    }
+
+    public static function letters_spaces($value){
+        return preg_match('/[A-Za-z\s]+$/', $value);
+    }
+    public static function codigo_postal($value){
+        return preg_match('/^[0-9]{4}$/', $value);
+    }
+
+    public static function street_and_user_number($value){
+        return preg_match('/[a-zA-Z1-9À-ÖØ-öø-ÿ]+\.?(( |\-)[a-zA-Z1-9À-ÖØ-öø-ÿ]+\.?)* (((#|[nN][oO]\.?) ?)?\d{1,4}(( ?[a-zA-Z0-9\-]+)+)?)/',$value);
+    }
   
     public static function password($value){
         return strlen($value) >= 10;
