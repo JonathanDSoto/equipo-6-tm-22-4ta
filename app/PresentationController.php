@@ -111,11 +111,13 @@ class PresentationController{
 
         curl_close($curl);
         $response = json_decode($response);
-        if(isset($response->code) && $response->code > 0 ){
+
+        echo $response;
+/*         if(isset($response->code) && $response->code > 0 ){
             return $response;
         }else{
             return array();
-        }
+        } */
     }
 
 
@@ -158,35 +160,34 @@ class PresentationController{
 
     public static function update($description, $code,$weight_in_grams, $status, $stock, $stock_min, $stock_max, $product_id, $presentation_id ){
    //  public static function update(){
-        
-$curl = curl_init();
+            
+    $curl = curl_init();
 
-curl_setopt_array($curl, array(
-  CURLOPT_URL => 'https://crud.jonathansoto.mx/api/presentations',
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => '',
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 0,
-  CURLOPT_FOLLOWLOCATION => true,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => 'PUT',
-  //CURLOPT_POSTFIELDS => 'description=cahudsdsdama%20de%204%20litros&code=khuamon&weight_in_grams=40000&status=active&stock=50&stock_min=10&stock_max=10900&product_id=1&id=52',
-    CURLOPT_POSTFIELDS => 'description='.$description.'&code='.$code.'&weight_in_grams='.$weight_in_grams.'&status='.$status.'&stock='.$stock.'&stock_min='.$stock_min.'&stock_max='.$stock_max.'&product_id='.$product_id.'&id='.$presentation_id,
-  CURLOPT_HTTPHEADER => array(
-    'Authorization: Bearer '.$_SESSION['token']
-),
-)); 
+    curl_setopt_array($curl, array(
+    CURLOPT_URL => 'https://crud.jonathansoto.mx/api/presentations',
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => '',
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => 'PUT',
+    //CURLOPT_POSTFIELDS => 'description=cahudsdsdama%20de%204%20litros&code=khuamon&weight_in_grams=40000&status=active&stock=50&stock_min=10&stock_max=10900&product_id=1&id=52',
+        CURLOPT_POSTFIELDS => 'description='.$description.'&code='.$code.'&weight_in_grams='.$weight_in_grams.'&status='.$status.'&stock='.$stock.'&stock_min='.$stock_min.'&stock_max='.$stock_max.'&product_id='.$product_id.'&id='.$presentation_id,
+    CURLOPT_HTTPHEADER => array(
+        'Authorization: Bearer '.$_SESSION['token']
+    ),
+    )); 
 
-$response = curl_exec($curl);
+    $response = curl_exec($curl);
 
-curl_close($curl);
-$response = json_decode($response);
-if(isset($response->code) && $response->code > 0 ){
-    return $response->data;
-}else{
-    return array();
-}
-        
+    curl_close($curl);
+    $response = json_decode($response);
+    if(isset($response->code) && $response->code > 0 ){
+        return $response->data;
+    }else{
+        return array();
+        }
     }
 }
 
