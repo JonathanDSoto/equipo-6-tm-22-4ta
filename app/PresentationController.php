@@ -1,4 +1,6 @@
 <?php 
+include_once "config.php";
+include_once 'Validator.php';
 
 
 if (isset($_POST['action'])) {
@@ -6,9 +8,13 @@ if (isset($_POST['action'])) {
     if (isset($_POST['global_token']) && $_POST['global_token'] == $_SESSION['global_token']){
         switch($_POST['action']){
 
+
             //public static function create($description, $code, $weigth_in_grams, $status, $cover, $stock, $stock_min, $stock_max, $product_id){
                 
                 case 'create':{
+                $validation = Validator::createPresentation($_POST['description'],$_POST['code'],$_POST['weigth_in_grams'],$_POST['status'],
+                $_FILES['cover']['type'],$_POST['stock'] , $_POST['stock_min'],$_POST['stock_max'],$_POST['product_id']);
+
                 array_walk($_POST , 'PresentationController::trim_value');   
                 $description = strip_tags($_POST['description']); 
                 $code = strip_tags($_POST['code']);
@@ -19,7 +25,12 @@ if (isset($_POST['action'])) {
                 $stock_min = strip_tags($_POST['stock_min']);
                 $stock_max = strip_tags($_POST['stock_max']);
                 $product_id = strip_tags($_POST['product_id']);
-                PresentationController::create($description, $code, $weigth_in_grams, $status, $cover, $stock, $stock_min, $stock_max, $product_id);
+                if($validation['status'] == 1){
+                    $_SESSION['_MESSAGE'] = PresentationController::create($description, $code, $weigth_in_grams, $status, $cover, $stock, $stock_min, $stock_max, $product_id);
+                }else{
+                    $_SESSION['_MESSAGE'] = $validation['data']; 
+                }
+                header('Location: '.$_SERVER['HTTP_REFERER']);
                 break;
             }
 
@@ -132,11 +143,13 @@ class PresentationController{
         )); 
         $response = curl_exec($curl);
         $response = json_decode($response);
-        if(isset($response->code) && $response->code > 0 ){
+       // print_r($response); 
+        // return $response;   
+         if(isset($response->code) && $response->code > 0 ){
             return $response->data;
         }else{
             return array();
-        }
+        } 
     }
 
     static function trim_value(&$value) { 
