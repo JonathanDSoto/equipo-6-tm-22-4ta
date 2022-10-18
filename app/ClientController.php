@@ -113,8 +113,8 @@ if (isset($_POST['action'])) {
                     $_SESSION['_MESSAGE'] = $validationResult['data'];
                  }
                 //  print_r($_SESSION['_MESSAGE']);
-                break;
                 header('Location: '.$_SERVER['HTTP_REFERER']);	
+                break;
             }
 
         }
