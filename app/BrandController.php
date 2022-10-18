@@ -145,7 +145,7 @@ Class BrandController
 
 		curl_close($curl);
 		$response = json_encode($response);	
-		return $response ;
+		echo $response ;
 	}
 
 	public static function create($name, $description, $slug){
