@@ -102,6 +102,24 @@ print_r($a);
         $errors['status'] = !empty($errors['data'])?  '2' :'1'; 
         return ($errors);
     }
+     // $curl = curl_init($name, $description, $slug, $category_id);
+    public static function createCategory($id, $name, $description, $slug, $category_id){
+        $data = [$id, $name, $description, $slug, $category_id]; 
+        array_walk($data, 'Validator::trim_value');
+        $errors = ['status'=> '', 'data'=> []];
+
+        array_push($errors['data'] ,Validator::integer($id) ? null: 'ID mal');
+        array_push($errors['data'] ,Validator::letters_spaces($name) ? null: 'nombre mal');
+        array_push($errors['data'] ,Validator::letters_spaces($description) ? null: 'descripcion mal');
+        array_push($errors['data'] ,Validator::letters_spaces($slug) ? null: 'slug mal');
+        array_push($errors['data'] ,Validator::integer($category_id) ? null: 'ID de categoria mal');
+
+
+        $errors['data'] = array_filter($errors['data']);
+        $errors['status'] = !empty($errors['data'])?  '2' :'1'; 
+        return ($errors);
+
+    }
 
     public static function date_yyy_mm_dd($value){
         return preg_match('/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/', $value);
