@@ -65,7 +65,7 @@
                                         <th scope="col">Apellidos</th>
                                         <th scope="col">Correo electrónico</th>
                                         <th scope="col">No teléfono</th>
-                                        <th scope="col">Role</th>
+                                        <th scope="col">Rol</th>
                                         <th scope="col">Creado por</th>
                                         <th scope="col">Acciones</th>
                                     </tr>
@@ -80,15 +80,16 @@
                                             <td><?php echo $user->lastname?></td>
                                             <td><?php echo $user->email?></td>
                                             <td><?php echo $user->phone_number?></td>
-                                            <td>
-                                                <a type="button" class="badge badge-soft-primary">
-                                                    <i class="mdi mdi-square-edit-outline"></i> Ver Ódenes
-                                                </a>
-                                            </td>
+                                            <td><?php echo $user->role?></td>
+                                            <td><?php echo $user->created_by?></td>
                                             <td>
                                                 <div class="hstack gap-3 fs-15">
+                                                
                                                     <a href="#" data-user='<?php echo json_encode($user)?>' onclick="editUser(this)" class="link-secondary" data-bs-toggle="modal" data-bs-target="#add-user"><i class="ri-settings-4-line"></i></a>
                                                     <a href="#" onclick="remove(<?php echo $user->id ?>)" class="link-danger" id="sa-warning"><i class="ri-delete-bin-5-line"></i></a>
+                                                    <a type="button" class="badge badge-soft-primary" href="<?= BASE_PATH."users/details/".$user->id ?>./">
+                                                    <i class="mdi mdi-square-edit-outline"></i> Ver Detalles
+                                                </a>
                                                 </div>
                                             </td>
                                         </tr>

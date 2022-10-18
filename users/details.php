@@ -1,5 +1,9 @@
 <?php
 	include_once "../app/config.php";
+    include "../app/UserController.php";
+
+    $us = new UserController();
+    $getId = $us->get($_GET['id']);
 ?>
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
@@ -53,7 +57,7 @@
                         <div class="row g-4">
                             <div class="col-auto">
                                 <div class="avatar-lg">
-                                    <img src="<?= BASE_PATH ?>public/images/users/avatar-1.jpg" alt="user-img" class="img-thumbnail rounded-circle" />
+                                    <img src="<?php echo $getId->avatar?>" alt="user-img" class="img-thumbnail rounded-circle" />
                                     <a type="button" class="text-light mt-2" data-bs-toggle="modal" data-bs-target="#add-photo">
                                         <i class="mdi mdi-square-edit-outline "></i><a class="text-light" href="#"> Editar foto</a>
                                     </a>
@@ -62,7 +66,7 @@
                             <!--end col-->
                             <div class="col">
                                 <div class="p-2">
-                                    <h3 class="text-white mb-1">Nombre</h3>
+                                    <h3 class="text-white mb-1"><?php echo $getId->name?> <?php echo $getId->lastname?></h3>
                                 </div>
                             </div>
                         </div>
@@ -94,30 +98,25 @@
                                                             <table class="table table-borderless mb-0">
                                                                 <tbody>
                                                                     <tr>
-                                                                        <th class="ps-0" scope="row">Nombre :</th>
+                                                                        <th class="ps-0" scope="row">Nombre : <?php echo $getId->name?> <?php echo $getId->lastname?></th>
                                                                         <td class="text-muted"></td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <th class="ps-0" scope="row">Correo Electrónico :</th>
+                                                                        <th class="ps-0" scope="row">Correo Electrónico : <?php echo $getId->email?></th>
                                                                         <td class="text-muted"></td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <th class="ps-0" scope="row">Número de Teléfono :</th>
+                                                                        <th class="ps-0" scope="row">Número de Teléfono : <?php echo $getId->phone_number?></th>
                                                                         <td class="text-muted">
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <th class="ps-0" scope="row">Creado por :</th>
+                                                                        <th class="ps-0" scope="row">Creado por : <?php echo $getId->created_by?></th>
                                                                         <td class="text-muted">
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <th class="ps-0" scope="row">Nivel de suscripcion :</th>
-                                                                        <td class="text-muted">
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th class="ps-0" scope="row">Role :</th>
+                                                                        <th class="ps-0" scope="row">Role : <?php echo $getId->role?></th>
                                                                         <td class="text-muted">
                                                                         </td>
                                                                     </tr>
