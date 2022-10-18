@@ -103,6 +103,10 @@ print_r($a);
         return ($errors);
     }
 
+    public static function date_yyy_mm_dd($value){
+        return preg_match('/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/', $value);
+    }
+
     public static function letters_spaces($value){
         return preg_match('/[A-Za-z\s]+$/', $value);
     }
