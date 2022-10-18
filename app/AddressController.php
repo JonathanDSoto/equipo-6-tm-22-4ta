@@ -134,6 +134,7 @@ class AddressController{
         $response = curl_exec($curl);
 
         curl_close($curl);
+        $response = json_decode($response);
         return $response;
 
     }
@@ -180,6 +181,7 @@ class AddressController{
         $response = curl_exec($curl);
         
         curl_close($curl);
+        $response = json_decode($response);
         return $response;
     }
     // print_r(AddressController::delete(26));
@@ -200,12 +202,9 @@ class AddressController{
             'Authorization: Bearer '.$_SESSION['token'],
         ),
         ));
-
         $response = curl_exec($curl);
-
         curl_close($curl);
         echo $response;
-
     }
 }
 
