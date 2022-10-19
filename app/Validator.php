@@ -1,4 +1,7 @@
-<?php class Validator{
+<?php 
+include_once 'Messages.php';
+
+class Validator {
 
 /* $a = Validator::createBrand('vload','dfdsgdfad', 'qewefgr');
 print_r($a);
@@ -13,7 +16,7 @@ print_r($a);
         // echo (Validator::slug($slug));
         array_push($errors['data'], Validator::name($name) ?  null : 'nombre mal' ); 
         array_push($errors['data'], Validator::slug($slug) ?  null : 'slug mal' );
-        array_push($errors['data'], Validator::name($description) ?  null : 'descripcion mal' );
+        array_push($errors['data'], Validator::letters_spaces($description) ?  null : 'descripcion mal' );
         array_push($errors['data'], Validator::integer($brand_id) ?  null :'brand id mal' );
         
         $errors['data'] = array_filter($errors['data']);
@@ -66,7 +69,7 @@ print_r($a);
         array_walk($data, 'Validator::trim_value');
         $errors = ['status'=> '', 'data'=> []];
 
-        array_push($errors['data'] ,Validator::name($description) ? null: 'descripcion mal');
+        array_push($errors['data'] ,Validator::letters_spaces($description) ? null: 'descripcion mal');
         array_push($errors['data'] ,Validator::name($code) ? null: 'codigo mal');
         array_push($errors['data'] ,Validator::integer($weigth_in_grams) ? null: 'peso en gramos mal');
         array_push($errors['data'] ,Validator::name($status) ? null: 'status mal');
@@ -121,12 +124,30 @@ print_r($a);
 
     }
 
+    public static function createTag($name, $description, $slug, $id = '999'){
+        $data = [$name, $description, $slug, $id]; 
+        array_walk($data, 'Validator::trim_value');
+        $errors = ['status'=> '', 'data'=> []];
+
+        // array_push($errors['data'], Validator::letters_spaces($name) ?  null : sprintf(Message::WRONG_INTEGER, 'ID')); 
+        array_push($errors['data'], Validator::letters_spaces($name) ?  null : 'nombre mal' );
+        array_push($errors['data'], Validator::letters_spaces($description) ?  null : 'descripcion mal' );
+        array_push($errors['data'], Validator::slug($slug) ?  null : 'slug mal' );
+        array_push($errors['data'], Validator::integer($id) ?  null : 'ID mal' );
+
+
+        $errors['data'] = array_filter($errors['data']);
+        $errors['status'] = !empty($errors['data'])?  '2' :'1'; 
+        return ($errors);
+
+    }
+
     public static function date_yyy_mm_dd($value){
         return preg_match('/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/', $value);
     }
 
     public static function letters_spaces($value){
-        return preg_match('/[A-Za-z\s]+$/', $value);
+        return preg_match('/^[A-Za-z\s]+$/', $value);
     }
     public static function codigo_postal($value){
         return preg_match('/^[0-9]{5}$/', $value);
