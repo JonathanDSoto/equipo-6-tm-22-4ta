@@ -1,4 +1,4 @@
-<link href="<?= BASE_PATH ?>public/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+-<link href="<?= BASE_PATH ?>public/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
 <div class="modal fade" id="add-product" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -7,21 +7,21 @@
 		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		    </div>
 
-		    <form enctype="multipart/form-data">
+		    <form enctype="multipart/form-data" method="post" action="<?php BASE_PATH?>products">
 			    <div class="modal-body">
 			      	<div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Nombre</span>
-					    <input id="name" name="name" type="text" class="form-control" placeholder="Nombre del Producto" aria-label="Username" aria-describedby="basic-addon1">
+					    <input id="name" name="name" type="text" class="form-control" placeholder="Product name" aria-label="Username" aria-describedby="basic-addon1">
 					</div>
 
 					<div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Slug</span>
-					    <input id="slug" name="slug" type="text" class="form-control" placeholder="Slug del Producto" aria-label="Username" aria-describedby="basic-addon1">
+					    <input id="slug" name="slug" type="text" class="form-control" placeholder="Product slug" aria-label="Username" aria-describedby="basic-addon1">
 					</div>
 
 					<div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Descripcion</span>
-					    <input id="description" name="description" type="text" class="form-control" placeholder="Descripción del Producto" aria-label="Username" aria-describedby="basic-addon1">
+					    <input id="description" name="description" type="text" class="form-control" placeholder="Product description" aria-label="Username" aria-describedby="basic-addon1">
 					</div>
 
 					<div class="input-group mb-3">
@@ -32,9 +32,9 @@
 					<div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Id de la Marca</span>
 					    <select id="brand_id" class="form-control" name="brand_id">
-                            <option value="">Escoge una Opcion</option>
-                            <option value="">Opcion 1</option>
-                            <option value="">Opcion 2</option>
+                            <?php foreach ($brands as $brand){?>
+								<option value='<?php echo $brand->id;?>' class="dropdown-item"><?php echo $brand->name;?></option>
+							<?php } ?>
                         </select>
 					</div>
 
@@ -49,9 +49,10 @@
 			        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
 			        <button type="submit" class="btn btn-primary">Guardar</button>
 			      </div>
-			      <input id="oculto_input" type="hidden" name="action" value="create">
-
-			      <input type="hidden" id="id" name="id">
+			      
+				<input id="oculto_input" type="hidden" name="action" value="create">
+				<input id="id" type="hidden" name="id" value="update">
+				<input type="hidden" value="global_token" name="<?php echo $_SESSION['global_token'] ?>">
 
 		      </form>
 		    </div>
