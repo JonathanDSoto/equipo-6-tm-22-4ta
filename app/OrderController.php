@@ -84,7 +84,7 @@ class OrderController{
 
     curl_close($curl);
     $response = json_decode($response);
-    return $response->data;
+    return $response->data; 
     }
 
 
@@ -106,5 +106,19 @@ class OrderController{
             }
         }
         return $filteredOrders;
+    }
+
+/*   print_r(OrderController::getOrdersWhereClient(10)); */
+    public static function getOrdersWhereClient($client_id){
+        $filteredOrders = [];
+        $orders = OrderController::getOrders();
+        foreach($orders as $order){
+            if($order->client_id == $client_id){        
+                array_push($filteredOrders, $order);
+            }
+        }
+        return $filteredOrders;
+
+
     }
 }
