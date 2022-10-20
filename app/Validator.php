@@ -141,6 +141,42 @@ print_r($a);
         return ($errors);
 
     }
+ 
+    public static function createProduct($name, $slug, $description, $features, $brand_id, $photo_type){
+        $data = [$name, $slug, $description, $features, $brand_id, $photo_type]; 
+        array_walk($data, 'Validator::trim_value');
+        $errors = ['status'=> '', 'data'=> []];
+
+        array_push($errors['data'], Validator::letters_spaces($name) ?  null : 'nombre mal' );
+        array_push($errors['data'], Validator::slug($slug) ?  null : 'slug mal' );
+        array_push($errors['data'], Validator::letters_spaces($description) ?  null : 'descripcion mal' );
+        array_push($errors['data'], Validator::letters_spaces($features) ?  null : 'caracteristicas mal' );
+        array_push($errors['data'], Validator::integer($brand_id) ?  null : 'ID de marca mal' );
+        array_push($errors['data'], Validator::image($photo_type) ?  null : 'image type mal');
+      
+    
+
+        $errors['data'] = array_filter($errors['data']);
+        $errors['status'] = !empty($errors['data'])?  '2' :'1'; 
+        return ($errors);
+
+    }
+
+    public static function integerArray($array){
+        $errors = ['status'=> '', 'data'=> []];
+        foreach($array as $key => $value){
+            array_push($errors['data'], Validator::integer($value) ?  null : 'El valor "'.$value.'" no es un numero entero');
+            // array_push($errors['data'], Validator::integer() ?  null :$value);
+        }
+
+        
+        $errors['data'] = array_filter($errors['data']);
+        $errors['status'] = !empty($errors['data'])?  '2' :'1'; 
+        return ($errors);
+    }
+
+
+ 
 
     public static function date_yyy_mm_dd($value){
         return preg_match('/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/', $value);
