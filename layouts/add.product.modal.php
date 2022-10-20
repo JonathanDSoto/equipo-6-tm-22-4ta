@@ -7,7 +7,7 @@
 		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		    </div>
 
-		    <form enctype="multipart/form-data" method="post" action="<?php BASE_PATH?>products">
+		    <form enctype="multipart/form-data" method="post" action="<?php BASE_PATH?>">
 			    <div class="modal-body">
 			      	<div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Nombre</span>

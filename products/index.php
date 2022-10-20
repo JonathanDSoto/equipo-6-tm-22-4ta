@@ -52,7 +52,7 @@
                                 <div class="row g-4">
                                     <div class="col-sm-auto">
                                         <div>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-product">
+                                        <button type="button" onclick="addProduct()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-product">
                                              Añadir Producto
                                         </button>
 
@@ -91,9 +91,9 @@
                                                             <p class="card-text"><?php echo $productAct->description?></p>
                                                             <a href="#" class="btn btn-primary"><i class="bx bxs-comment-detail"></i> Detalles del Producto</a>
                                                             <button type="button" class="btn btn-secondary mt-2" data-bs-toggle="modal" data-bs-target="#add-product">
-                                                                <i class="mdi mdi-square-edit-outline"></i><a> Editar</a>
+                                                                <i class="mdi mdi-square-edit-outline"></i><a data-product='<?php echo json_encode($productAct)?>' onclick="editProduct(this)"> Editar</a>
                                                             </button>
-                                                            <button type="button" class="btn btn-danger mt-2" id="sa-warning"><i class="mdi mdi-square-edit-outline"></i><a> Eliminar</a></button>
+                                                            <button type="button" onclick="remove(<?php echo $productAct->id ?>)" class="btn btn-danger mt-2" id="sa-warning"><i class="mdi mdi-square-edit-outline"></i><a>  Eliminar</a></button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -111,6 +111,62 @@
             <?php include "../layouts/footer.template.php"; ?>
         </div>
     </div>
+
+    <script>
+
+function remove(id)
+        {
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this imaginary file!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                swal("Poof! Your imaginary file has been deleted!", {
+                    icon: "success",
+                });
+                    var bodyFormData = new FormData();
+                    bodyFormData.append('id', id);
+                    console.log(id);
+                    bodyFormData.append('action', 'delete');
+                    bodyFormData.append('global_token', '<?php echo $_SESSION['global_token']?>');
+                    axios.post("<?= BASE_PATH ?>products", bodyFormData)
+                    .then(function (response){
+                        console.log(response);
+                    })
+                        .catch(function (error){
+                            console.log('error')
+                        })
+                } else {
+                swal("Your imaginary file is safe!");
+                }
+            });
+        }
+        function addProduct(){
+
+            document.getElementById("oculto_input").value = "create";
+
+        }
+
+        function editProduct(target){
+
+            document.getElementById("oculto_input").value = "update";
+
+            let products = JSON.parse(target.getAttribute("data-product"));
+
+
+            document.getElementById("name").value = products.name;
+            document.getElementById("slug").value = products.slug;
+            document.getElementById("description").value = products.description;
+            document.getElementById("features").value = products.features;
+            document.getElementById("brand_id").value = products.brand_id;
+            document.getElementById("id").value = products.id;
+
+        }
+    </script>
 
 
 
