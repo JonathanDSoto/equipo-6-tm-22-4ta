@@ -7,6 +7,7 @@
     $product = $productController->getProducts();
 
 	$brandController = new BrandController();
+    $brands = $brandController->getBrands();
 
 	// $products = $productController->getProducts();
 	// $brands = $brandController->getBrands();
@@ -52,7 +53,7 @@
                                     <div class="col-sm-auto">
                                         <div>
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-product">
-                                            + Añadir Producto
+                                             Añadir Producto
                                         </button>
 
                                         </div>

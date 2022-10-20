@@ -34,8 +34,8 @@
                                 <h4 class="mb-sm-0">Product Details</h4>
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Ecommerce</a></li>
-                                        <li class="breadcrumb-item active">Product Details</li>
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Productos</a></li>
+                                        <li class="breadcrumb-item active">Detalles de producto</li>
                                     </ol>
                                 </div>
                             </div>
@@ -64,39 +64,10 @@
                                                             <img src="<?= BASE_PATH ?>public/images/products/img-8.png" alt="" class="img-fluid d-block" />
                                                         </div>
                                                     </div>
-                                                    <div class="swiper-button-next bg-white shadow"></div>
-                                                    <div class="swiper-button-prev bg-white shadow"></div>
                                                 </div>
-                                                <!-- end swiper thumbnail slide -->
-                                                <div class="swiper product-nav-slider mt-2">
-                                                    <div class="swiper-wrapper">
-                                                        <div class="swiper-slide">
-                                                            <div class="nav-slide-item">
-                                                                <img src="<?= BASE_PATH ?>public/images/products/img-8.png" alt="" class="img-fluid d-block" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="swiper-slide">
-                                                            <div class="nav-slide-item">
-                                                                <img src="<?= BASE_PATH ?>public/images/products/img-6.png" alt="" class="img-fluid d-block" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="swiper-slide">
-                                                            <div class="nav-slide-item">
-                                                                <img src="<?= BASE_PATH ?>public/images/products/img-1.png" alt="" class="img-fluid d-block" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="swiper-slide">
-                                                            <div class="nav-slide-item">
-                                                                <img src="<?= BASE_PATH ?>public/images/products/img-8.png" alt="" class="img-fluid d-block" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- end swiper nav slide -->
                                             </div>
                                         </div>
                                         <!-- end col -->
-
                                         <div class="col-xl-8">
                                             <div class="mt-xl-0 mt-5">
                                                 <div class="d-flex">
@@ -142,38 +113,6 @@
                                                         </div>
                                                     </div>
                                                     <!-- end col -->
-                                                    <div class="col-lg-3 col-sm-6">
-                                                        <div class="p-2 border border-dashed rounded">
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="avatar-sm me-2">
-                                                                    <div class="avatar-title rounded bg-transparent text-success fs-24">
-                                                                        <i class="ri-stack-fill"></i>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="flex-grow-1">
-                                                                    <p class="text-muted mb-1">Available Stocks :</p>
-                                                                    <h5 class="mb-0">1,230</h5>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- end col -->
-                                                    <div class="col-lg-3 col-sm-6">
-                                                        <div class="p-2 border border-dashed rounded">
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="avatar-sm me-2">
-                                                                    <div class="avatar-title rounded bg-transparent text-success fs-24">
-                                                                        <i class="ri-inbox-archive-fill"></i>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="flex-grow-1">
-                                                                    <p class="text-muted mb-1">Total Revenue :</p>
-                                                                    <h5 class="mb-0">$60,645</h5>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- end col -->
                                                 </div>
 
                                                 <!-- end row -->
@@ -183,7 +122,7 @@
                                                     <p>Tommy Hilfiger men striped pink sweatshirt. Crafted with cotton. Material composition is 100% organic cotton. This is one of the world’s leading designer lifestyle brands and is internationally recognized for celebrating the essence of classic American cool style, featuring preppy with a twist designs.</p>
                                                 </div>
                                                 <div class="mt-4 text-muted">
-                                                    <h5 class="fs-14">Features :</h5>
+                                                    <h5 class="fs-14">Características :</h5>
                                                     <p>Tommy Hilfiger men striped pink sweatshirt. Crafted with cotton. Material composition is 100% organic cotton. This is one of the world’s leading designer lifestyle brands and is internationally recognized for celebrating the essence of classic American cool style, featuring preppy with a twist designs.</p>
                                                 </div>
                                                 <div class="row">
@@ -209,7 +148,6 @@
                                                     </div>
                                                 </div>
                                                 <!-- product-content -->
-                                                
                                                 <!-- Rating y Reviews -->
                                                 <!-- end card body -->
                                             </div>
@@ -232,7 +170,6 @@
             <?php include "../layouts/footer.template.php"; ?>
         </div>
         <!-- end main content-->
-
     </div>
     <!-- END layout-wrapper -->
 
