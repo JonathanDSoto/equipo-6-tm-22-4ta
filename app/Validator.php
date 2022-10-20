@@ -162,6 +162,28 @@ print_r($a);
 
     }
 
+
+    public static function updateProduct($name, $slug, $description, $features, $brand_id, $id){
+        $data = [$name, $slug, $description, $features, $brand_id, $id]; 
+        array_walk($data, 'Validator::trim_value');
+        $errors = ['status'=> '', 'data'=> []];
+
+        array_push($errors['data'], Validator::letters_spaces($name) ?  null : 'nombre mal' );
+        array_push($errors['data'], Validator::slug($slug) ?  null : 'slug mal' );
+        array_push($errors['data'], Validator::letters_spaces($description) ?  null : 'descripcion mal' );
+        array_push($errors['data'], Validator::letters_spaces($features) ?  null : 'caracteristicas mal' );
+        array_push($errors['data'], Validator::integer($brand_id) ?  null : 'ID de marca mal' );
+        array_push($errors['data'], Validator::integer($id) ?  null : 'ID del producto mal' );
+
+
+        
+        $errors['data'] = array_filter($errors['data']);
+        $errors['status'] = !empty($errors['data'])?  '2' :'1'; 
+        return ($errors);
+    }
+
+
+
     public static function integerArray($array){
         $errors = ['status'=> '', 'data'=> []];
         foreach($array as $key => $value){
