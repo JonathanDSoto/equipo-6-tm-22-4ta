@@ -21,6 +21,7 @@
 
 
         <!-- ========== App Menu ========== -->
+        <?php include "../../layouts/nav.template.catalog.php"; ?>
         <?php include "../../layouts/sidebar.template.php";?>
         <?php include "../../layouts/add.brands.modal.php";?>
         

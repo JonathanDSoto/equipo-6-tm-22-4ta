@@ -18,12 +18,10 @@
 <body>
     <!-- Begin page -->
     <div id="layout-wrapper">
-
-
         <!-- ========== App Menu ========== -->
-        <?php include "../../layouts/sidebar.template.php";?>
         <?php include "../../layouts/add.tag.modal.php";?>
-        
+        <?php include "../../layouts/nav.template.catalog.php"; ?>
+        <?php include "../../layouts/sidebar.template.php";?>
 
         <div class="main-content">
 
