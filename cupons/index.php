@@ -66,9 +66,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <?php if (isset($users)): ?>
-                                    <?php foreach($users as $user): ?>
-
                                         <tr>
                                             <th scope="row"></th>
                                             <td></td>
@@ -88,9 +85,6 @@
                                                 </div>
                                             </td>
                                         </tr>
-
-                                    <?php endforeach ?> 
-                                    <?php endif ?>
                                 </tbody>
                             </table>
                         </div>
@@ -107,63 +101,7 @@ include "../layouts/add.user.modal.php";
 
 ?>
 
-<script type="text/javascript"> 
-        
-        function editUser(target){
 
-            console.log(target);
-            document.getElementById("oculto_input").value = "edit";
-
-            let useers = JSON.parse(target.getAttribute("data-user"));
-
-
-            console.log(useers);
-
-            document.getElementById("name").value = useers.name;
-            document.getElementById("lastname").value = useers.lastname;
-            document.getElementById("email").value = useers.email;
-            document.getElementById("password").value = useers.password;
-            document.getElementById("phone_number").value = useers.phone_number;
-            document.getElementById("role").value = useers.role;
-
-        }
-
-        function remove(id)
-        {
-            swal({
-                title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover this imaginary file!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-            .then((willDelete) => {
-                if (willDelete) {
-                swal("Poof! Your imaginary file has been deleted!", {
-                    icon: "success",
-                });
-                    var bodyFormData = new FormData();
-                    bodyFormData.append('id', id);
-                    console.log(id);
-                    bodyFormData.append('action', 'delete');
-                    bodyFormData.append('global_token', '<?php echo $_SESSION['global_token']?>');
-                    axios.post("<?= BASE_PATH ?>frm", bodyFormData)
-                    .then(function (response){
-                        console.log(response);
-                    })
-                        .catch(function (error){
-                            console.log('error')
-                        })
-                } else {
-                swal("Your imaginary file is safe!");
-                }
-            });
-        }
-        function addUser(){
-
-            document.getElementById("oculto_input").value = "register";
-
-        }
 
 
     </script>
