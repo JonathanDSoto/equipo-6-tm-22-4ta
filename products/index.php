@@ -117,15 +117,15 @@
 function remove(id)
         {
             swal({
-                title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover this imaginary file!",
+                title: "¿Estás seguro?",
+                text: "Una vez borrado, no podras acceder de nuevo a este cliente!",
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
             })
             .then((willDelete) => {
                 if (willDelete) {
-                swal("Poof! Your imaginary file has been deleted!", {
+                swal("¡El cliente se borró con éxito!", {
                     icon: "success",
                 });
                     var bodyFormData = new FormData();
@@ -141,7 +141,7 @@ function remove(id)
                             console.log('error')
                         })
                 } else {
-                swal("Your imaginary file is safe!");
+                swal("No se borró el cliente");
                 }
             });
         }
