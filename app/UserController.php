@@ -272,7 +272,7 @@ public static function delete($id){
         CURLOPT_FOLLOWLOCATION => true,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => 'PUT',
-        CURLOPT_POSTFIELDS => 'name='.$name.'&lastname='.$lastname.'&email='.$email.'&phone_number='.$phone_number.'created_by='.$created_by.'&role='.$role.'&password='.$password.'&id='.$user_id,
+        CURLOPT_POSTFIELDS => 'name='.$name.'&lastname='.$lastname.'&email='.$email.'&phone_number='.$phone_number.'&created_by='.$created_by.'&role='.$role.'&password='.$password.'&id='.$user_id,
         CURLOPT_HTTPHEADER => array(
 		    'Authorization: Bearer '.$_SESSION['token'],
 		    'Content-Type: application/x-www-form-urlencoded'
