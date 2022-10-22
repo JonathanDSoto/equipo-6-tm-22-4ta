@@ -182,6 +182,30 @@ print_r($a);
         return ($errors);
     }
 
+   //eate($name, $code, $percentage_discount, $min_amount_required, $min_product_required, $start_date, $end_date, $max_uses, $count_uses, $valid_only_first_purchase, $status){
+    public static function createCoupon($name, $code, $percentage_discount, $min_amount_required, $min_product_required, $start_date, $end_date, $max_uses, $count_uses, $valid_only_first_purchase, $status, $id='999'){
+    $data = [$name, $code, $percentage_discount, $min_amount_required, $min_product_required, $start_date, $end_date, $max_uses, $count_uses, $valid_only_first_purchase, $status, $id]; 
+    array_walk($data, 'Validator::trim_value');
+    $errors = ['status'=> '', 'data'=> []];
+
+    array_push($errors['data'], Validator::coupon_name($name) ?  null : 'nombre del cupon mal' );
+    array_push($errors['data'], Validator::letras_y_numeros_no_espacios($code) ?  null : 'codigo del cupon mal' );
+    array_push($errors['data'], Validator::integer($percentage_discount) ?  null : 'porcentaje de descuento del cupon mal' );
+    array_push($errors['data'], Validator::integer($min_amount_required) ?  null : 'Cantidad minima requerida mal' );
+    array_push($errors['data'], Validator::integer($min_product_required) ?  null : 'Cantidad minima de producto requerida mal' );
+    array_push($errors['data'], Validator::date_yyy_mm_dd($start_date) ?  null : 'Fecha de inicio mal' );
+    array_push($errors['data'], Validator::date_yyy_mm_dd($end_date) ?  null : 'Fecha de fin mal' );
+    array_push($errors['data'], Validator::integer($max_uses) ?  null : 'Maximo de usos mal' );
+    array_push($errors['data'], Validator::integer($count_uses) ?  null : 'Cantidad de usos mal' );
+    array_push($errors['data'], Validator::integer($valid_only_first_purchase) ?  null : 'Valido solo en la primer compra mal' );
+    array_push($errors['data'], Validator::integer($status) ?  null : 'Estado mal' );
+    array_push($errors['data'], Validator::integer($id) ?  null : 'ID de producto mal' );
+    
+        
+    $errors['data'] = array_filter($errors['data']);
+    $errors['status'] = !empty($errors['data'])?  '2' :'1'; 
+    return ($errors);
+    }
 
 
     public static function integerArray($array){
@@ -252,6 +276,15 @@ print_r($a);
     }
     public static function email($value){
         return filter_var($value, FILTER_VALIDATE_EMAIL);
+    }
+
+
+    public static function coupon_name($value){// cualquir simolo seguido de numero en porcentaje  
+        return preg_match('/^.+[0-9]%$/', $value);
+    }
+
+    public static function letras_y_numeros_no_espacios($value){
+        return preg_match('/^\w+$/', $value);
     }
 
 
