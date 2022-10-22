@@ -23,6 +23,7 @@
         <!-- ========== App Menu ========== -->
         <?php include "../layouts/sidebar.template.php";?>
         <?php include "../layouts/add.user.modal.php";?>
+        
         <div class="main-content">
             <?php include "../layouts/bread.template.php"; ?>
             <!-- End Page-content -->
@@ -85,7 +86,7 @@
                                             <td>
                                                 <div class="hstack gap-3 fs-15">
                                                 
-                                                    <a href="#" data-user='<?php echo json_encode($user)?>' onclick="editUser(this)" class="link-secondary" data-bs-toggle="modal" data-bs-target="#add-user"><i class="ri-settings-4-line"></i></a>
+                                                    <a href="#" data-user-edit='<?php echo json_encode($user)?>' onclick="editUser(this)" class="link-secondary" data-bs-toggle="modal" data-bs-target="#edit-user"><i class="ri-settings-4-line"></i></a>
                                                     <a href="#" onclick="remove(<?php echo $user->id ?>)" class="link-danger" id="sa-warning"><i class="ri-delete-bin-5-line"></i></a>
                                                     <a type="button" class="badge badge-soft-primary" href="<?= BASE_PATH."users/details/".$user->id ?>./">
                                                     <i class="mdi mdi-square-edit-outline"></i> Ver Detalles
@@ -105,37 +106,27 @@
             <?php include "../layouts/footer.template.php"; ?>
         </div>
     </div>
+
+    <?php include "../layouts/edit.user.modal.php";?>
     
-    <?php
-
-include "../layouts/add.user.modal.php";
-
-?>
 
 <script type="text/javascript"> 
         
         function editUser(target){
 
-            console.log(target);
-            document.getElementById("oculto_input").value = "edit";
 
-            let useers = JSON.parse(target.getAttribute("data-user"));
+            let useers = JSON.parse(target.getAttribute("data-user-edit"));
 
+            console.log(useers);
 
-            console.log(useers.id);
-
-
-
-            document.getElementById("id").value = useers.id;
-            document.getElementById("name").value = useers.name;
-            document.getElementById("lastname").value = useers.lastname;
-            document.getElementById("email").value = useers.email;
-            document.getElementById("password").value = useers.password;
-            document.getElementById("phone_number").value = useers.phone_number;
-            document.getElementById("role").value = useers.role;
+            document.getElementById("editId").value = useers.id;
+            document.getElementById("editName").value = useers.name;
+            document.getElementById("editLastname").value = useers.lastname;
+            document.getElementById("editEmail").value = useers.email;
+            document.getElementById("editPassword").value = useers.password;
+            document.getElementById("editPhone_number").value = useers.phone_number;
+            document.getElementById("editRol").value = useers.role;
             // document.getElementById("avatar").value = useers.avatar;
-
-            console.log(document.getElementById("user_id"));
 
         }
 

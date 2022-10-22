@@ -6,7 +6,7 @@
 		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		    </div>
 
-		    <form method="post" action="">
+		    <form method="post" action="<?php echo BASE_PATH?>frm">
 
 			    <div class="modal-body">
 			      	<div class="input-group mb-3">
@@ -47,7 +47,7 @@
 
                 <input type="hidden" name="action" value="edit">
                 <input type="hidden" value="user_id" name="user_id" id="editId">
-                <input type="hidden" name="global_token" value="">
+                <input type="hidden" name="global_token" value="<?= $_SESSION['global_token']?>">
 
 		    </form>
 		</div>

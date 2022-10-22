@@ -6,7 +6,7 @@
 		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		    </div>
 
-		    <form method="post" action="<?php echo BASE_PATH?>frm">
+		    <form enctype="multipart/form-data" method="post" action="<?php echo BASE_PATH?>frm">
 
 				
 
@@ -54,7 +54,6 @@
 
 				<input type="hidden" name="action" value="register" id="oculto_input">
 				<!-- <input id="id" type="hidden" name="user_id" value="edit"> -->
-				<input type="hidden" name="user_id" id="id" value="edit">
 				<input type="hidden" name="global_token" value="<?php echo $_SESSION['global_token'] ?>">
 
 		    </form>
