@@ -95,7 +95,7 @@
                                         </tr>
 
                                     <?php endforeach ?> 
-                                    <?php endif ?>
+                                <?php endif ?>
                                 </tbody>
                             </table>
                         </div>
@@ -122,14 +122,20 @@ include "../layouts/add.user.modal.php";
             let useers = JSON.parse(target.getAttribute("data-user"));
 
 
-            console.log(useers);
+            console.log(useers.id);
 
+
+
+            document.getElementById("id").value = useers.id;
             document.getElementById("name").value = useers.name;
             document.getElementById("lastname").value = useers.lastname;
             document.getElementById("email").value = useers.email;
             document.getElementById("password").value = useers.password;
             document.getElementById("phone_number").value = useers.phone_number;
             document.getElementById("role").value = useers.role;
+            // document.getElementById("avatar").value = useers.avatar;
+
+            console.log(document.getElementById("user_id"));
 
         }
 

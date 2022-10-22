@@ -59,7 +59,7 @@
                                 <div class="avatar-lg">
                                     <img src="<?php echo $getId->avatar?>" alt="user-img" class="img-thumbnail rounded-circle" />
                                     <a type="button" class="text-light mt-2" data-bs-toggle="modal" data-bs-target="#add-photo">
-                                        <i class="mdi mdi-square-edit-outline "></i><a class="text-light" href="#"> Editar foto</a>
+                                        <i class="mdi mdi-square-edit-outline "></i><a class="text-light"> Editar foto</a>
                                     </a>
                                 </div>
                             </div>
