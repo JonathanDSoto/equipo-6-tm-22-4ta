@@ -276,6 +276,38 @@ class CouponController{
         return $response;
 
     }
+
+
+    public static function getWidgets($coupon_id){// ordenes y total descontado
+        $coupon = CouponController::get($coupon_id);
+        $data['total_discount'] = 0;
+        $data['orders'] = [];
+        $data['total_orders'] = 0;
+        print_r($coupon);    
+        if(!empty($coupon)){
+            $data['orders'] = $coupon->orders;
+            foreach($coupon->orders as $order){
+                $data['total_orders']++;
+                if($coupon->percentage_discount > 0)
+                    $data['total_discount'] += $coupon->percentage_discount / 100 * ($order->total);
+                else if($coupon->amount_discount >0)
+                {
+                    $data['total_discount'] +=  $coupon->amount_discount;
+/*    
+                    echo   $order->total;
+                
+                    echo   $coupon->amount_discount;
+                    echo   '<br>';
+                    echo    $order->total  - ($coupon->amount_discount); */
+                }
+                    // echo  '<br>';
+            }
+        }
+     ///   print_r($data['total_discount'] );
+      
+        return $data;
+    }
+
 }
 
 
