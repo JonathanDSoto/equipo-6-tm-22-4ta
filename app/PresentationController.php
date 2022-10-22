@@ -35,8 +35,14 @@ if (isset($_POST['action'])) {
             }
 
             case 'delete':{
-                array_walk($_POST , 'PresentationController::trim_value'); 
-                PresentationController::delete($_POST['presentation_id']);  
+                array_walk($_POST , 'PresentationController::trim_value');
+                $validation = Validator::integer($_POST['presentation_id']);
+                if($validation){
+                    $_SESSION['_MESSAGE'] = PresentationController::delete($_POST['presentation_id']);  
+                }else{
+                    $_SESSION['_MESSAGE'] = 'Hay algo mal con ese ID';
+                }
+                header('Location: '.$_SERVER['HTTP_REFERER']);
                 break;
             }
             case 'update':{//    public static function update($description, $code,$weight_in_grams, $status, $stock, $stock_min, $stock_max, $product_id, $presentation_id ){
@@ -51,6 +57,21 @@ if (isset($_POST['action'])) {
                 $product_id = strip_tags($_POST['product_id']);
                 $presentation_id = strip_tags($_POST['presentation_id']);
                 PresentationController::update($description, $code, $weigth_in_grams, $status, $stock, $stock_min, $stock_max, $product_id, $presentation_id);
+                break;
+            }
+
+            case 'update_price':{
+            //   public static function update_price($product_id, $amount){
+                $presentation_id = $_POST['presentation_id'];
+                $amount = $_POST['amount'];
+                $validation = Validator::integer($presentation_id) && Validator::integer($amount);
+                if($validation){
+                    $_SESSION['_MESSAGE'] = PresentationController::update_price($presentation_id,$amount);
+                }else{
+                    $_SESSION['_MESSAGE'] = 'Ha ocurrido un error';
+                }
+                header('Location: '.$_SERVER['HTTP_REFERER']);
+                break;
             }
        }
     }
@@ -188,6 +209,31 @@ class PresentationController{
     }else{
         return array();
         }
+    }
+
+    public static function update_price($presentation_id, $amount){
+        
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+    CURLOPT_URL => 'https://crud.jonathansoto.mx/api/presentations/set_new_price',
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => '',
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => 'PUT',
+    CURLOPT_POSTFIELDS => 'id='.$presentation_id.'&amount='.$amount,
+    CURLOPT_HTTPHEADER => array(
+        'Authorization: Bearer '.$_SESSION['token'],
+        'Content-Type: application/x-www-form-urlencoded'
+    ),
+    ));
+
+    $response = curl_exec($curl);
+    curl_close($curl);
+    return $response;
     }
 }
 
