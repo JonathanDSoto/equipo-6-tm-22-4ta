@@ -68,7 +68,7 @@
 		                <div class="dropdown ms-sm-3 header-item topbar-user">
 		                    <button type="button" class="btn shadow-none" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		                        <span class="d-flex align-items-center">
-		                            <img class="rounded-circle header-profile-user" src="" alt="Header Avatar">
+		                            <img class="rounded-circle header-profile-user" src="<?php echo $_SESSION['avatar']?>" alt="Header Avatar">
 		                            <span class="text-start ms-xl-2">
 		                                <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text"></span>
 
@@ -76,9 +76,9 @@
 		                        </span>
 		                    </button>
 		                    <div class="dropdown-menu dropdown-menu-end">
-		                        <h6 class="dropdown-header">Hola de Nuevo!</h6>
+		                        <h6 class="dropdown-header">Hola de Nuevo <?php echo $_SESSION['name']?>!</h6>
 								<!-- Colocar href a base_path/profile -->
-		                        <a class="dropdown-item" href=""><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Mi Perfil</span></a>
+							<a class="dropdown-item" href="<?php echo BASE_PATH?>profile"><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Mi Perfil</span></a>
 		                        <form method="post" action="">
                                     <button name="action" value="logout" class="dropdown-item" type="submit">
                                         <i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> 

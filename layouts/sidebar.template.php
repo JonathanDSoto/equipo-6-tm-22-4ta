@@ -58,13 +58,13 @@
                             <div class="collapse menu-dropdown" id="sidebarDashboards">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="dashboard-analytics.html" class="nav-link" data-key="t-analytics"> Categorías </a>
+                                        <a href="<?php echo BASE_PATH?>catalogos/categorias" class="nav-link" data-key="t-analytics"> Categorías </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="dashboard-crm.html" class="nav-link" data-key="t-crm"> Marcas </a>
+                                        <a href="<?php echo BASE_PATH?>catalogos/marcas" class="nav-link" data-key="t-crm"> Marcas </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="" class="nav-link" data-key="t-ecommerce"> Tags </a>
+                                        <a href="<?php echo BASE_PATH?>catalogos/etiquetas" class="nav-link" data-key="t-ecommerce"> Tags </a>
                                     </li>
                                 </ul>
                             </div>
