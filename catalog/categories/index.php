@@ -1,5 +1,11 @@
 <?php 
     include_once "../../app/config.php";
+    include "../../app/CategoryController.php";
+
+    $categoryCont = new CategoryController();
+    $categories = $categoryCont->getAll();
+
+
 ?>
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
@@ -73,19 +79,23 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php if (isset($categories) && count($categories)>0): ?>
+                                        <?php foreach($categories as $categorie): ?>
 
                                             <tr>
-                                            <th scope="row">1</th>
-                                            <td>Dulces y caramelos</td>
-                                            <td>malisiosos viscos </td>
-                                            <td>Dulces-y-caramelos</td>
+                                            <th scope="row"><?php echo $categorie->id?></th>
+                                            <td><?php echo $categorie->name?></td>
+                                            <td><?php echo $categorie->description?></td>
+                                            <td><?php echo $categorie->slug?></td>
                                             <td>
                                                 <div class="hstack gap-3 fs-15">
                                                     <a href="javascript:void(0);" class="link-secondary" data-bs-toggle="modal" data-bs-target="#add-categorie"><i class="ri-settings-4-line"></i></a>
                                                     <a href="javascript:void(0);" class="link-danger"><i class="ri-delete-bin-5-line"></i></a>
                                                 </div>
                                             </td>
-                                        </tr>
+                                        
+                                        <?php endforeach ?>
+                                    <?php endif ?>
                                 </tbody>
                             </table>
                         </div>
