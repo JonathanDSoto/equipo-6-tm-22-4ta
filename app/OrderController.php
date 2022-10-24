@@ -165,14 +165,59 @@ class OrderController{
 
 /*   print_r(OrderController::getOrdersWhereClient(10)); */
     public static function getOrdersWhereClient($client_id){
-        $filteredOrders = [];
+        $filteredOrders = [
+            'orders' => [],
+            'compras_transferencia' => ['num' => 0, 'total' => 0],// cantidad de compras segun el tipo de pago y suma del total de estas 
+            'compras_tarjeta' => ['num' => 0, 'total' => 0],
+            'compras_efectivo' => ['num' => 0, 'total' => 0],
+            'cupones_usados' => ['num' => 0, 'total_descontado' => 0], // cantidad de cupones usados y suma del total descontado
+            'total_gastado' => ['num' => 0, 'total_descontado' => 0] //
+       ];
         $orders = OrderController::getOrders();
         foreach($orders as $order){
             if($order->client_id == $client_id){        
-                array_push($filteredOrders, $order);
+                array_push($filteredOrders['orders'], $order);
+                if($order->payment_type_id == '3'){
+                    // echo $order->payment_type->name;
+                    $filteredOrders['compras_transferencia']['num']++;
+                    $filteredOrders['compras_transferencia']['total']+=$order->total;
+                }else if($order->payment_type_id == '2'){
+                    $filteredOrders['compras_tarjeta']['num']++;
+                    $filteredOrders['compras_tarjeta']['total']+=$order->total;
+                }
+                else if($order->payment_type_id == '1'){
+                    $filteredOrders['compras_efectivo']['num']++;
+                    $filteredOrders['compras_efectivo']['total']+=$order->total;
+                }
+
+
+                if(isset($order->coupon)){
+                    $filteredOrders['cupones_usados']['num']++;
+                    if($order->coupon->amount_discount>0){
+                        $filteredOrders['cupones_usados']['total_descontado']+= $order->coupon->amount_discount;
+                        echo $order->coupon->amount_discount.'<br>';
+                    }else if($order->coupon->percentage_discount>0){
+                        // print_r(json_encode( $order));
+                        $descuento = $order->total * ($order->coupon->percentage_discount / 100);
+                        $filteredOrders['cupones_usados']['total_descontado']+= $descuento;
+                        // echo $descuento.   '   '. $order->total;
+                    }
+                }
+                    //  print_r(json_encode($order->coupon));}
+                
             }
         }
-        return $filteredOrders;
+        // id 1 = efectivo 
+        // id 2 = tarjeta
+        // id 3 = transferencia
+
+
+        /*  "payment_type": {
+      "id": 2,
+      "name": "Tarjeta"
+    } */
+
+        return json_encode($filteredOrders);
     }
 
     public static function create($folio, $total, $is_paid, $client_id, $address_id, $order_status_id, 
