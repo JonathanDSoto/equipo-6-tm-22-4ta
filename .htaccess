@@ -30,6 +30,12 @@ RewriteRule ^catalogos/categorias$ catalog/categories/index.php
 
 RewriteRule ^catalogos/etiquetas$ catalog/tags/index.php
 
+RewriteRule ^ctg$ app/CategoryController.php
+
+RewriteRule ^tgs$ app/TagController.php
+
+RewriteRule ^brds$ app/BrandController.php
+
 RewriteRule ^cupons$ cupons/details.php
 
 # RewriteRule ^cupons/details/(.+)/$ cupons/details.php?id?$1
