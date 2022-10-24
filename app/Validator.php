@@ -106,8 +106,26 @@ print_r($a);
         return ($errors);
     }
      // $curl = curl_init($name, $description, $slug, $category_id);
-    public static function createCategory($id, $name, $description, $slug, $category_id){
-        $data = [$id, $name, $description, $slug, $category_id]; 
+    public static function createCategory($name, $description, $slug, $category_id){
+        $data = [$name, $description, $slug, $category_id]; 
+        array_walk($data, 'Validator::trim_value');
+        $errors = ['status'=> '', 'data'=> []];
+
+        // array_push($errors['data'] ,Validator::integer($id) ? null: 'ID mal');
+        array_push($errors['data'] ,Validator::letters_spaces($name) ? null: 'nombre mal');
+        array_push($errors['data'] ,Validator::letters_spaces($description) ? null: 'descripcion mal');
+        array_push($errors['data'] ,Validator::letters_spaces($slug) ? null: 'slug mal');
+        array_push($errors['data'] ,Validator::integer($category_id) ? null: 'ID de categoria mal');
+
+
+        $errors['data'] = array_filter($errors['data']);
+        $errors['status'] = !empty($errors['data'])?  '2' :'1'; 
+        return ($errors);
+
+    }
+
+    public static function editCategory($id, $name, $description, $slug, $category_id){
+        $data = [$id,$name, $description, $slug, $category_id]; 
         array_walk($data, 'Validator::trim_value');
         $errors = ['status'=> '', 'data'=> []];
 
@@ -121,7 +139,6 @@ print_r($a);
         $errors['data'] = array_filter($errors['data']);
         $errors['status'] = !empty($errors['data'])?  '2' :'1'; 
         return ($errors);
-
     }
 
     public static function createTag($name, $description, $slug, $id = '999'){
@@ -206,6 +223,42 @@ print_r($a);
     $errors['status'] = !empty($errors['data'])?  '2' :'1'; 
     return ($errors);
     }
+
+
+    public static function kwd_integer_array($keyed_array){
+        $errors = ['status'=> '', 'data'=> []];
+        foreach($keyed_array as $data){
+            array_push($errors['data'], Validator::integerArray(array_values($data))['status'] == 1 ?  null : $data);
+        }
+        $errors['data'] = array_filter($errors['data']);
+        $errors['status'] = !empty($errors['data'])?  '2' :'1'; 
+        return ($errors);
+    }
+    /*  public static function create($folio, $total, $is_paid, $client_id, $address_id, $order_status_id, 
+                    $payment_type_id, $coupon_id, $presentations) */
+
+
+    public static function createOrder($folio, $total, $is_paid, $client_id, $address_id, $order_status_id, 
+    $payment_type_id, $coupon_id){
+
+    $data = [$folio, $total, $is_paid, $client_id, $address_id, $order_status_id, 
+    $payment_type_id, $coupon_id];
+    $errors = ['status'=> '', 'data'=> []];
+
+    array_push($errors['data'], Validator::letras_y_numeros_no_espacios($folio) ?  null : 'Folio mal' );
+    array_push($errors['data'], Validator::integer($total) ?  null : 'Total mal' );
+    array_push($errors['data'], Validator::integer($is_paid) ?  null : 'Pagado mal' );
+    array_push($errors['data'], Validator::integer($client_id) ?  null : 'id de cliente mal' );
+    array_push($errors['data'], Validator::integer($address_id) ?  null : 'id de direccion del cliente mal' );
+    array_push($errors['data'], Validator::integer($payment_type_id) ?  null : 'ID de tipo de pago la orden mal' );
+    array_push($errors['data'], Validator::integer($coupon_id) ?  null : 'ID de cupon la orden mal' );
+    
+
+    $errors['data'] = array_filter($errors['data']);
+    $errors['status'] = !empty($errors['data'])?  '2' :'1'; 
+    return ($errors);
+    }
+
 
 
     public static function integerArray($array){

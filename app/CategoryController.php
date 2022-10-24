@@ -13,7 +13,7 @@ if (isset($_POST['action'])) {
                 $description = strip_tags(trim($_POST['description']));
                 $slug = strip_tags(trim($_POST['slug']));
                 $category_id = strip_tags(trim($_POST['category_id']));
-                $validation = Validator::createCategory('999',$name, $description, $slug, $category_id);
+                $validation = Validator::createCategory($name, $description, $slug, $category_id);
                 if ($validation['status'] == '1'){
                     $_SESSION['_MESSAGE'] = CategoryController::create($name, $description, $slug, $category_id);
                 }else{
@@ -30,7 +30,7 @@ if (isset($_POST['action'])) {
                 $description = strip_tags(trim($_POST['description']));
                 $slug = strip_tags(trim($_POST['slug']));
                 $category_id = strip_tags(trim($_POST['category_id']));
-                $validation = Validator::createCategory($id, $name, $description, $slug, $category_id);
+                $validation = Validator::editCategory($id, $name, $description, $slug, $category_id);
                 if ($validation['status'] == '1'){
                     $_SESSION['_MESSAGE'] = CategoryController::edit($id, $name, $description, $slug, $category_id);
                 }else{
