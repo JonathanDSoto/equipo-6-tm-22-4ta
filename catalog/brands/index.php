@@ -3,8 +3,8 @@
 
     include "../../app/BrandController.php";
 
-    $categoryCont = new BrandController();
-    $categories = $categoryCont->getBrands();
+    $brandsCont = new BrandController();
+    $brands = $brandsCont->getBrands();
 ?>
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
@@ -78,23 +78,23 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php if (isset($categories) && count($categories)>0): ?>
-                                            <?php foreach($categories as $categorie): ?>
+                                    <?php if (isset($brands) && count($brands)>0): ?>
+                                        <?php foreach($brands as $brand): ?>
 
-                                                <tr>
-                                                <th scope="row"><?php echo $categorie->id?></th>
-                                                <td><?php echo $categorie->name?></td>
-                                                <td><?php echo $categorie->description?></td>
-                                                <td><?php echo $categorie->slug?></td>
-                                                <td>
-                                                    <div class="hstack gap-3 fs-15">
-                                                        <a href="javascript:void(0);" class="link-secondary" data-bs-toggle="modal" data-bs-target="#add-categorie"><i class="ri-settings-4-line"></i></a>
-                                                        <a href="javascript:void(0);" class="link-danger"><i class="ri-delete-bin-5-line"></i></a>
-                                                    </div>
-                                                </td>
-                                            
-                                            <?php endforeach ?>
-                                        <?php endif ?>
+                                            <tr>
+                                            <th scope="row"><?php echo $brand->id?></th>
+                                            <td><?php echo $brand->name?></td>
+                                            <td><?php echo $brand->description?></td>
+                                            <td><?php echo $brand->slug?></td>
+                                            <td>
+                                                <div class="hstack gap-3 fs-15">
+                                                    <a href="javascript:void(0);" class="link-secondary" data-bs-toggle="modal" data-bs-target="#add-categorie"><i class="ri-settings-4-line"></i></a>
+                                                    <a- href="javascript:void(0);" class="link-danger"><i class="ri-delete-bin-5-line"></i></a->
+                                                </div>
+                                            </td>
+                                        
+                                        <?php endforeach ?>
+                                    <?php endif ?>
                                 </tbody>
                             </table>
                         </div>

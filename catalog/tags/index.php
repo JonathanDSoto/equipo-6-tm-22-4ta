@@ -1,5 +1,9 @@
 <?php 
     include_once "../../app/config.php";
+    include "../../app/TagController.php";
+
+    $tagsCont = new TagController();
+    $tags = $tagsCont->getAll();
 ?>
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
@@ -70,19 +74,23 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php if (isset($tags) && count($tags)>0): ?>
+                                        <?php foreach($tags as $tag): ?>
 
                                             <tr>
-                                            <th scope="row">1</th>
-                                            <td>Jardín</td>
-                                            <td>Articulos para el cuidado del jardin</td>
-                                            <td>jardin</td>
+                                            <th scope="row"><?php echo $tag->id?></th>
+                                            <td><?php echo $tag->name?></td>
+                                            <td><?php echo $tag->description?></td>
+                                            <td><?php echo $tag->slug?></td>
                                             <td>
                                                 <div class="hstack gap-3 fs-15">
-                                                    <a href="javascript:void(0);" class="link-secondary" data-bs-toggle="modal" data-bs-target="#add-tag"><i class="ri-settings-4-line"></i></a>
-                                                    <a href="javascript:void(0);" class="link-danger"><i class="ri-delete-bin-5-line"></i></a>
+                                                    <a href="javascript:void(0);" class="link-secondary" data-bs-toggle="modal" data-bs-target="#add-categorie"><i class="ri-settings-4-line"></i></a>
+                                                    <a- href="javascript:void(0);" class="link-danger"><i class="ri-delete-bin-5-line"></i></a->
                                                 </div>
                                             </td>
-                                        </tr>
+                                        
+                                        <?php endforeach ?>
+                                    <?php endif ?>
                                 </tbody>
                             </table>
                         </div>
