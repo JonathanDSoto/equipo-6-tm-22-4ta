@@ -23,6 +23,7 @@
     <!-- Begin page -->
     <div id="layout-wrapper">
     <?php include "../layouts/nav.template.php"; ?>
+    <?php include "../layouts/add.presentation.modal.php";?>
         <?php include "../layouts/sidebar.template.php"; ?>
         <div class="main-content">
             <div class="page-content">
@@ -97,22 +98,6 @@
                                                         </div>
                                                     </div>
                                                     <!-- end col -->
-                                                    <div class="col-lg-3 col-sm-6">
-                                                        <div class="p-2 border border-dashed rounded">
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="avatar-sm me-2">
-                                                                    <div class="avatar-title rounded bg-transparent text-success fs-24">
-                                                                        <i class="ri-file-copy-2-fill"></i>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="flex-grow-1">
-                                                                    <p class="text-muted mb-1">No. of Orders :</p>
-                                                                    <h5 class="mb-0">2,234</h5>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- end col -->
                                                 </div>
 
                                                 <!-- end row -->
@@ -162,6 +147,101 @@
                         </div>
                         <!-- end col -->
                     </div>
+                    <div class="card-header border-0">
+                                <div class="row g-4">
+                                    <div class="col-sm-auto">
+                                        <div>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-presentation">
+                                            Añadir presentación
+                                        </button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="card-header">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <ul class="nav nav-tabs-custom card-header-tabs border-bottom-0" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active fw-semibold" data-bs-toggle="tab" href="#productnav-all" role="tab">
+                                                    Presentaciones <span class="badge badge-soft-danger align-middle rounded-pill ms-1"># de Presentaciones</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card header -->
+                            <table class="table table-borderless table-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Código</th>
+                                        <th scope="col">Descripcion</th>
+                                        <th scope="col">Stock</th>
+                                        <th scope="col">Monto</th>
+                                        <th scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                            <th scope="row">Codigo123</th>
+                                            <td>Codigo de la presentacion</td>
+                                            <td>20</td>
+                                            <td>1500</td>
+                                            <td>
+                                                <div class="hstack gap-3 fs-15">
+                                                    <a href="#" data-user='' class="link-secondary" data-bs-toggle="modal" data-bs-target="#add-presentation"><i class="ri-settings-4-line"></i></a>
+                                                    <a href="#" class="link-danger"><i class="ri-delete-bin-5-line"></i></a>
+                                                </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                            <div class="d-flex">
+                                    <!-- Nav tabs -->
+                                    <ul class="nav nav-pills animation-nav profile-nav gap-2 gap-lg-3 flex-grow-1" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link fs-14 active" data-bs-toggle="tab" href="#overview-tab" role="tab">
+                                                <i class="ri-airplay-fill d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block text-primary">Ódenes donde se encuentra este producto</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <table class="table table-borderless">
+                                <thead>
+                                    <tr>
+                                    <th scope="col">Folio</th>
+                                        <th scope="col">Total</th>
+                                        <th scope="col">Direccion enviada</th>
+                                        <th scope="col">Estado de la orden</th>
+                                        <th scope="col">Cupón utilizado</th>
+                                        <th scope="col">Productos comprados</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                    <th scope="row">1419</th>
+                                        <td>$ 5900</td>
+                                        <td>Calle articulo 743, 123, La Paz, Baja California Sur</td>
+                                        <td>Pediente de pago</td>
+                                        <td>10% off</td>
+                                        <td><ul>
+                                                <li>
+                                                    Colchón Matrimonial Zero
+                                                </li>
+                                                <li>
+                                                    Comedor Miguel con 4 Sillas
+                                                </li>
+                                                <li>
+                                                    Fitband Huawei Watch Fit 2 Rosa
+                                                </li>
+                                            </ul></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                     <!-- end row -->
                 </div>
                 <!-- container-fluid -->

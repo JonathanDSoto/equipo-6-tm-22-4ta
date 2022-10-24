@@ -22,6 +22,8 @@ RewriteRule ^products/details/(.+)/$ products/details.php?slug=$1
 
 RewriteRule ^clients/details/(.+)/$ clients/details.php?id=$1
 
+RewriteRule ^clients/details.orders/(.+)$ clients/details.orders.php?id$1
+
 RewriteRule ^users/details/(.+)/$ users/details.php?id=$1
 
 RewriteRule ^catalogos/marcas$ catalog/brands/index.php
@@ -39,6 +41,12 @@ RewriteRule ^brds$ app/BrandController.php
 RewriteRule ^cupons$ cupons/details.php
 
 # RewriteRule ^cupons/details/(.+)/$ cupons/details.php?id?$1
+
+RewriteRule ^orders$ orders/index.php
+
+RewriteRule ^orders/details/(.+)$ orders/details.php?id$1
+
+RewriteRule ^cupons$ cupons/details.php
 
 RewriteRule ^orders$ orders/index.php
 
