@@ -90,7 +90,7 @@
                                             <td>
                                                 <div class="hstack gap-3 fs-15">
                                                     <a href="javascript:void(0);" class="link-secondary" data-bs-toggle="modal" data-bs-target="#add-categorie"><i class="ri-settings-4-line"></i></a>
-                                                    <a href="javascript:void(0);" class="link-danger"><i class="ri-delete-bin-5-line"></i></a>
+                                                    <a href="javascript:void(0);" onclick="remove(<?php echo $categorie->id ?>)" class="link-danger"><i class="ri-delete-bin-5-line"></i></a>
                                                 </div>
                                             </td>
                                         
@@ -105,6 +105,40 @@
             <?php include "../../layouts/footer.template.php"; ?>
         </div>
     </div>
+
+    <script>
+        function remove(id)
+        {
+            swal({
+                title: "¿Estás seguro?",
+                text: "Una vez borrado, no podras acceder de nuevo a esta categoria",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                swal("¡La categoria se borró con éxito!", {
+                    icon: "success",
+                });
+                    var bodyFormData = new FormData();
+                    bodyFormData.append('id', id);
+                    console.log(id);
+                    bodyFormData.append('action', 'delete');
+                    bodyFormData.append('global_token', '<?php echo $_SESSION['global_token']?>');
+                    axios.post("<?= BASE_PATH ?>ctg", bodyFormData)
+                    .then(function (response){
+                        console.log(response);
+                    })
+                        .catch(function (error){
+                            console.log('error')
+                        })
+                } else {
+                swal("No se borró la categoria");
+                }
+            });
+        }
+    </script>
 
 
 
