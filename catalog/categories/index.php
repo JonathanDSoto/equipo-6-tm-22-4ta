@@ -5,6 +5,8 @@
     $categoryCont = new CategoryController();
     $categories = $categoryCont->getAll();
 
+    $cont = 0;
+
 
 ?>
 <!doctype html>
@@ -53,6 +55,13 @@
                                     </div>
                                 </div>
                             </div>
+                            <?php if (isset($categories) && count($categories)>0): ?>
+                                    <?php foreach($categories as $categorie): ?>
+
+                                        <?php $cont++?>
+                                    
+                                    <?php endforeach ?>
+                                <?php endif ?>
 
                             <div class="card-header">
                                 <div class="row align-items-center">
@@ -60,7 +69,7 @@
                                         <ul class="nav nav-tabs-custom card-header-tabs border-bottom-0" role="tablist">
                                             <li class="nav-item">
                                                 <a class="nav-link active fw-semibold" data-bs-toggle="tab" href="#productnav-all" role="tab">
-                                                Categorias <span class="badge badge-soft-danger align-middle rounded-pill ms-1"># de Categorias</span>
+                                                Categorias <span class="badge badge-soft-danger align-middle rounded-pill ms-1"><?php echo $cont ?> de Categorias</span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -149,6 +158,7 @@
             document.getElementById("idEditNameCateg").value = categories.name;
             document.getElementById("idEditDescriptionCateg").value = categories.description;
             document.getElementById("idEditSlugCateg").value = categories.slug;
+            document.getElementById("idCatgEdit").value = categories.id;
         }
     </script>
 

@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ingresar una Nueva Categoria</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Editar una Categoria</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -31,7 +31,7 @@
 
                 <input type="hidden" name="action" value="edit" id="oculto_input">
 				<input type="hidden" value="1" name="category_id" id="category_idEdit">
-                <input type="hidden" value="<?php echo $_SESSION['id'] ?>" name="id" id="idCatgEdit">
+                <input type="hidden" name="id" id="idCatgEdit">
 				<input type="hidden" name="global_token" value="<?php echo $_SESSION['global_token'] ?>">
 
             </form>
