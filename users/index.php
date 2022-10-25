@@ -1,15 +1,15 @@
-<?php 
+<?php
     include_once "../app/config.php";
     include "../app/UserController.php";
 
-    
+
 
     $us = new UserController();
     $users = $us->getAll();
     // var_dump($users);
 
     $contUs=0;
-?> 
+?>
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
 <head>
@@ -27,13 +27,13 @@
         <!-- ========== App Menu ========== -->
         <?php include "../layouts/sidebar.template.php";?>
         <?php include "../layouts/add.user.modal.php";?>
-        
+
         <div class="main-content">
             <?php include "../layouts/bread.template.php"; ?>
             <!-- End Page-content -->
             <!-- Tables Without Borders -->
-            <div class="row ms-2"> 
-                <div class="col-xl-12 col-lg-12">
+            <div class="row ms-2">
+                <div class="col-xl-12 col-lg-12 mb-5">
                     <div>
                         <div class="card">
                             <div class="card-header border-0">
@@ -53,7 +53,7 @@
                                     <?php foreach($users as $user): ?>
 
                                         <?php $contUs++?>
-                                    
+
                                     <?php endforeach ?>
                                 <?php endif ?>
 
@@ -71,7 +71,7 @@
                                 </div>
                             </div>
                             <!-- end card header -->
-                            <table class="table table-borderless table-nowrap">
+                            <table class="table table-borderless">
                                 <thead>
                                     <tr>
                                         <th scope="col">Id</th>
@@ -98,7 +98,7 @@
                                             <td><?php echo $user->created_by?></td>
                                             <td>
                                                 <div class="hstack gap-3 fs-15">
-                                                
+
                                                     <a href="#" data-user-edit='<?php echo json_encode($user)?>' onclick="editUser(this)" class="link-secondary" data-bs-toggle="modal" data-bs-target="#edit-user"><i class="ri-settings-4-line"></i></a>
                                                     <a href="#" onclick="remove(<?php echo $user->id ?>)" class="link-danger" id="sa-warning"><i class="ri-delete-bin-5-line"></i></a>
                                                     <a type="button" class="badge badge-soft-primary" href="<?= BASE_PATH."users/details/".$user->id ?>./">
@@ -108,7 +108,7 @@
                                             </td>
                                         </tr>
 
-                                    <?php endforeach ?> 
+                                    <?php endforeach ?>
                                 <?php endif ?>
                                 </tbody>
                             </table>
@@ -121,10 +121,10 @@
     </div>
 
     <?php include "../layouts/edit.user.modal.php";?>
-    
 
-<script type="text/javascript"> 
-        
+
+<script type="text/javascript">
+
         function editUser(target){
 
 
@@ -198,7 +198,7 @@
     <script src="<?= BASE_PATH ?>public/libs/gridjs/gridjs.umd.js"></script>
     <!-- ecommerce product list -->
     <script src="<?= BASE_PATH ?>public/js/pages/ecommerce-product-list.init.js"></script>
-    
+
 
 
 </body>

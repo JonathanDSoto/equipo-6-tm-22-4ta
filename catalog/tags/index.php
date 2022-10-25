@@ -1,4 +1,4 @@
-<?php 
+<?php
     include_once "../../app/config.php";
     include "../../app/TagController.php";
 
@@ -32,8 +32,8 @@
             <?php include "../../layouts/bread.template.php"; ?>
             <!-- End Page-content -->
             <!-- Tables Without Borders -->
-            <div class="row ms-2"> 
-                <div class="col-xl-12 col-lg-12">
+            <div class="row ms-2">
+                <div class="col-xl-12 col-lg-12 mb-5">
                     <div>
                         <div class="card">
                             <div class="card-header border-0">
@@ -63,7 +63,7 @@
                                 </div>
                             </div>
                             <!-- end card header -->
-                            <table class="table table-borderless table-nowrap">
+                            <table class="table table-borderless">
                                 <thead>
                                     <tr>
                                         <th scope="col">Id</th>
@@ -88,7 +88,7 @@
                                                     <a href="javascript:void(0);" onclick="remove(<?php echo $tag->id ?>)" class="link-danger"><i class="ri-delete-bin-5-line"></i></a>
                                                 </div>
                                             </td>
-                                        
+
                                         <?php endforeach ?>
                                     <?php endif ?>
                                 </tbody>
@@ -132,7 +132,7 @@
                 swal("No se borró el tag");
                 }
             });
-        }        
+        }
     </script>
 
 
@@ -148,11 +148,11 @@
     <!-- nouisliderribute js -->
     <script src="<?= BASE_PATH ?>public/libs/nouislider/nouislider.min.js"></script>
     <script src="<?= BASE_PATH ?>public/libs/wnumb/wNumb.min.js"></script>
-    
+
     <!-- gridjs js -->
     <script src="<?= BASE_PATH ?>public/libs/gridjs/gridjs.umd.js"></script>
     <!-- ecommerce product list -->
     <script src="<?= BASE_PATH ?>public/js/pages/ecommerce-product-list.init.js"></script>
-    
+
 </body>
 </html>

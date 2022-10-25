@@ -1,9 +1,9 @@
-<?php 
+<?php
 
 	include "../app/ProductsController.php";
 	include "../app/BrandController.php";
     include "../app/ClientController.php";
-    
+
 	$productController = new ProductsController();
 
 	$brandController = new BrandController();
@@ -11,14 +11,14 @@
 	// $products = $productController->getProducts();
 	// $brands = $brandController->getBrands();
 
-    
+
 
 
 	$cliente = new ClientController();
     $client = $cliente->getAll();
 
 	#echo json_encode($_SESSION);
-?> 
+?>
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
 
@@ -41,15 +41,15 @@
         <!-- ========== App Menu ========== -->
         <?php include "../layouts/sidebar.template.php";?>
         <?php include "../layouts/add.client.modal.php";?>
-        
+
 
         <div class="main-content">
 
             <?php include "../layouts/bread.template.php"; ?>
             <!-- End Page-content -->
             <!-- Tables Without Borders -->
-            <div class="row ms-2"> 
-                <div class="col-xl-12 col-lg-12">
+            <div class="row ms-2">
+                <div class="col-xl-12 col-lg-12 mb-5">
                     <div>
                         <div class="card">
                             <div class="card-header border-0">
@@ -79,7 +79,7 @@
                                 </div>
                             </div>
                             <!-- end card header -->
-                            <table class="table table-borderless table-nowrap">
+                            <table class="table table-borderless">
                                 <thead>
                                     <tr>
                                         <th scope="col">Id</th>
@@ -111,7 +111,7 @@
                                             </td>
                                         </tr>
 
-                                    <?php endforeach ?> 
+                                    <?php endforeach ?>
                                         <?php endif ?>
                                 </tbody>
                             </table>
@@ -136,12 +136,12 @@
     <!-- nouisliderribute js -->
     <script src="<?= BASE_PATH ?>public/libs/nouislider/nouislider.min.js"></script>
     <script src="<?= BASE_PATH ?>public/libs/wnumb/wNumb.min.js"></script>
-    
+
     <!-- gridjs js -->
     <script src="<?= BASE_PATH ?>public/libs/gridjs/gridjs.umd.js"></script>
     <!-- ecommerce product list -->
     <script src="<?= BASE_PATH ?>public/js/pages/ecommerce-product-list.init.js"></script>
-    
+
 
 
 </body>
