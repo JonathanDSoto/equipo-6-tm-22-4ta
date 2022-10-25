@@ -89,7 +89,7 @@
                                             <td><?php echo $categorie->slug?></td>
                                             <td>
                                                 <div class="hstack gap-3 fs-15">
-                                                    <a href="javascript:void(0);" class="link-secondary" data-bs-toggle="modal" data-bs-target="#add-categorie"><i class="ri-settings-4-line"></i></a>
+                                                    <a href="javascript:void(0);" data-user-edit-categ='<?php echo json_encode($categorie)?>' onclick="editCategory(this)" class="link-secondary" data-bs-toggle="modal" data-bs-target="#edit-categorie"><i class="ri-settings-4-line"></i></a>
                                                     <a href="javascript:void(0);" onclick="remove(<?php echo $categorie->id ?>)" class="link-danger"><i class="ri-delete-bin-5-line"></i></a>
                                                 </div>
                                             </td>
@@ -103,6 +103,8 @@
                 </div>
             </div>
             <?php include "../../layouts/footer.template.php"; ?>
+            <?php include "../../layouts/edit.categorie.modal.php"; ?>
+
         </div>
     </div>
 
@@ -137,6 +139,16 @@
                 swal("No se borró la categoria");
                 }
             });
+        }
+
+        function editCategory(target)
+        {
+            let categories = JSON.parse(target.getAttribute("data-user-edit-categ"));
+
+
+            document.getElementById("idEditNameCateg").value = categories.name;
+            document.getElementById("idEditDescriptionCateg").value = categories.description;
+            document.getElementById("idEditSlugCateg").value = categories.slug;
         }
     </script>
 
