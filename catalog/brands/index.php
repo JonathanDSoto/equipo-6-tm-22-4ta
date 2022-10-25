@@ -89,7 +89,7 @@
                                             <td>
                                                 <div class="hstack gap-3 fs-15">
                                                     <a href="javascript:void(0);" class="link-secondary" data-bs-toggle="modal" data-bs-target="#add-categorie"><i class="ri-settings-4-line"></i></a>
-                                                    <a- href="javascript:void(0);" class="link-danger"><i class="ri-delete-bin-5-line"></i></a->
+                                                    <a- href="javascript:void(0);" onclick="remove(<?php echo $brand->id ?>)" class="link-danger"><i class="ri-delete-bin-5-line"></i></a->
                                                 </div>
                                             </td>
 
@@ -104,6 +104,40 @@
             <?php include "../../layouts/footer.template.php"; ?>
         </div>
     </div>
+
+    <script>
+        function remove(id)
+        {
+            swal({
+                title: "¿Estás seguro?",
+                text: "Una vez borrado, no podras acceder de nuevo a esta marca",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                swal("¡La marca se borró con éxito!", {
+                    icon: "success",
+                });
+                    var bodyFormData = new FormData();
+                    bodyFormData.append('brand_id', id);
+                    console.log(id);
+                    bodyFormData.append('action', 'delete');
+                    bodyFormData.append('global_token', '<?php echo $_SESSION['global_token']?>');
+                    axios.post("<?= BASE_PATH ?>brds", bodyFormData)
+                    .then(function (response){
+                        console.log(response);
+                    })
+                        .catch(function (error){
+                            console.log('error')
+                        })
+                } else {
+                swal("No se borró la marca");
+                }
+            });
+        }
+    </script>
 
 
 
