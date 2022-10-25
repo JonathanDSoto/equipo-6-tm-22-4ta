@@ -2,9 +2,13 @@
     include_once "../app/config.php";
     include "../app/UserController.php";
 
+    
+
     $us = new UserController();
     $users = $us->getAll();
     // var_dump($users);
+
+    $contUs=0;
 ?> 
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
@@ -44,13 +48,22 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <?php if (isset($users) && count($users)>0): ?>
+                                    <?php foreach($users as $user): ?>
+
+                                        <?php $contUs++?>
+                                    
+                                    <?php endforeach ?>
+                                <?php endif ?>
+
                             <div class="card-header">
                                 <div class="row align-items-center">
                                     <div class="col">
                                         <ul class="nav nav-tabs-custom card-header-tabs border-bottom-0" role="tablist">
                                             <li class="nav-item">
                                                 <a class="nav-link active fw-semibold" data-bs-toggle="tab" href="#productnav-all" role="tab">
-                                                    Usuarios <span class="badge badge-soft-danger align-middle rounded-pill ms-1"># de Usuarios</span>
+                                                    Usuarios <span class="badge badge-soft-danger align-middle rounded-pill ms-1"><?php echo $contUs ?> de Usuarios</span>
                                                 </a>
                                             </li>
                                         </ul>
