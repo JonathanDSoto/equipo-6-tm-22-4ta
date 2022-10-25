@@ -30,7 +30,7 @@ if (isset($_POST['action'])) {
                     $description =  strip_tags( trim($_POST['description']));
                     $slug =  strip_tags( trim($_POST['slug']));
                     $id =  strip_tags( trim($_POST['id']));
-                    $validationResult = Validator::createTag($name, $description, $slug, $id);
+                    $validationResult = Validator::editTag($name, $description, $slug, $id);
 
 
                     if($validationResult['status'] == '1'){

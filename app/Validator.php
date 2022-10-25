@@ -141,7 +141,25 @@ print_r($a);
         return ($errors);
     }
 
-    public static function createTag($name, $description, $slug, $id = '999'){
+    public static function createTag($name, $description, $slug){
+        $data = [$name, $description, $slug]; 
+        array_walk($data, 'Validator::trim_value');
+        $errors = ['status'=> '', 'data'=> []];
+
+        // array_push($errors['data'], Validator::letters_spaces($name) ?  null : sprintf(Message::WRONG_INTEGER, 'ID')); 
+        array_push($errors['data'], Validator::letters_spaces($name) ?  null : 'nombre mal' );
+        array_push($errors['data'], Validator::letters_spaces($description) ?  null : 'descripcion mal' );
+        array_push($errors['data'], Validator::slug($slug) ?  null : 'slug mal' );
+        // array_push($errors['data'], Validator::integer($id) ?  null : 'ID mal' );
+
+
+        $errors['data'] = array_filter($errors['data']);
+        $errors['status'] = !empty($errors['data'])?  '2' :'1'; 
+        return ($errors);
+
+    }
+
+    public static function editTag($name, $description, $slug, $id){
         $data = [$name, $description, $slug, $id]; 
         array_walk($data, 'Validator::trim_value');
         $errors = ['status'=> '', 'data'=> []];
@@ -324,7 +342,7 @@ print_r($a);
     }
 
     public static function phone($value){
-        echo $value . 'com  telef';
+        // echo $value . 'com  telef';@
          return preg_match('/^[0-9]{10}$/', $value);
     }
     public static function email($value){
