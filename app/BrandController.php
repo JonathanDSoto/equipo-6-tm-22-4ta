@@ -67,7 +67,7 @@ if(!empty($_SESSION['_MESSAGE'])){
 						<input type="text" name="action" value="update">
 						<input type="submit">
 					</form> */
-					$validate = Validator::createBrand($_POST['name'], $_POST['slug'],$_POST['description']);
+					$validate = Validator::editBrand($_POST['name'], $_POST['slug'],$_POST['description'], $_POST['brand_id']);
 					if($validate['status'] == 1){
 						$name = strip_tags(trim($_POST['name']));
 						$description = strip_tags(trim($_POST['description']));

@@ -8,8 +8,26 @@ print_r($a);
 	if($a['status'] == 1){
 		echo 'can create';
 	}else{*/
-    public static function createBrand($name, $slug, $description, $brand_id = 1){
+    public static function createBrand($name, $slug, $description){
         $data = [$name, $slug, $description]; 
+        array_walk($data, 'Validator::trim_value');
+        $errors = ['status'=> '', 'data'=> []];
+        // array_push($errors['errors'],(Validator::name($name)));
+        // echo (Validator::slug($slug));
+        array_push($errors['data'], Validator::name($name) ?  null : 'nombre mal' ); 
+        array_push($errors['data'], Validator::slug($slug) ?  null : 'slug mal' );
+        array_push($errors['data'], Validator::letters_spaces($description) ?  null : 'descripcion mal' );
+        // array_push($errors['data'], Validator::integer($brand_id) ?  null :'brand id mal' );
+        
+        $errors['data'] = array_filter($errors['data']);
+        $errors['status'] = !empty($errors['data'])?  '2' :'1'; 
+        return ($errors);
+    }
+
+
+
+    public static function editBrand($name, $slug, $description, $brand_id){
+        $data = [$name, $slug, $description, $brand_id]; 
         array_walk($data, 'Validator::trim_value');
         $errors = ['status'=> '', 'data'=> []];
         // array_push($errors['errors'],(Validator::name($name)));
