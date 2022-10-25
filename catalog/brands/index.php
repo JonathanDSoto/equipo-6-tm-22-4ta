@@ -5,6 +5,7 @@
 
     $brandsCont = new BrandController();
     $brands = $brandsCont->getBrands();
+    $cont = 0;
 ?>
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
@@ -52,6 +53,13 @@
                                     </div>
                                 </div>
                             </div>
+                            <?php if (isset($brands) && count($brands)>0): ?>
+                                    <?php foreach($brands as $brand): ?>
+
+                                        <?php $cont++?>
+
+                                    <?php endforeach ?>
+                                <?php endif ?>
 
                             <div class="card-header">
                                 <div class="row align-items-center">
@@ -59,7 +67,7 @@
                                         <ul class="nav nav-tabs-custom card-header-tabs border-bottom-0" role="tablist">
                                             <li class="nav-item">
                                                 <a class="nav-link active fw-semibold" data-bs-toggle="tab" href="#productnav-all" role="tab">
-                                                    Marcas <span class="badge badge-soft-danger align-middle rounded-pill ms-1"># de Marcas</span>
+                                                    Marcas <span class="badge badge-soft-danger align-middle rounded-pill ms-1"><?php echo $cont ?> Marcas</span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -88,7 +96,7 @@
                                             <td><?php echo $brand->slug?></td>
                                             <td>
                                                 <div class="hstack gap-3 fs-15">
-                                                    <a href="javascript:void(0);" class="link-secondary" data-bs-toggle="modal" data-bs-target="#add-categorie"><i class="ri-settings-4-line"></i></a>
+                                                    <a href="javascript:void(0);" data-user-edit-brand='<?php echo json_encode($brand)?>' onclick="editBrand(this)" class="link-secondary" data-bs-toggle="modal" data-bs-target="#edit-brand"><i class="ri-settings-4-line"></i></a>
                                                     <a- href="javascript:void(0);" onclick="remove(<?php echo $brand->id ?>)" class="link-danger"><i class="ri-delete-bin-5-line"></i></a->
                                                 </div>
                                             </td>
@@ -102,6 +110,7 @@
                 </div>
             </div>
             <?php include "../../layouts/footer.template.php"; ?>
+            <?php include "../../layouts/edit.brand.modal.php"; ?>
         </div>
     </div>
 
@@ -136,6 +145,17 @@
                 swal("No se borró la marca");
                 }
             });
+        }
+
+        function editBrand(target)
+        {
+            let brands = JSON.parse(target.getAttribute("data-user-edit-brand"));
+
+
+            document.getElementById("idEditNameBrand").value = brands.name;
+            document.getElementById("idEditDescriptionBrand").value = brands.description;
+            document.getElementById("idEditSlugBrand").value = brands.slug;
+            document.getElementById("idBrandEdit").value = brands.id;
         }
     </script>
 

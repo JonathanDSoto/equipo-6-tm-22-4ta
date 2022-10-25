@@ -69,7 +69,7 @@
                                         <ul class="nav nav-tabs-custom card-header-tabs border-bottom-0" role="tablist">
                                             <li class="nav-item">
                                                 <a class="nav-link active fw-semibold" data-bs-toggle="tab" href="#productnav-all" role="tab">
-                                                Categorias <span class="badge badge-soft-danger align-middle rounded-pill ms-1"><?php echo $cont ?> de Categorias</span>
+                                                Categorias <span class="badge badge-soft-danger align-middle rounded-pill ms-1"><?php echo $cont ?> Categorias</span>
                                                 </a>
                                             </li>
                                         </ul>
