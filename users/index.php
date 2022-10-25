@@ -63,7 +63,7 @@
                                         <ul class="nav nav-tabs-custom card-header-tabs border-bottom-0" role="tablist">
                                             <li class="nav-item">
                                                 <a class="nav-link active fw-semibold" data-bs-toggle="tab" href="#productnav-all" role="tab">
-                                                    Usuarios <span class="badge badge-soft-danger align-middle rounded-pill ms-1"><?php echo $contUs ?> de Usuarios</span>
+                                                    Usuarios <span class="badge badge-soft-danger align-middle rounded-pill ms-1"><?php echo $contUs ?> Usuarios</span>
                                                 </a>
                                             </li>
                                         </ul>
