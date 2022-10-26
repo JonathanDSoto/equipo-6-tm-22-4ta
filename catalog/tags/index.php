@@ -4,6 +4,7 @@
 
     $tagsCont = new TagController();
     $tags = $tagsCont->getAll();
+    $cont = 0;
 ?>
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
@@ -48,6 +49,13 @@
                                     </div>
                                 </div>
                             </div>
+                            <?php if (isset($tags) && count($tags)>0): ?>
+                                    <?php foreach($tags as $tag): ?>
+
+                                        <?php $cont++?>
+
+                                    <?php endforeach ?>
+                                <?php endif ?>
 
                             <div class="card-header">
                                 <div class="row align-items-center">
@@ -55,7 +63,7 @@
                                         <ul class="nav nav-tabs-custom card-header-tabs border-bottom-0" role="tablist">
                                             <li class="nav-item">
                                                 <a class="nav-link active fw-semibold" data-bs-toggle="tab" href="#productnav-all" role="tab">
-                                                Etiqueta <span class="badge badge-soft-danger align-middle rounded-pill ms-1"># de Tags</span>
+                                                Etiqueta <span class="badge badge-soft-danger align-middle rounded-pill ms-1"><?php echo $cont ?> Tags</span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -84,7 +92,7 @@
                                             <td><?php echo $tag->slug?></td>
                                             <td>
                                                 <div class="hstack gap-3 fs-15">
-                                                    <a href="javascript:void(0);" class="link-secondary" data-bs-toggle="modal" data-bs-target="#add-categorie"><i class="ri-settings-4-line"></i></a>
+                                                    <a href="javascript:void(0);" data-user-edit-tag='<?php echo json_encode($tag)?>' onclick="editTag(this)" class="link-secondary" data-bs-toggle="modal" data-bs-target="#edit-tag"><i class="ri-settings-4-line"></i></a>
                                                     <a href="javascript:void(0);" onclick="remove(<?php echo $tag->id ?>)" class="link-danger"><i class="ri-delete-bin-5-line"></i></a>
                                                 </div>
                                             </td>
@@ -98,6 +106,7 @@
                 </div>
             </div>
             <?php include "../../layouts/footer.template.php"; ?>
+            <?php include "../../layouts/edit.tag.modal.php"; ?>
         </div>
     </div>
 
@@ -132,6 +141,17 @@
                 swal("No se borró el tag");
                 }
             });
+        }
+
+        function editTag(target)
+        {
+            let tags = JSON.parse(target.getAttribute("data-user-edit-tag"));
+
+
+            document.getElementById("idEditNameTag").value = tags.name;
+            document.getElementById("idEditDescriptionTag").value = tags.description;
+            document.getElementById("idEditSlugTag").value = tags.slug;
+            document.getElementById("idTagEdit").value = tags.id;
         }
     </script>
 
