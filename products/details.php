@@ -57,17 +57,9 @@
                                                 <div class="swiper product-thumbnail-slider p-2 rounded bg-light">
                                                     <div class="swiper-wrapper">
                                                         <div class="swiper-slide">
-                                                            <img src="<?= BASE_PATH ?>public/images/products/img-8.png" alt="" class="img-fluid d-block" />
+                                                            <img src="<?php echo $getIdProd->cover?>" alt="" class="img-fluid d-block" />
                                                         </div>
-                                                        <div class="swiper-slide">
-                                                            <img src="<?= BASE_PATH ?>public/images/products/img-6.png" alt="" class="img-fluid d-block" />
-                                                        </div>
-                                                        <div class="swiper-slide">
-                                                            <img src="<?= BASE_PATH ?>public/images/products/img-1.png" alt="" class="img-fluid d-block" />
-                                                        </div>
-                                                        <div class="swiper-slide">
-                                                            <img src="<?= BASE_PATH ?>public/images/products/img-8.png" alt="" class="img-fluid d-block" />
-                                                        </div>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
@@ -77,9 +69,9 @@
                                             <div class="mt-xl-0 mt-5">
                                                 <div class="d-flex">
                                                     <div class="flex-grow-1">
-                                                        <h4>Full Sleeve Sweatshirt for Men (Pink)</h4>
+                                                        <h4><?php echo $getIdProd->name?></h4>
                                                         <div class="hstack gap-3 flex-wrap">
-                                                            <div><a  class="text-primary d-block">Tommy Hilfiger</a></div>
+                                                            <div><a  class="text-primary d-block"><?php echo $getIdProd->brand->name?></a></div>
                                                             <div class="vr"></div>
                                                             <div class="text-muted">Vendedor : <span class="text-body fw-medium">Insertar slug del brand</span></div>
                                                         </div>
@@ -108,11 +100,11 @@
 
                                                 <div class="mt-4 text-muted">
                                                     <h5 class="fs-14">Descripcion :</h5>
-                                                    <p>Tommy Hilfiger men striped pink sweatshirt. Crafted with cotton. Material composition is 100% organic cotton. This is one of the world’s leading designer lifestyle brands and is internationally recognized for celebrating the essence of classic American cool style, featuring preppy with a twist designs.</p>
+                                                    <p><?php echo $getIdProd->description?></p>
                                                 </div>
                                                 <div class="mt-4 text-muted">
                                                     <h5 class="fs-14">Características :</h5>
-                                                    <p>Tommy Hilfiger men striped pink sweatshirt. Crafted with cotton. Material composition is 100% organic cotton. This is one of the world’s leading designer lifestyle brands and is internationally recognized for celebrating the essence of classic American cool style, featuring preppy with a twist designs.</p>
+                                                    <p><?php echo $getIdProd->features?></p>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-sm-6">
