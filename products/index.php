@@ -2,12 +2,17 @@
 
 	include "../app/ProductsController.php";
 	include "../app/BrandController.php";
+    include "../app/TagController.php";
+
 
 	$productController = new ProductsController();
     $product = $productController->getProducts();
 
 	$brandController = new BrandController();
     $brands = $brandController->getBrands();
+
+    $tagController = new TagController();
+    $tags = $tagController->getAll();
 
 	// $products = $productController->getProducts();
 	// $brands = $brandController->getBrands();
@@ -89,7 +94,7 @@
                                                         <div class="card-body">
                                                             <h5 class="card-title"><?php echo $productAct->name?></h5>
                                                             <p class="card-text"><?php echo $productAct->description?></p>
-                                                            <a href="#" class="btn btn-primary"><i class="bx bxs-comment-detail"></i> Detalles del Producto</a>
+                                                            <a href="<?= BASE_PATH."products/details/".$productAct->slug ?>/" class="btn btn-primary"><i class="bx bxs-comment-detail"></i> Detalles del Producto</a>
                                                             <button type="button" class="btn btn-secondary mt-2" data-bs-toggle="modal" data-bs-target="#add-product">
                                                                 <i class="mdi mdi-square-edit-outline"></i><a data-product='<?php echo json_encode($productAct)?>' onclick="editProduct(this)"> Editar</a>
                                                             </button>
@@ -152,8 +157,6 @@ function remove(id)
         }
 
         function editProduct(target){
-
-            document.getElementById("oculto_input").value = "update";
 
             let products = JSON.parse(target.getAttribute("data-product"));
 

@@ -71,13 +71,13 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="widgets.html">
+                            <a class="nav-link menu-link" href="<?php echo BASE_PATH?>cupons">
                                 <i class=" ri-ticket-2-fill"></i> <span data-key="t-widgets">Cupones</span>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="widgets.html">
+                            <a class="nav-link menu-link" href="<?php echo BASE_PATH?>orders">
                                 <i class="bx bxs-shopping-bag"></i> <span data-key="t-widgets">Órdenes</span>
                             </a>
                         </li>
