@@ -15,7 +15,8 @@
 
 
 	$cliente = new ClientController();
-    $client = $cliente->getAll();
+  $client = $cliente->getAll();
+	$cont=0;
 
 	#echo json_encode($_SESSION);
 ?>
@@ -65,13 +66,21 @@
                                 </div>
                             </div>
 
+														<?php if (isset($client) && count($client)>0): ?>
+                                    <?php foreach($client as $cliente): ?>
+
+                                        <?php $cont++?>
+
+                                    <?php endforeach ?>
+                                <?php endif ?>
+
                             <div class="card-header">
                                 <div class="row align-items-center">
                                     <div class="col">
                                         <ul class="nav nav-tabs-custom card-header-tabs border-bottom-0" role="tablist">
                                             <li class="nav-item">
                                                 <a class="nav-link active fw-semibold" data-bs-toggle="tab" href="#productnav-all" role="tab">
-                                                    Clientes <span class="badge badge-soft-danger align-middle rounded-pill ms-1"># de Clientes</span>
+                                                    Clientes <span class="badge badge-soft-danger align-middle rounded-pill ms-1"><?php echo $cont ?> Clientes</span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -105,7 +114,7 @@
                                                 </a></td>
                                             <td>
                                                 <div class="hstack gap-3 fs-15">
-                                                    <a href="javascript:void(0);" class="link-secondary" data-bs-toggle="modal" data-bs-target="#add-client"><i class="ri-settings-4-line"></i></a>
+                                                    <a href="javascript:void(0);" data-client-edit='<?php echo json_encode($cliente)?>' onclick="editClient(this)" class="link-secondary" data-bs-toggle="modal" data-bs-target="#edit-client"><i class="ri-settings-4-line"></i></a>
                                                     <a href="javascript:void(0);" onclick="remove(<?php echo $cliente->id ?>)" class="link-danger" id="sa-warning"><i class="ri-delete-bin-5-line"></i></a>
                                                 </div>
                                             </td>
@@ -122,6 +131,8 @@
             <?php include "../layouts/footer.template.php"; ?>
         </div>
     </div>
+
+		<?php include "../layouts/edit.client.modal.php";?>
 
 		<script>
         function remove(id)
@@ -156,15 +167,17 @@
             });
         }
 
-        function editBrand(target)
+        function editClient(target)
         {
-            let brands = JSON.parse(target.getAttribute("data-user-edit-brand"));
+            let clients = JSON.parse(target.getAttribute("data-client-edit"));
 
-
-            document.getElementById("idEditNameBrand").value = brands.name;
-            document.getElementById("idEditDescriptionBrand").value = brands.description;
-            document.getElementById("idEditSlugBrand").value = brands.slug;
-            document.getElementById("idBrandEdit").value = brands.id;
+						console.log(clients);
+            document.getElementById("editName").value = clients.name;
+            document.getElementById("editEmail").value = clients.email;
+            document.getElementById("editPassword").value = clients.password;
+            document.getElementById("editPhone_number").value = clients.phone_number;
+            document.getElementById("editLevel").selectedIndex = clients.level_id;
+						document.getElementById("editId").value = clients.id;
         }
     </script>
 
