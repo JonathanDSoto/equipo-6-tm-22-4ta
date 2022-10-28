@@ -33,8 +33,12 @@
 					    <span class="input-group-text" id="basic-addon1">Categorias</span>
 						<div class="w-100 pt-2"></div>
 					    <div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-							<label class="form-check-label" for="inlineCheckbox1">Categoria 1</label>
+							<?php foreach ($brands as $brand){?>
+								<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+								<label class="form-check-label" for="inlineCheckbox1"><?php echo $brand->name?></label>
+								<br>
+							<?php } ?>
+
 						</div>
 					</div>
 
@@ -42,8 +46,12 @@
 					    <span class="input-group-text" id="basic-addon1">Etiquetas</span>
 						<div class="w-100 pt-2"></div>
 					    <div class="form-check form-check-inline">
-							<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-							<label class="form-check-label" for="inlineCheckbox1">Etiqueta 1</label>
+							<?php foreach ($tags as $tag){?>
+								<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+								<label class="form-check-label" for="inlineCheckbox1"><?php echo $tag->name?> </label>
+								<br>
+							<?php } ?>
+
 						</div>
 						
 					</div>
