@@ -104,37 +104,7 @@
                                                         </div>
                                                     </div><!-- end card body -->
                                                 </div><!-- end card -->
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title mb-3">Descuentos hechos por el cupón</h5>
-                                                        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                                                        <div class="carousel-inner">
-                                                            <div class="carousel-item active">
-                                                                <h5 class="card-title mb-3">Orden #3</h5>
-                                                                <h4 class="mb-3 text-dark px-5">$ 500</h4>
-                                                            </div>
-                                                            <div class="carousel-item">
-                                                                <h5 class="card-title mb-3">Orden #2</h5>
-                                                                <h4 class="mb-3 text-dark px-5">$ 100</h4>
-                                                            </div>
-                                                            <div class="carousel-item">
-                                                                <h5 class="card-title mb-3">Orden #5</h5>
-                                                                <h4 class="mb-3 text-dark px-5">$ 750</h4>
-                                                            </div>
-                                                        </div>
-                                                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                            <span class="visually-hidden">Previous</span>
-                                                        </button>
-                                                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                            <span class="visually-hidden">Next</span>
-                                                        </button>
-                                                        </div>
-
-                                                    </div><!-- end card body -->
-                                                    
-                                                </div><!-- end card -->
+                                                
                                                 <!--end card-->
                                             </div>
                                         </div>
@@ -145,7 +115,44 @@
                                     <!--end tab-pane-->
                                 </div>
                                 
-                                
+                                <div class="tab-content pt-4 text-muted">
+                                    <div class="tab-pane active" id="overview-tab" role="tabpanel">
+                                        <div class="row">
+                                            <div class="col-xxl-3">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title mb-3">Total de dinero descontado por el cupón:</h5>
+                                                        <div class="table-responsive">
+                                                            <table class="table table-borderless mb-0">
+                                                                <tbody>
+                                                                    <tr>
+                                                                    <th class="ps-0" scope="row">$ 5000</th>
+                                                                        <td class="text-muted"></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <hr>
+                                                        <h5 class="card-title mb-3">Número de órdenes que usaron este cupón:</h5>
+                                                        <div class="table-responsive">
+                                                            <table class="table table-borderless mb-0">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <th class="ps-0" scope="row">4 Compras</th>
+                                                                        <td class="text-muted"></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div><!-- end card body -->
+                                                </div><!-- end card -->
+                                                <!--end card-->
+                                            </div>
+                                        </div>
+                                        <!--end row-->
+                                    </div>
+                                    <!--end tab-pane-->
+                                </div>
                                 <div class="d-flex">
                                     <!-- Nav tabs -->
                                     <ul class="nav nav-pills animation-nav profile-nav gap-2 gap-lg-3 flex-grow-1" role="tablist">
