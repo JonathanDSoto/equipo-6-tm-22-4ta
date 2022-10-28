@@ -14,6 +14,8 @@
     $tagController = new TagController();
     $tags = $tagController->getAll();
 
+    $contProd=0;
+
 	// $products = $productController->getProducts();
 	// $brands = $brandController->getBrands();
 
@@ -66,13 +68,21 @@
                                 </div>
                             </div>
 
+                            <?php if (isset($product) && count($product)>0): ?>
+                                    <?php foreach($product as $prd): ?>
+
+                                        <?php $contProd++?>
+
+                                    <?php endforeach ?>
+                                <?php endif ?>
+
                             <div class="card-header">
                                 <div class="row align-items-center">
                                     <div class="col">
                                         <ul class="nav nav-tabs-custom card-header-tabs border-bottom-0" role="tablist">
                                             <li class="nav-item">
                                                 <a class="nav-link active fw-semibold" data-bs-toggle="tab" href="#productnav-all" role="tab">
-                                                    Productos <span class="badge badge-soft-danger align-middle rounded-pill ms-1"># de Productos</span>
+                                                    Productos <span class="badge badge-soft-danger align-middle rounded-pill ms-1"><?php echo $contProd?> Productos</span>
                                                 </a>
                                             </li>
                                         </ul>
