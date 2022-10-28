@@ -25,8 +25,27 @@
 					</div>
 
 					<div class="input-group mb-3">
-					    <span class="input-group-text" id="basic-addon1">Características</span>
+					    <span class="input-group-text" id="basic-addon1">Caracteristicas </span>
 					    <input id="features" name="features" type="text" class="form-control" placeholder="Caracteristicas del Producto" aria-label="Username" aria-describedby="basic-addon1">
+					</div>
+
+					<div class="input-group mb-3">
+					    <span class="input-group-text" id="basic-addon1">Categorias</span>
+						<div class="w-100 pt-2"></div>
+					    <div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+							<label class="form-check-label" for="inlineCheckbox1">Categoria 1</label>
+						</div>
+					</div>
+
+					<div class="input-group mb-3">
+					    <span class="input-group-text" id="basic-addon1">Etiquetas</span>
+						<div class="w-100 pt-2"></div>
+					    <div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+							<label class="form-check-label" for="inlineCheckbox1">Etiqueta 1</label>
+						</div>
+						
 					</div>
 
 					<div class="input-group mb-3">
