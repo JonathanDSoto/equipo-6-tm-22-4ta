@@ -71,7 +71,18 @@
                                                     <div class="flex-grow-1">
                                                         <h4><?php echo $getIdProd->name?></h4>
                                                         <div class="hstack gap-3 flex-wrap">
-                                                            <div><a  class="text-primary d-block"><?php echo $getIdProd->brand->name?></a></div>
+                                                            <div><a  class="text-primary d-block">  
+                                                                <?php
+
+                                                                    if(empty($getIdProd->brand->name)){
+                                                                        echo 'Sin marca';
+                                                                    }else{
+                                                                        echo $getIdProd->brand->name;
+                                                                    }
+                                                                        
+
+                                                                ?>                                                          
+                                                            </a></div>
                                                             <div class="vr"></div>
                                                             <div class="text-muted">Vendedor : <span class="text-body fw-medium">Insertar slug del brand</span></div>
                                                         </div>
