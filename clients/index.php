@@ -109,7 +109,7 @@
                                             <td><?php echo $cliente->phone_number?></td>
                                             <td><?php echo $cliente->level->name?></td>
                                             <td>
-                                                <a type="button" class="badge badge-soft-primary">
+                                                <a type="button" class="badge badge-soft-primary" href="<?= BASE_PATH."clients/details/".$cliente->id ?>./">
                                                     <i class="mdi mdi-square-edit-outline"></i> Ver Ódenes
                                                 </a></td>
                                             <td>

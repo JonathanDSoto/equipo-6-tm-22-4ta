@@ -5,7 +5,7 @@
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
 
 
-<head>  
+<head>
 
     <meta charset="utf-8" />
     <title>Mi Perfil</title>
@@ -47,7 +47,7 @@
                     <div class="profile-foreground position-relative mx-n4 mt-n4">
                         <div class="profile-wid-bg">
                             <img src="<?= BASE_PATH ?>public/images/profile-bg.jpg" alt="" class="profile-wid-img" />
-                            
+
                         </div>
                     </div>
                     <div class="pt-4 mb-4 mb-lg-3 pb-lg-4">
@@ -124,7 +124,7 @@
                                     </div>
                                     <!--end tab-pane-->
                                 </div>
-                                
+
                                 <div class="d-flex">
                                     <!-- Nav tabs -->
                                     <ul class="nav nav-pills animation-nav profile-nav gap-2 gap-lg-3 flex-grow-1" role="tablist">
@@ -135,30 +135,97 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <table class="table table-borderless table-nowrap">
+                                <table class="table table-borderless">
                                 <thead>
                                     <tr>
                                         <th scope="col">Folio</th>
                                         <th scope="col">Total</th>
-                                        <th scope="col">Direccion</th>
-                                        <th scope="col">Método de pago</th> 
+                                        <th scope="col">Direccion enviada</th>
                                         <th scope="col">Estado de la orden</th>
                                         <th scope="col">Cupón utilizado</th>
-                                        <th scope="col">Productos ordenados</th>
+                                        <th scope="col">Productos comprados</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">6546</th>
-                                        <td>$1596</td>
-                                        <td>Calle 123,Azuqueca de Henares,Guadalajara,19200(codigo postal)</td>
-                                        <td>Deposito</td>
-                                        <td>Pendiente de pago</td>
-                                        <td>10% off</td>
-                                        <td>1xColchón Matrimonial Zero --- 2xComedor Miguel con 4 Sillas</td>
-                                    </tr>
+                                        <tr>
+                                            <th scope="row">1419</th>
+                                            <td>$ 5900</td>
+                                            <td>Calle articulo 743, 123, La Paz, Baja California Sur</td>
+                                            <td>Pediente de pago</td>
+                                            <td>10% off</td>
+                                            <td><ul>
+                                                <li>
+                                                    Colchón Matrimonial Zero
+                                                </li>
+                                                <li>
+                                                    Comedor Miguel con 4 Sillas
+                                                </li>
+                                                <li>
+                                                    Fitband Huawei Watch Fit 2 Rosa
+                                                </li>
+                                            </ul></td>
+                                        </tr>
                                 </tbody>
                             </table>
+                            <div class="tab-content text-muted">
+                                    <div class="tab-pane active" id="overview-tab" role="tabpanel">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title mb-3">Compras con tarjeta:</h5>
+                                                        <div class="table-responsive">
+                                                            <table class="table table-borderless mb-0">
+                                                                <tbody>
+                                                                    <tr>
+                                                                    <th class="ps-0" scope="row">4 Compras --- $5000</th>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div><!-- end card body -->
+                                                </div><!-- end card -->
+                                                <!--end card-->
+                                            </div>
+																						<div class="col-4">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title mb-3">Compras con efectivo:</h5>
+                                                        <div class="table-responsive">
+                                                            <table class="table table-borderless mb-0">
+                                                                <tbody>
+                                                                    <tr>
+                                                                    <th class="ps-0" scope="row">4 Compras --- $5000</th>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div><!-- end card body -->
+                                                </div><!-- end card -->
+                                                <!--end card-->
+                                            </div>
+																						<div class="col-4">
+                                                <div class="card text-center">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title mb-3">Cupones utilizados:</h5>
+                                                        <div class="table-responsive">
+                                                            <table class="table table-borderless mb-0">
+                                                                <tbody>
+                                                                    <tr>
+                                                                    <th class="ps-0" scope="row">4 Compras --- $5000</th>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div><!-- end card body -->
+                                                </div><!-- end card -->
+                                                <!--end card-->
+                                            </div>
+                                        </div>
+                                        <!--end row-->
+                                    </div>
+                                    <!--end tab-pane-->
+                                </div>
 
                             <div class="card-header border-0">
                                 <div class="row g-4">
@@ -172,8 +239,7 @@
                                     </div>
                                 </div>
                             </div>
-
-
+                            <br>
                             <!-- Direcciones -->
                             <div class="d-flex">
                                     <!-- Nav tabs -->
@@ -185,13 +251,13 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <table class="table table-borderless table-nowrap">
+                                <table class="table table-borderless">
                                 <thead>
                                     <tr>
                                         <th scope="col">Calle y No.</th>
                                         <th scope="col">Código postal</th>
                                         <th scope="col">Ciudad</th>
-                                        <th scope="col">Estado</th> 
+                                        <th scope="col">Estado</th>
                                         <th scope="col">No. teléfono</th>
                                         <th scope="col">Acciones</th>
                                     </tr>
