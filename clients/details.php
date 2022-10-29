@@ -186,6 +186,11 @@
                                         </tr>
 																				<!--Se calculan el total de ventas según el tipo de pago-->
 																				<?php
+																				if (isset($order->coupon->name)):
+																					$descuento = ($order->total * ($order->coupon->percentage_discount / 100) - $order->coupon->amount_discount);
+																					$contCup++;
+																					$totalCupones = $totalCupones + $descuento;
+																				endif;
 																					if ($order->payment_type->id == 1):
 																						$contEfec++;
 																						$totalEfectivo +=  $order->total;
@@ -207,7 +212,7 @@
                                                         <h5 class="card-title mb-3">Compras con tarjeta:</h5>
                                                         <p class="card-text h4">
 																													<?= $contTar > 0?$contTar > 1?$contTar.' Compras ---- $'.$totalTarjeta:
-																													$contTar.' Compra ---- $'.$totalTarjeta:'No se han registrado compras con este metodo.' ?>
+																													$contTar.' Compra ---- $'.$totalTarjeta:'No se han registrado compras con este método.' ?>
 																												</p>
                                                     </div><!-- end card body -->
                                                 </div><!-- end card -->
@@ -219,7 +224,7 @@
                                                         <h5 class="card-title mb-3">Compras con efectivo:</h5>
 																													<p class="card-text h4">
 																														<?= $contEfec > 0?$contEfec > 1?$contEfec.' Compras ---- $'.$totalEfectivo:
-																																$contEfec.' Compra ---- $'.$totalEfectivo:'No se han registrado compras con este metodo.' ?>
+																																$contEfec.' Compra ---- $'.$totalEfectivo:'No se han registrado compras con este método.' ?>
 																													</p>
                                                     </div><!-- end card body -->
                                                 </div><!-- end card -->
@@ -230,8 +235,8 @@
                                                     <div class="card-body">
                                                         <h5 class="card-title mb-3">Cupones utilizados:</h5>
 																													<p class="card-text h4">
-																														<?= $contEfec > 0?$contEfec > 1?$contEfec.' Compras ---- $'.$totalEfectivo:
-																																$contEfec.' Compra ---- $'.$totalEfectivo:'No se han registrado compras con este metodo.' ?>
+																														<?= $contCup > 0?$contCup > 1?$contCup.' Cupones utilizados ---- $'.$totalCupones:
+																																$contCup.' Cupón utilizado ---- $'.$totalCupones:'No se han utilizado cupones.' ?>
 																													</p>
                                                     </div><!-- end card body -->
                                                 </div><!-- end card -->
@@ -279,12 +284,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+																	<?php if (isset($getId->addresses)): ?>
+	                                    <?php foreach($getId->addresses as $address): ?>
                                     <tr>
-                                        <th scope="row">Calle ejemplo #123</th>
-                                        <td>23088</td>
-                                        <td>La paz</td>
-                                        <td>Baja California Sur</td>
-                                        <td>61200000</td>
+                                        <th scope="row"><?php echo $address->street_and_use_number ?></th>
+                                        <td><?php echo $address->postal_code?></td>
+                                        <td><?php echo $address->city?></td>
+                                        <td><?php echo $address->province?></td>
+                                        <td><?php echo $address->phone_number?></td>
                                         <td>
                                             <div class="hstack gap-3 fs-15">
                                                 <a href="javascript:void(0);" class="link-secondary" data-bs-toggle="modal" data-bs-target="#add-address"><i class="ri-settings-4-line"></i></a>
@@ -292,6 +299,8 @@
                                             </div>
                                         </td>
                                     </tr>
+																	<?php endforeach ?>
+															<?php endif ?>
                                 </tbody>
                             </table>
 
