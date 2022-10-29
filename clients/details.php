@@ -1,5 +1,15 @@
 <?php
 	include_once "../app/config.php";
+	include "../app/ClientController.php";
+
+	$cl = new ClientController();
+	$getId = $cl->get($_GET['id']);
+	$totalEfectivo = 0;
+	$totalTarjeta = 0;
+	$totalCupones = 0;
+	$contEfec = 0;
+	$contTar = 0;
+	$contCup = 0;
 ?>
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
@@ -63,7 +73,7 @@
                             <!--end col-->
                             <div class="col">
                                 <div class="p-2">
-                                    <h3 class="text-white mb-1">Nombre</h3>
+                                    <h3 class="text-white mb-1"><?php echo $getId->name?></h3>
                                 </div>
                             </div>
                         </div>
@@ -87,7 +97,7 @@
                                 <div class="tab-content pt-4 text-muted">
                                     <div class="tab-pane active" id="overview-tab" role="tabpanel">
                                         <div class="row">
-                                            <div class="col-xxl-3">
+                                            <div class="col-12">
                                                 <div class="card">
                                                     <div class="card-body">
                                                         <h5 class="card-title mb-3">Información</h5>
@@ -95,20 +105,20 @@
                                                             <table class="table table-borderless mb-0">
                                                                 <tbody>
                                                                     <tr>
-                                                                        <th class="ps-0" scope="row">Nombre :</th>
+                                                                        <th class="ps-0" scope="row">Nombre : <?php echo $getId->name?></th>
                                                                         <td class="text-muted"></td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <th class="ps-0" scope="row">Correo Electrónico :</th>
+                                                                        <th class="ps-0" scope="row">Correo Electrónico : <?php echo $getId->email?></th>
                                                                         <td class="text-muted"></td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <th class="ps-0" scope="row">Número de Teléfono :</th>
+                                                                        <th class="ps-0" scope="row">Número de Teléfono : <?php echo $getId->phone_number?></th>
                                                                         <td class="text-muted">
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <th class="ps-0" scope="row">Nivel de suscripcion :</th>
+                                                                        <th class="ps-0" scope="row">Nivel de suscripcion : <?php echo $getId->level->name?></th>
                                                                         <td class="text-muted">
                                                                         </td>
                                                                     </tr>
@@ -147,24 +157,45 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+																	<?php if (isset($getId->orders)): ?>
+	                                    <?php foreach($getId->orders as $order): ?>
                                         <tr>
-                                            <th scope="row">1419</th>
-                                            <td>$ 5900</td>
-                                            <td>Calle articulo 743, 123, La Paz, Baja California Sur</td>
-                                            <td>Pediente de pago</td>
-                                            <td>10% off</td>
+                                            <th scope="row"><?php echo $order->folio?></th>
+                                            <td>$<?php echo $order->total?></td>
+                                            <td><?php echo $order->address->street_and_use_number?>,
+																							<?php echo $order->address->postal_code?>,
+																							<?php echo $order->address->city?>,
+																							<?php echo $order->address->province?>
+																						</td>
+                                            <td><?php echo $order->order_status->name?></td>
+                                            <td><?= isset($order->coupon->name)?$order->coupon->name:'No aplica' ?></td>
                                             <td><ul>
+																							<?php if (isset($order->presentations)): ?>
+							                                    <?php foreach($order->presentations as $presentation):
+																										$subtotal = $presentation->current_price->amount * $presentation->pivot->quantity;
+																										?>
                                                 <li>
-                                                    Colchón Matrimonial Zero
+																									<?php echo $presentation->pivot->quantity?> -
+                                                  <?php echo $presentation->description?> -
+																									$<?php echo $subtotal?>
                                                 </li>
-                                                <li>
-                                                    Comedor Miguel con 4 Sillas
-                                                </li>
-                                                <li>
-                                                    Fitband Huawei Watch Fit 2 Rosa
-                                                </li>
+																								<br>
+																								<?php endforeach ?>
+																							<?php endif ?>
                                             </ul></td>
                                         </tr>
+																				<!--Se calculan el total de ventas según el tipo de pago-->
+																				<?php
+																					if ($order->payment_type->id == 1):
+																						$contEfec++;
+																						$totalEfectivo +=  $order->total;
+																					elseif ($order->payment_type->id == 2):
+																						$contTar++;
+																						$totalTarjeta +=  $order->total;
+																					endif?>
+																				<!--Fin del calculo-->
+																			<?php endforeach ?>
+																	<?php endif ?>
                                 </tbody>
                             </table>
                             <div class="tab-content text-muted">
@@ -174,15 +205,10 @@
                                                 <div class="card text-center">
                                                     <div class="card-body">
                                                         <h5 class="card-title mb-3">Compras con tarjeta:</h5>
-                                                        <div class="table-responsive">
-                                                            <table class="table table-borderless mb-0">
-                                                                <tbody>
-                                                                    <tr>
-                                                                    <th class="ps-0" scope="row">4 Compras --- $5000</th>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
+                                                        <p class="card-text h4">
+																													<?= $contTar > 0?$contTar > 1?$contTar.' Compras ---- $'.$totalTarjeta:
+																													$contTar.' Compra ---- $'.$totalTarjeta:'No se han registrado compras con este metodo.' ?>
+																												</p>
                                                     </div><!-- end card body -->
                                                 </div><!-- end card -->
                                                 <!--end card-->
@@ -191,15 +217,10 @@
                                                 <div class="card text-center">
                                                     <div class="card-body">
                                                         <h5 class="card-title mb-3">Compras con efectivo:</h5>
-                                                        <div class="table-responsive">
-                                                            <table class="table table-borderless mb-0">
-                                                                <tbody>
-                                                                    <tr>
-                                                                    <th class="ps-0" scope="row">4 Compras --- $5000</th>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
+																													<p class="card-text h4">
+																														<?= $contEfec > 0?$contEfec > 1?$contEfec.' Compras ---- $'.$totalEfectivo:
+																																$contEfec.' Compra ---- $'.$totalEfectivo:'No se han registrado compras con este metodo.' ?>
+																													</p>
                                                     </div><!-- end card body -->
                                                 </div><!-- end card -->
                                                 <!--end card-->
@@ -208,15 +229,10 @@
                                                 <div class="card text-center">
                                                     <div class="card-body">
                                                         <h5 class="card-title mb-3">Cupones utilizados:</h5>
-                                                        <div class="table-responsive">
-                                                            <table class="table table-borderless mb-0">
-                                                                <tbody>
-                                                                    <tr>
-                                                                    <th class="ps-0" scope="row">4 Compras --- $5000</th>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
+																													<p class="card-text h4">
+																														<?= $contEfec > 0?$contEfec > 1?$contEfec.' Compras ---- $'.$totalEfectivo:
+																																$contEfec.' Compra ---- $'.$totalEfectivo:'No se han registrado compras con este metodo.' ?>
+																													</p>
                                                     </div><!-- end card body -->
                                                 </div><!-- end card -->
                                                 <!--end card-->
