@@ -34,7 +34,7 @@
 						<div class="w-100 pt-2"></div>
 					    <div class="form-check form-check-inline">
 							<?php foreach ($brands as $brand){?>
-								<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+								<input class="form-check-input" type="checkbox" id="<?php echo $tags->id?>" value="<?php echo $tags->id?>" name="categories[]">
 								<label class="form-check-label" for="inlineCheckbox1"><?php echo $brand->name?></label>
 								<br>
 							<?php } ?>
@@ -47,7 +47,7 @@
 						<div class="w-100 pt-2"></div>
 					    <div class="form-check form-check-inline">
 							<?php foreach ($tags as $tag){?>
-								<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+								<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" name="tags[]">
 								<label class="form-check-label" for="inlineCheckbox1"><?php echo $tag->name?> </label>
 								<br>
 							<?php } ?>

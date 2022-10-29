@@ -133,14 +133,14 @@ function remove(id)
         {
             swal({
                 title: "¿Estás seguro?",
-                text: "Una vez borrado, no podras acceder de nuevo a este cliente!",
+                text: "Una vez borrado, no podras acceder de nuevo a este producto!",
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
             })
             .then((willDelete) => {
                 if (willDelete) {
-                swal("¡El cliente se borró con éxito!", {
+                swal("¡El producto se borró con éxito!", {
                     icon: "success",
                 });
                     var bodyFormData = new FormData();
@@ -148,7 +148,7 @@ function remove(id)
                     console.log(id);
                     bodyFormData.append('action', 'delete');
                     bodyFormData.append('global_token', '<?php echo $_SESSION['global_token']?>');
-                    axios.post("<?= BASE_PATH ?>products", bodyFormData)
+                    axios.post("<?= BASE_PATH ?>prd", bodyFormData)
                     .then(function (response){
                         console.log(response);
                     })
@@ -156,7 +156,7 @@ function remove(id)
                             console.log('error')
                         })
                 } else {
-                swal("No se borró el cliente");
+                swal("No se borró el producto");
                 }
             });
         }
@@ -170,13 +170,22 @@ function remove(id)
 
             let products = JSON.parse(target.getAttribute("data-product"));
 
+            console.log(products);
 
-            document.getElementById("name").value = products.name;
-            document.getElementById("slug").value = products.slug;
-            document.getElementById("description").value = products.description;
-            document.getElementById("features").value = products.features;
-            document.getElementById("brand_id").value = products.brand_id;
-            document.getElementById("id").value = products.id;
+            // document.getElementById("name").value = products.name;
+            // document.getElementById("slug").value = products.slug;
+            // document.getElementById("description").value = products.description;
+            // document.getElementById("features").value = products.features;
+            // document.getElementById("brand_id").value = products.brand_id;
+            // document.getElementById("id").value = products.id;
+
+            // for (i=0;i<categories.length;i++) {
+            //     document.getElementById(categories[i]).checked = 1;
+            // }
+
+            // for (i=0;i<tags.length;i++){
+            //     document.getElementById(tags[i]).checked = 1;
+            // }
 
         }
     </script>
