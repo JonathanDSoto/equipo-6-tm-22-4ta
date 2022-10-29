@@ -1,8 +1,22 @@
 <?php 
 include 'config.php';
 include_once 'Validator.php';
+/*                  ['id' => 61, 'quantity' => 1],
+                        ['id' => 62, 'quantity' => 1]
+                    ];  */
+/*  $pres = [
+    ['id' => 61, 'quantity' => 1],
+    ['id' => 62, 'quantity' => 1]
+];  */
+/* $presArraay = [];
+foreach($pres as $key=> $value){
+    $presArraay["presentations[$key][id]"] = $value['id'];
+    $presArraay["presentations[$key][quantity]"]  = $value['quantity'];
+} */
 
-
+//   print_r(OrderController::create('112','122', '1', '2', '1', '1', '1', '1', $pres));
+// print_r(OrderController::getDetails('264'));
+// print_r($presArraay);
 if (isset($_POST['action'])) {
 
     if (isset($_POST['global_token']) && 
@@ -223,6 +237,12 @@ class OrderController{
     public static function create($folio, $total, $is_paid, $client_id, $address_id, $order_status_id, 
     $payment_type_id, $coupon_id, $presentations){
         
+
+        $presArraay = [];
+        foreach($presentations as $key=> $value){
+            $presArraay["presentations[$key][id]"] = $value['id'];
+            $presArraay["presentations[$key][quantity]"]  = $value['quantity'];
+        }
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
@@ -242,10 +262,10 @@ class OrderController{
         'order_status_id' => $order_status_id,
         'payment_type_id' => $payment_type_id,
         'coupon_id' => $coupon_id,
-        'presentations[0][id]' => $presentations[0]['id'],
+/*         'presentations[0][id]' => $presentations[0]['id'],
         'presentations[0][quantity]' => $presentations[0]['quantity'], 
         'presentations[1][id]' => $presentations[1]['id'],
-        'presentations[1][quantity]' => $presentations[1]['quantity']),
+        'presentations[1][quantity]' => $presentations[1]['quantity'] */) + $presArraay,
        
        
         CURLOPT_HTTPHEADER => array(

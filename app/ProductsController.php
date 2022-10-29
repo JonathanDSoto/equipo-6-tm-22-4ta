@@ -1,6 +1,22 @@
 <?php  
 include_once 'Validator.php';
 include_once "config.php";
+/*  $categories = [3,4];
+$tags = [3,4];
+$categoryArray = [];
+$tagArray = [];
+foreach($categories as $key=> $value){
+	$categoryArray["categories[$key]"] = $value;
+}
+foreach($tags as $key => $value){
+	$tagArray["tags[$key]"] = $value;
+}  */
+
+//public static function edit($name, $slug, $description, $features, $brand_id, $id, $categories, $tags){
+ // print_r(ProductsController::edit('weqwe', 'qwqe-qweqew-qwe', 'fsdfsdfsfdds', 'qwregrehwfqwe qwwegfd', 1, 1, $categoryArray, $tagArray));
+
+
+// print_r(ProductsController::edit('asdasd', 'asdasda', 'asdasda', 'asdasda', 14, 2, [3,4], [3,4]));
 
 if (isset($_POST['action'])) {
 
@@ -31,13 +47,22 @@ if (isset($_POST['action'])) {
 				print_r( Validator::integerArray($tags));
 				print_r( Validator::integerArray($categories)); */
 					
-				$suficientesTags = count($tags)>=2;
+/* 				$suficientesTags = count($tags)>=2;
 				$suficientesCats = count($categories)>=2;
+$suficientesCats && $suficientesTags &&
+				 */
 
-				
+				if( $validationResult['status'] == '1' && Validator::integerArray($categories) && Validator::integerArray($tags)){
+ 
+ 
+					foreach($categories as $key=> $value){
+						$categoryArray["categories[$key]"] = $value;
+					}
+					foreach($tags as $key => $value){
+						$tagArray["tags[$key]"] = $value;
+					}
 
-				if($suficientesCats && $suficientesTags && $validationResult['status'] == '1' && Validator::integerArray($categories) && Validator::integerArray($tags)){
-					$_SESSION['_MESSAGE'] = ProductsController::create($name, $slug, $description, $features, $brand_id, $cover, $categories,$tags);
+					$_SESSION['_MESSAGE'] = ProductsController::create($name, $slug, $description, $features, $brand_id, $cover, $categoryArray,$tagArray);
 				}else{
 					$_SESSION['_MESSAGE'] = $validationResult['data'];
 				}
@@ -66,12 +91,13 @@ if (isset($_POST['action'])) {
 				$tags = $_POST['tags'];
 				$categories = $_POST['categories'];
 							
-				$suficientesTags = count($tags)>=2;
-				$suficientesCats = count($categories)>=2;
+/* 				$suficientesTags = count($tags)>=2;
+				$suficientesCats = count($categories)>=2; */
 
 
 
 				if($suficientesCats && $suficientesTags && $validationResult['status'] == '1' && Validator::integerArray($categories) && Validator::integerArray($tags)){
+
 					$_SESSION['_MESSAGE'] = ProductsController::edit($name, $slug, $description, $features, $brand_id, $id, $categories, $tags);
 				}else{
 					$_SESSION['_MESSAGE'] = $validationResult['data'];
@@ -306,8 +332,11 @@ Class ProductsController
 
 
 
-	public static function create($name, $slug, $description, $features, $brand_id, $cover, $categories, $tags){
+	public static function create($name, $slug, $description, $features, $brand_id, $cover,  $categories, $tags){
 		
+
+
+	
 	$curl = curl_init();
 
 	curl_setopt_array($curl, array(
@@ -319,13 +348,22 @@ Class ProductsController
 	CURLOPT_FOLLOWLOCATION => true,
 	CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 	CURLOPT_CUSTOMREQUEST => 'POST',
-	CURLOPT_POSTFIELDS => array('name' => $name,'slug' => $slug,'description' => $description,'features' => $features,'brand_id' => $brand_id,'cover'=> new CURLFILE($cover),'categories[0]' => $categories[0],'categories[1]' => $categories[1],'tags[0]' => $tags[0],'tags[1]' => $tags[1]),
+	CURLOPT_POSTFIELDS => array('name' => $name,'slug' => $slug,'description' => $description,'features' => $features,
+	'brand_id' => $brand_id , 'cover' => new CURLFILE($cover)) + $categories + $tags,
 	CURLOPT_HTTPHEADER => array(
 		'Authorization: Bearer '.$_SESSION['token']
 		// 'Authorization: Bearer 3|JSvLL27EhMfH70onI5sSZP6ROwcdSsHQU8cm7k9X'
 	),
 	));
 
+	/* CURLOPT_POSTFIELDS => array(
+				  'name' => $name,
+				  'slug' => $slug,
+				  'description' => $description,
+				  'features' => $features,
+				  'brand_id' => $brand_id,
+				  'cover'=> new CURLFILE($imagen)
+			  ) + $categories + $tags, */
 	$response = curl_exec($curl);
 
 	curl_close($curl);
@@ -334,10 +372,18 @@ Class ProductsController
 	}
 
 	public static function edit($name, $slug, $description, $features, $brand_id, $id, $categories, $tags){
+	
+		$string = '';
+		
+		foreach($categories as $key => $value){
+			$string = $string."&categories[$key]=$value"; 
+		}
 		
 
+		foreach($tags as $key => $value){
+			$string = $string."&tags[$key]=$value"; 
+		}
 		$curl = curl_init();
-
 		curl_setopt_array($curl, array(
 		  CURLOPT_URL => 'https://crud.jonathansoto.mx/api/products',
 		  CURLOPT_RETURNTRANSFER => true,
@@ -347,7 +393,8 @@ Class ProductsController
 		  CURLOPT_FOLLOWLOCATION => true,
 		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		  CURLOPT_CUSTOMREQUEST => 'PUT',
-		  CURLOPT_POSTFIELDS => 'name='.$name.'&slug='.$slug.'&description='.$description.'&features='.$features.'&brand_id='.$brand_id.'&id='.$id.'&categories%5B0%5D='.$categories[0].'&categories%5B1%5D='.$categories[1].'&tags%5B0%5D='.$tags[0].'&tags%5B1%5D='.$tags[1].'',
+		  CURLOPT_POSTFIELDS => 'name='.$name.'&slug='.$slug.'&description='.$description.'&features='
+		  .$features.'&brand_id='.$brand_id.'&id='.$id.$string,
 		  CURLOPT_HTTPHEADER => array(
 			'Authorization: Bearer '.$_SESSION['token'],
 			// 'Authorization: Bearer 3|JSvLL27EhMfH70onI5sSZP6ROwcdSsHQU8cm7k9X',
@@ -358,7 +405,7 @@ Class ProductsController
 		$response = curl_exec($curl);
 		
 		curl_close($curl);
-		echo $response;
+		return $response;
 		
 
 	}
