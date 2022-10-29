@@ -1,9 +1,10 @@
 <?php
 	include_once "../app/config.php";
 	include "../app/ClientController.php";
+	include "../app/AddressController.php";
 
 	$cl = new ClientController();
-	$getId = $cl->get($_GET['id']);
+	$getId = $cl->getClient($_GET['id']);
 	$totalEfectivo = 0;
 	$totalTarjeta = 0;
 	$totalCupones = 0;
@@ -236,7 +237,7 @@
                                                         <h5 class="card-title mb-3">Cupones utilizados:</h5>
 																													<p class="card-text h4">
 																														<?= $contCup > 0?$contCup > 1?$contCup.' Cupones utilizados ---- $'.$totalCupones:
-																																$contCup.' Cupón utilizado ---- $'.$totalCupones:'No se han utilizado cupones.' ?>
+																																$contCup.' Cupón utilizado ---- $'.$totalCupones:'No se han utilizado cupones en las compras.' ?>
 																													</p>
                                                     </div><!-- end card body -->
                                                 </div><!-- end card -->
@@ -295,7 +296,7 @@
                                         <td>
                                             <div class="hstack gap-3 fs-15">
                                                 <a href="javascript:void(0);" class="link-secondary" data-bs-toggle="modal" data-bs-target="#add-address"><i class="ri-settings-4-line"></i></a>
-                                                <a href="javascript:void(0);" class="link-danger"><i class="ri-delete-bin-5-line"></i></a>
+                                                <a href="javascript:void(0);" onclick="remove(<?php echo $address->id?>)" class="link-danger"><i class="ri-delete-bin-5-line"></i></a>
                                             </div>
                                         </td>
                                     </tr>
@@ -320,13 +321,47 @@
     </div>
     <!-- END layout-wrapper -->
 
+		<script>
+        function remove(id)
+        {
+            swal({
+                title: "¿Estás seguro?",
+                text: "Una vez borrado, no podras acceder de nuevo a esta marca",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                swal("¡La marca se borró con éxito!", {
+                    icon: "success",
+                });
+                    var bodyFormData = new FormData();
+                    bodyFormData.append('address_id', id);
+                    console.log(id);
+                    bodyFormData.append('action', 'delete');
+                    bodyFormData.append('global_token', '<?php echo $_SESSION['global_token']?>');
+                    axios.post("<?= BASE_PATH ?>adrs", bodyFormData)
+                    .then(function (response){
+                        console.log(response);
+                    })
+                        .catch(function (error){
+                            console.log('error')
+                        })
+                } else {
+                swal("No se borró la marca");
+                }
+            });
+        }
+    </script>
+
 
 
     <!--start back-to-top-->
     <a href="#" class="btn btn-primary">Eliminar</a>
     <!--end back-to-top-->
 
-
+		<?php include "./../layouts/scripts.template.php"; ?>
 
     <!-- JAVASCRIPT -->
     <script src="<?= BASE_PATH ?>public/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
