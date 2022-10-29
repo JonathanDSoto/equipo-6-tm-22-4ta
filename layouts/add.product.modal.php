@@ -7,7 +7,7 @@
 		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		    </div>
 
-		    <form enctype="multipart/form-data" method="post" action="<?php BASE_PATH?>">
+		    <form enctype="multipart/form-data" method="post" action="<?php echo BASE_PATH?>prd">
 			    <div class="modal-body">
 			      	<div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Nombre</span>
@@ -79,7 +79,7 @@
 			      
 				<input id="oculto_input" type="hidden" name="action" value="create">
 				<input id="id" type="hidden" name="id" value="update">
-				<input type="hidden" value="global_token" name="<?php echo $_SESSION['global_token'] ?>">
+				<input type="hidden" name="global_token" value="<?php echo $_SESSION['global_token'] ?>">
 
 		      </form>
 		    </div>

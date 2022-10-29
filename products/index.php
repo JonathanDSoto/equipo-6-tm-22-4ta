@@ -3,16 +3,20 @@
 	include "../app/ProductsController.php";
 	include "../app/BrandController.php";
     include "../app/TagController.php";
+    include "../app/CategoryController.php";
 
 
 	$productController = new ProductsController();
     $product = $productController->getProducts();
 
-	$brandController = new BrandController();
-    $brands = $brandController->getBrands();
+	$categoriesController = new CategoryController();
+    $categories = $categoriesController->getAll();
 
     $tagController = new TagController();
     $tags = $tagController->getAll();
+
+    $brandController = new BrandController();
+    $brands = $brandController->getBrands();
 
     $contProd=0;
 
@@ -60,7 +64,7 @@
                                     <div class="col-sm-auto">
                                         <div>
                                         <button type="button" onclick="addProduct()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-product">
-                                             Añadir Producto
+                                             Añadir Productos
                                         </button>
 
                                         </div>
