@@ -1,5 +1,4 @@
 <?php
-	include_once "../app/config.php";
 	include "../app/ClientController.php";
 	include "../app/AddressController.php";
 
@@ -50,7 +49,6 @@
         <?php include "../layouts/nav.template.php"; ?>
         <?php include "../layouts/sidebar.template.php"; ?>
         <?php include "../layouts/add.address.modal.php";?>
-        <?php include "../layouts/add.photo.modal.php";?>
         <!-- ========== App Menu ========== -->
         <div class="main-content">
             <div class="page-content">
@@ -58,19 +56,10 @@
                     <div class="profile-foreground position-relative mx-n4 mt-n4">
                         <div class="profile-wid-bg">
                             <img src="<?= BASE_PATH ?>public/images/profile-bg.jpg" alt="" class="profile-wid-img" />
-
                         </div>
                     </div>
                     <div class="pt-4 mb-4 mb-lg-3 pb-lg-4">
                         <div class="row g-4">
-                            <div class="col-auto">
-                                <div class="avatar-lg">
-                                    <img src="<?= BASE_PATH ?>public/images/users/avatar-1.jpg" alt="user-img" class="img-thumbnail rounded-circle" />
-                                    <a type="button" class="text-light mt-2" data-bs-toggle="modal" data-bs-target="#add-photo">
-                                        <i class="mdi mdi-square-edit-outline "></i><a class="text-light" href="#"> Editar foto</a>
-                                    </a>
-                                </div>
-                            </div>
                             <!--end col-->
                             <div class="col">
                                 <div class="p-2">
@@ -254,9 +243,8 @@
                                     <div class="col-sm-auto">
                                         <div>
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-address">
-                                            Añadir direccion
+                                            Añadir dirección
                                         </button>
-
                                         </div>
                                     </div>
                                 </div>
@@ -352,6 +340,17 @@
                 swal("No se borró la marca");
                 }
             });
+        }
+
+				function editAddress(target)
+        {
+            let address = JSON.parse(target.getAttribute("data-user-edit-address"));
+
+
+            document.getElementById("idEditStreet").value = address.street_and_use_number;
+            document.getElementById("idEditCP").value = address.postal_code;
+            document.getElementById("idEditCity").value = address.city;
+						document.getElementById("idEditProvince").value = address.province;
         }
     </script>
 
