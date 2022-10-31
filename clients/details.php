@@ -152,10 +152,10 @@
                                         <tr>
                                             <th scope="row"><?php echo $order->folio?></th>
                                             <td>$<?php echo $order->total?></td>
-                                            <td><?php echo $order->address->street_and_use_number?>,
-																							<?php echo $order->address->postal_code?>,
-																							<?php echo $order->address->city?>,
-																							<?php echo $order->address->province?>
+                                            <td><?= isset($order->address->street_and_use_number)?$order->address->street_and_use_number:'Sin calle' ?>,
+																							<?= isset($order->address->postal_code)?$order->address->postal_code:'Sin CP' ?>,
+																							<?= isset($order->address->city)?$order->address->city:'Ciudad no especificada' ?>,
+																							<?= isset($order->address->province)?$order->address->province:'Provincia no especificada' ?>
 																						</td>
                                             <td><?php echo $order->order_status->name?></td>
                                             <td><?= isset($order->coupon->name)?$order->coupon->name:'No aplica' ?></td>
@@ -283,7 +283,7 @@
                                         <td><?php echo $address->phone_number?></td>
                                         <td>
                                             <div class="hstack gap-3 fs-15">
-                                                <a href="javascript:void(0);" class="link-secondary" data-bs-toggle="modal" data-bs-target="#add-address"><i class="ri-settings-4-line"></i></a>
+                                                <a href="javascript:void(0);" data-user-edit-address='<?php echo json_encode($address)?>' onclick="editAddress(this)" class="link-secondary" data-bs-toggle="modal" data-bs-target="#edit-address"><i class="ri-settings-4-line"></i></a>
                                                 <a href="javascript:void(0);" onclick="remove(<?php echo $address->id?>)" class="link-danger"><i class="ri-delete-bin-5-line"></i></a>
                                             </div>
                                         </td>
@@ -308,6 +308,7 @@
 
     </div>
     <!-- END layout-wrapper -->
+		<?php include "../layouts/edit.address.modal.php";?>
 
 		<script>
         function remove(id)
@@ -346,11 +347,14 @@
         {
             let address = JSON.parse(target.getAttribute("data-user-edit-address"));
 
-
-            document.getElementById("idEditStreet").value = address.street_and_use_number;
-            document.getElementById("idEditCP").value = address.postal_code;
-            document.getElementById("idEditCity").value = address.city;
-						document.getElementById("idEditProvince").value = address.province;
+						document.getElementById("idEditName").value = address.first_name;
+						document.getElementById("idEditLastName").value = address.last_name;
+            document.getElementById("EditStreet").value = address.street_and_use_number;
+            document.getElementById("EditCP").value = address.postal_code;
+            document.getElementById("EditCity").value = address.city;
+						document.getElementById("EditProvince").value = address.province;
+						document.getElementById("idEditPhone").value = address.phone_number;
+						document.getElementById("idEditId").value = address.id;
         }
     </script>
 
