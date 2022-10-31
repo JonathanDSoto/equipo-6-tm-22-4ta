@@ -10,22 +10,22 @@
 			    <div class="modal-body">
 			      	<div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Calle y No.</span>
-					    <input id="idEditStreet" name="street_and_use_number" type="text" class="form-control" placeholder="Calle y número" aria-label="Username" aria-describedby="basic-addon1">
+					    <input id="idEditStreet" name="street_and_use_number" type="text" class="form-control" placeholder="Calle y número" aria-label="Username" aria-describedby="basic-addon1" required>
 					</div>
 
 					<div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Código postal</span>
-					    <input id="idEditCP" name="postal_code" type="text" class="form-control" placeholder="Código postal" aria-label="Username" aria-describedby="basic-addon1">
+					    <input id="idEditCP" name="postal_code" pattern="^[0-9]{5}$" type="text" class="form-control" placeholder="Código postal" aria-label="Username" aria-describedby="basic-addon1" required>
 					</div>
 
 					<div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Ciudad</span>
-					    <input id="idEditCity" name="city" type="text" class="form-control" placeholder="Ciudad" aria-label="Username" aria-describedby="basic-addon1">
+					    <input id="idEditCity" name="city" pattern="^[a-zA-Z ]+$" type="text" class="form-control" placeholder="Ciudad" aria-label="Username" aria-describedby="basic-addon1" required>
 					</div>
 
 					<div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Estado</span>
-					    <input id="idEditProvince" name="province" type="text" class="form-control" placeholder="Estado" aria-label="Username" aria-describedby="basic-addon1">
+					    <input id="idEditProvince" name="province" pattern="^[a-zA-Z ]+$" type="text" class="form-control" placeholder="Estado" aria-label="Username" aria-describedby="basic-addon1" required>
 					</div>
 
 			    </div>
