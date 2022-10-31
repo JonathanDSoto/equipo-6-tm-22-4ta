@@ -7,7 +7,7 @@
 		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		    </div>
 
-		    <form enctype="multipart/form-data" method="post" action="<?php BASE_PATH?>">
+		    <form enctype="multipart/form-data" method="post" action="<?php echo BASE_PATH?>prd">
 			    <div class="modal-body">
 			      	<div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Nombre</span>
@@ -34,7 +34,7 @@
 						<div class="w-100 pt-2"></div>
 					    <div class="form-check form-check-inline">
 							<?php foreach ($brands as $brand){?>
-								<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+								<input class="form-check-input" type="checkbox" id="<?php echo $tags->id?>" value="<?php echo $tags->id?>" name="categories[]">
 								<label class="form-check-label" for="inlineCheckbox1"><?php echo $brand->name?></label>
 								<br>
 							<?php } ?>
@@ -47,7 +47,7 @@
 						<div class="w-100 pt-2"></div>
 					    <div class="form-check form-check-inline">
 							<?php foreach ($tags as $tag){?>
-								<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+								<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" name="tags[]">
 								<label class="form-check-label" for="inlineCheckbox1"><?php echo $tag->name?> </label>
 								<br>
 							<?php } ?>
@@ -79,7 +79,7 @@
 			      
 				<input id="oculto_input" type="hidden" name="action" value="create">
 				<input id="id" type="hidden" name="id" value="update">
-				<input type="hidden" value="global_token" name="<?php echo $_SESSION['global_token'] ?>">
+				<input type="hidden" name="global_token" value="<?php echo $_SESSION['global_token'] ?>">
 
 		      </form>
 		    </div>

@@ -10,17 +10,17 @@
                 <div class="modal-body">
                         <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">Nombre</span>
-                        <input id="idEditNameCateg" name="name" type="text" class="form-control" placeholder="Nombre de la categoria" aria-label="Username" aria-describedby="basic-addon1">
+                        <input id="idEditNameCateg" name="name" pattern="^[A-Za-z,\s]+$" type="text" class="form-control" placeholder="Nombre de la categoria" aria-label="Username" aria-describedby="basic-addon1" required>
                     </div>
 
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">Descripcion</span>
-                        <input id="idEditDescriptionCateg" name="description" type="text" class="form-control" placeholder="DescripciÃ³n de la categoria" aria-label="Username" aria-describedby="basic-addon1">
+                        <input id="idEditDescriptionCateg" name="description" type="text" class="form-control" placeholder="DescripciÃ³n de la categoria" aria-label="Username" aria-describedby="basic-addon1" required>
                     </div>
 
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">Slug</span>
-                        <input id="idEditSlugCateg" name="slug" type="text" class="form-control" placeholder="Slug de la categoria" aria-label="Username" aria-describedby="basic-addon1">
+                        <input id="idEditSlugCateg" name="slug" pattern="^[a-z0-9]+(?:-[a-z0-9]+)*$" type="text" class="form-control" placeholder="Slug de la categoria" aria-label="Username" aria-describedby="basic-addon1" required>
                     </div>
 
                 </div>

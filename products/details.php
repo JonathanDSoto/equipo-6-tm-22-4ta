@@ -84,7 +84,7 @@
                                                                 ?>                                                          
                                                             </a></div>
                                                             <div class="vr"></div>
-                                                            <div class="text-muted">Vendedor : <span class="text-body fw-medium">Insertar slug del brand</span></div>
+                                                            <div class="text-muted">Vendedor : <span class="text-body fw-medium"><?php echo $getIdProd->brand->slug?></span></div>
                                                         </div>
                                                     </div>
                                                 </div>

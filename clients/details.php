@@ -1,9 +1,9 @@
 <?php
-	include_once "../app/config.php";
 	include "../app/ClientController.php";
+	include "../app/AddressController.php";
 
 	$cl = new ClientController();
-	$getId = $cl->get($_GET['id']);
+	$getId = $cl->getClient($_GET['id']);
 	$totalEfectivo = 0;
 	$totalTarjeta = 0;
 	$totalCupones = 0;
@@ -49,7 +49,6 @@
         <?php include "../layouts/nav.template.php"; ?>
         <?php include "../layouts/sidebar.template.php"; ?>
         <?php include "../layouts/add.address.modal.php";?>
-        <?php include "../layouts/add.photo.modal.php";?>
         <!-- ========== App Menu ========== -->
         <div class="main-content">
             <div class="page-content">
@@ -57,19 +56,10 @@
                     <div class="profile-foreground position-relative mx-n4 mt-n4">
                         <div class="profile-wid-bg">
                             <img src="<?= BASE_PATH ?>public/images/profile-bg.jpg" alt="" class="profile-wid-img" />
-
                         </div>
                     </div>
                     <div class="pt-4 mb-4 mb-lg-3 pb-lg-4">
                         <div class="row g-4">
-                            <div class="col-auto">
-                                <div class="avatar-lg">
-                                    <img src="<?= BASE_PATH ?>public/images/users/avatar-1.jpg" alt="user-img" class="img-thumbnail rounded-circle" />
-                                    <a type="button" class="text-light mt-2" data-bs-toggle="modal" data-bs-target="#add-photo">
-                                        <i class="mdi mdi-square-edit-outline "></i><a class="text-light" href="#"> Editar foto</a>
-                                    </a>
-                                </div>
-                            </div>
                             <!--end col-->
                             <div class="col">
                                 <div class="p-2">
@@ -162,10 +152,10 @@
                                         <tr>
                                             <th scope="row"><?php echo $order->folio?></th>
                                             <td>$<?php echo $order->total?></td>
-                                            <td><?php echo $order->address->street_and_use_number?>,
-																							<?php echo $order->address->postal_code?>,
-																							<?php echo $order->address->city?>,
-																							<?php echo $order->address->province?>
+                                            <td><?= isset($order->address->street_and_use_number)?$order->address->street_and_use_number:'Sin calle' ?>,
+																							<?= isset($order->address->postal_code)?$order->address->postal_code:'Sin CP' ?>,
+																							<?= isset($order->address->city)?$order->address->city:'Ciudad no especificada' ?>,
+																							<?= isset($order->address->province)?$order->address->province:'Provincia no especificada' ?>
 																						</td>
                                             <td><?php echo $order->order_status->name?></td>
                                             <td><?= isset($order->coupon->name)?$order->coupon->name:'No aplica' ?></td>
@@ -186,6 +176,11 @@
                                         </tr>
 																				<!--Se calculan el total de ventas según el tipo de pago-->
 																				<?php
+																				if (isset($order->coupon->name)):
+																					$descuento = ($order->total * ($order->coupon->percentage_discount / 100) - $order->coupon->amount_discount);
+																					$contCup++;
+																					$totalCupones = $totalCupones + $descuento;
+																				endif;
 																					if ($order->payment_type->id == 1):
 																						$contEfec++;
 																						$totalEfectivo +=  $order->total;
@@ -207,7 +202,7 @@
                                                         <h5 class="card-title mb-3">Compras con tarjeta:</h5>
                                                         <p class="card-text h4">
 																													<?= $contTar > 0?$contTar > 1?$contTar.' Compras ---- $'.$totalTarjeta:
-																													$contTar.' Compra ---- $'.$totalTarjeta:'No se han registrado compras con este metodo.' ?>
+																													$contTar.' Compra ---- $'.$totalTarjeta:'No se han registrado compras con este método.' ?>
 																												</p>
                                                     </div><!-- end card body -->
                                                 </div><!-- end card -->
@@ -219,7 +214,7 @@
                                                         <h5 class="card-title mb-3">Compras con efectivo:</h5>
 																													<p class="card-text h4">
 																														<?= $contEfec > 0?$contEfec > 1?$contEfec.' Compras ---- $'.$totalEfectivo:
-																																$contEfec.' Compra ---- $'.$totalEfectivo:'No se han registrado compras con este metodo.' ?>
+																																$contEfec.' Compra ---- $'.$totalEfectivo:'No se han registrado compras con este método.' ?>
 																													</p>
                                                     </div><!-- end card body -->
                                                 </div><!-- end card -->
@@ -230,8 +225,8 @@
                                                     <div class="card-body">
                                                         <h5 class="card-title mb-3">Cupones utilizados:</h5>
 																													<p class="card-text h4">
-																														<?= $contEfec > 0?$contEfec > 1?$contEfec.' Compras ---- $'.$totalEfectivo:
-																																$contEfec.' Compra ---- $'.$totalEfectivo:'No se han registrado compras con este metodo.' ?>
+																														<?= $contCup > 0?$contCup > 1?$contCup.' Cupones utilizados ---- $'.$totalCupones:
+																																$contCup.' Cupón utilizado ---- $'.$totalCupones:'No se han utilizado cupones en las compras.' ?>
 																													</p>
                                                     </div><!-- end card body -->
                                                 </div><!-- end card -->
@@ -248,9 +243,8 @@
                                     <div class="col-sm-auto">
                                         <div>
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-address">
-                                            Añadir direccion
+                                            Añadir dirección
                                         </button>
-
                                         </div>
                                     </div>
                                 </div>
@@ -279,19 +273,23 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+																	<?php if (isset($getId->addresses)): ?>
+	                                    <?php foreach($getId->addresses as $address): ?>
                                     <tr>
-                                        <th scope="row">Calle ejemplo #123</th>
-                                        <td>23088</td>
-                                        <td>La paz</td>
-                                        <td>Baja California Sur</td>
-                                        <td>61200000</td>
+                                        <th scope="row"><?php echo $address->street_and_use_number ?></th>
+                                        <td><?php echo $address->postal_code?></td>
+                                        <td><?php echo $address->city?></td>
+                                        <td><?php echo $address->province?></td>
+                                        <td><?php echo $address->phone_number?></td>
                                         <td>
                                             <div class="hstack gap-3 fs-15">
-                                                <a href="javascript:void(0);" class="link-secondary" data-bs-toggle="modal" data-bs-target="#add-address"><i class="ri-settings-4-line"></i></a>
-                                                <a href="javascript:void(0);" class="link-danger"><i class="ri-delete-bin-5-line"></i></a>
+                                                <a href="javascript:void(0);" data-user-edit-address='<?php echo json_encode($address)?>' onclick="editAddress(this)" class="link-secondary" data-bs-toggle="modal" data-bs-target="#edit-address"><i class="ri-settings-4-line"></i></a>
+                                                <a href="javascript:void(0);" onclick="remove(<?php echo $address->id?>)" class="link-danger"><i class="ri-delete-bin-5-line"></i></a>
                                             </div>
                                         </td>
                                     </tr>
+																	<?php endforeach ?>
+															<?php endif ?>
                                 </tbody>
                             </table>
 
@@ -310,6 +308,55 @@
 
     </div>
     <!-- END layout-wrapper -->
+		<?php include "../layouts/edit.address.modal.php";?>
+
+		<script>
+        function remove(id)
+        {
+            swal({
+                title: "¿Estás seguro?",
+                text: "Una vez borrado, no podras acceder de nuevo a esta marca",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                swal("¡La marca se borró con éxito!", {
+                    icon: "success",
+                });
+                    var bodyFormData = new FormData();
+                    bodyFormData.append('address_id', id);
+                    console.log(id);
+                    bodyFormData.append('action', 'delete');
+                    bodyFormData.append('global_token', '<?php echo $_SESSION['global_token']?>');
+                    axios.post("<?= BASE_PATH ?>adrs", bodyFormData)
+                    .then(function (response){
+                        console.log(response);
+                    })
+                        .catch(function (error){
+                            console.log('error')
+                        })
+                } else {
+                swal("No se borró la marca");
+                }
+            });
+        }
+
+				function editAddress(target)
+        {
+            let address = JSON.parse(target.getAttribute("data-user-edit-address"));
+
+						document.getElementById("idEditName").value = address.first_name;
+						document.getElementById("idEditLastName").value = address.last_name;
+            document.getElementById("EditStreet").value = address.street_and_use_number;
+            document.getElementById("EditCP").value = address.postal_code;
+            document.getElementById("EditCity").value = address.city;
+						document.getElementById("EditProvince").value = address.province;
+						document.getElementById("idEditPhone").value = address.phone_number;
+						document.getElementById("idEditId").value = address.id;
+        }
+    </script>
 
 
 
@@ -317,7 +364,7 @@
     <a href="#" class="btn btn-primary">Eliminar</a>
     <!--end back-to-top-->
 
-
+		<?php include "./../layouts/scripts.template.php"; ?>
 
     <!-- JAVASCRIPT -->
     <script src="<?= BASE_PATH ?>public/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
