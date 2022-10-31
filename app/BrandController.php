@@ -40,7 +40,7 @@ if(!empty($_SESSION['_MESSAGE'])){
 						$name = strip_tags(trim($_POST['name']));
 						$description = strip_tags(trim($_POST['description']));
 						$slug = strip_tags(trim($_POST['slug']));
-						$_SESSION['_MESSAGE'] =  BrandController::create($name, $slug, $description);
+						$_SESSION['_MESSAGE'] =  BrandController::create($name, $description, $slug);
 					}else{
 						 $_SESSION['_MESSAGE'] =  $validate['data']; 
 					}

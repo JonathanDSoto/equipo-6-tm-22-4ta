@@ -132,7 +132,7 @@ print_r($a);
         // array_push($errors['data'] ,Validator::integer($id) ? null: 'ID mal');
         array_push($errors['data'] ,Validator::letters_spaces($name) ? null: 'nombre mal');
         array_push($errors['data'] ,Validator::letters_spaces($description) ? null: 'descripcion mal');
-        array_push($errors['data'] ,Validator::letters_spaces($slug) ? null: 'slug mal');
+        array_push($errors['data'] ,Validator::slug($slug) ? null: 'slug mal');
         array_push($errors['data'] ,Validator::integer($category_id) ? null: 'ID de categoria mal');
 
 
