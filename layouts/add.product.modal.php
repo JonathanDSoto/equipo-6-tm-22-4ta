@@ -11,22 +11,22 @@
 			    <div class="modal-body">
 			      	<div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Nombre</span>
-					    <input id="name" name="name" type="text" class="form-control" placeholder="Product name" aria-label="Username" aria-describedby="basic-addon1">
+					    <input id="name" name="name" type="text" class="form-control" placeholder="Product name" aria-label="Username" aria-describedby="basic-addon1" required>
 					</div>
 
 					<div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Slug</span>
-					    <input id="slug" name="slug" type="text" class="form-control" placeholder="Product slug" aria-label="Username" aria-describedby="basic-addon1">
+					    <input id="slug" name="slug" pattern="^[a-z0-9]+(?:-[a-z0-9]+)*$" type="text" class="form-control" placeholder="Product slug" aria-label="Username" aria-describedby="basic-addon1" required>
 					</div>
 
 					<div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Descripcion</span>
-					    <input id="description" name="description" type="text" class="form-control" placeholder="Product description" aria-label="Username" aria-describedby="basic-addon1">
+					    <input id="description" name="description" type="text" class="form-control" placeholder="Product description" aria-label="Username" aria-describedby="basic-addon1" required>
 					</div>
 
 					<div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Caracteristicas </span>
-					    <input id="features" name="features" type="text" class="form-control" placeholder="Caracteristicas del Producto" aria-label="Username" aria-describedby="basic-addon1">
+					    <input id="features" name="features" type="text" class="form-control" placeholder="Caracteristicas del Producto" aria-label="Username" aria-describedby="basic-addon1" required>
 					</div>
 
 					<div class="input-group mb-3">
@@ -34,7 +34,7 @@
 						<div class="w-100 pt-2"></div>
 					    <div class="form-check form-check-inline">
 							<?php foreach ($brands as $brand){?>
-								<input class="form-check-input" type="checkbox" id="<?php echo $tags->id?>" value="<?php echo $tags->id?>" name="categories[]">
+								<input class="form-check-input" type="checkbox" id="<?php echo $tags->id?>" value="<?php echo $tags->id?>" name="categories[]" required>
 								<label class="form-check-label" for="inlineCheckbox1"><?php echo $brand->name?></label>
 								<br>
 							<?php } ?>
@@ -47,13 +47,13 @@
 						<div class="w-100 pt-2"></div>
 					    <div class="form-check form-check-inline">
 							<?php foreach ($tags as $tag){?>
-								<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" name="tags[]">
+								<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" name="tags[]" required>
 								<label class="form-check-label" for="inlineCheckbox1"><?php echo $tag->name?> </label>
 								<br>
 							<?php } ?>
 
 						</div>
-						
+
 					</div>
 
 					<div class="input-group mb-3">
@@ -67,16 +67,16 @@
 
 					<div class="input-group mb-3">
 					  <span class="input-group-text" id="basic-addon1">Imagen</span>
-					  <input name="cover" type="file" class="form-control" placeholder="Product features" aria-label="Username" aria-describedby="basic-addon1">
+					  <input name="cover" type="file" class="form-control" placeholder="Product features" aria-label="Username" aria-describedby="basic-addon1" required>
 					</div>
-					
+
 
 			      </div>
 			      <div class="modal-footer">
 			        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
 			        <button type="submit" class="btn btn-primary">Guardar</button>
 			      </div>
-			      
+
 				<input id="oculto_input" type="hidden" name="action" value="create">
 				<input id="id" type="hidden" name="id" value="update">
 				<input type="hidden" name="global_token" value="<?php echo $_SESSION['global_token'] ?>">
