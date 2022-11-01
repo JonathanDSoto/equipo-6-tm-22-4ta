@@ -10,27 +10,27 @@
 			    <div class="modal-body">
 			      	<div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Nombre</span>
-					    <input id="name" name="name" type="text" class="form-control" placeholder="Nombre del cupón" aria-label="Username" aria-describedby="basic-addon1">
+					    <input id="name" name="name" type="text" class="form-control" placeholder="Nombre del cupón" aria-label="Username" aria-describedby="basic-addon1" required>
 					</div>
 
 					<div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Código</span>
-					    <input id="email" name="email" type="text" class="form-control" placeholder="Código del cupón" aria-label="Username" aria-describedby="basic-addon1">
+					    <input id="code" name="code" pattern="^[\w]+$" type="text" class="form-control" placeholder="Código del cupón" aria-label="Username" aria-describedby="basic-addon1" required>
 					</div>
-					
+
 					<div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Porcentaje de descuento</span>
-					    <input id="password" name="password" type="text" class="form-control" placeholder="Porcentanje del cupón" aria-label="Username" aria-describedby="basic-addon1">
+					    <input id="password" name="password" pattern="^[0-9]+$" type="text" class="form-control" placeholder="Porcentanje del cupón" aria-label="Username" aria-describedby="basic-addon1" required>
 					</div>
 
 					<div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Monto mínimo requerido</span>
-					    <input id="phone_number" name="phone_number" type="text" class="form-control" placeholder="Monto minimo requerido del cupón" aria-label="Username" aria-describedby="basic-addon1">
+					    <input id="phone_number" name="phone_number" pattern="^[0-9]+$" type="text" class="form-control" placeholder="Monto minimo requerido del cupón" aria-label="Username" aria-describedby="basic-addon1" required>
 					</div>
 
                     <div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Fecha de finalizacion</span>
-					    <input id="phone_number" name="phone_number" type="date" class="form-control" placeholder="Fecha de finalizacion del cupón" aria-label="Username" aria-describedby="basic-addon1">
+					    <input id="phone_number" name="phone_number" pattern="^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$" type="date" class="form-control" placeholder="Fecha de finalizacion del cupón" aria-label="Username" aria-describedby="basic-addon1" required>
 					</div>
 
 			    </div>

@@ -10,32 +10,32 @@
 			    <div class="modal-body">
 			      	<div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Descripcion</span>
-					    <input id="name" name="name" type="text" class="form-control" placeholder="Descripción de la presentacion" aria-label="Username" aria-describedby="basic-addon1">
+					    <input id="name" name="name" type="text" class="form-control" placeholder="Descripción de la presentacion" aria-label="Username" aria-describedby="basic-addon1" required>
 					</div>
 
 					<div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Código</span>
-					    <input id="description" name="description" pattern="^[a-zA-Z ]+$" type="text" class="form-control" placeholder="Código de la presentacion" aria-label="Username" aria-describedby="basic-addon1">
+					    <input id="description" name="description" pattern="^[a-zA-Z ]+$" type="text" class="form-control" placeholder="Código de la presentacion" aria-label="Username" aria-describedby="basic-addon1" required>
 					</div>
 
 					<div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Peso en gramos</span>
-					    <input id="slug" name="slug" type="text" pattern="^[0-9]+$" class="form-control" placeholder="Peso en gramos de la presentacion" aria-label="Username" aria-describedby="basic-addon1">
+					    <input id="slug" name="slug" type="text" pattern="^[0-9]+$" class="form-control" placeholder="Peso en gramos de la presentacion" aria-label="Username" aria-describedby="basic-addon1" required>
 					</div>
 
                     <div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Stock</span>
-					    <input id="slug" name="slug" type="text" pattern="^[0-9]+$" class="form-control" placeholder="Stock de la presentacion" aria-label="Username" aria-describedby="basic-addon1">
+					    <input id="slug" name="slug" type="text" pattern="^[0-9]+$" class="form-control" placeholder="Stock de la presentacion" aria-label="Username" aria-describedby="basic-addon1" required>
 					</div>
 
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">Stock mínimo</span>
-                        <input id="slug" name="slug" pattern="^[0-9]+$" type="text" class="form-control" placeholder="Stock mínimo de la presentacion" aria-label="Username" aria-describedby="basic-addon1">
+                        <input id="slug" name="slug" pattern="^[0-9]+$" type="text" class="form-control" placeholder="Stock mínimo de la presentacion" aria-label="Username" aria-describedby="basic-addon1" required>
                     </div>
 
                     <div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Imagen</span>
-					    <input name="cover" type="file" class="form-control" placeholder="Product features" aria-label="Username" aria-describedby="basic-addon1">
+					    <input name="cover" type="file" class="form-control" placeholder="Product features" aria-label="Username" aria-describedby="basic-addon1" required>
 					</div>
 
                     <!-- Status ponerlo como active -->
