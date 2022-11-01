@@ -10,19 +10,19 @@
 			    <div class="modal-body">
 			      	<div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Nombre</span>
-					    <input id="name" name="name" type="text" class="form-control" placeholder="Nombre de la etiqueta" aria-label="Username" aria-describedby="basic-addon1">
+					    <input id="name" name="name" pattern="^[a-zA-Z ]+$" type="text" class="form-control" placeholder="Nombre de la etiqueta" aria-label="Username" aria-describedby="basic-addon1" required>
 					</div>
 
 					<div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Descripcion</span>
-					    <input id="description" name="description" type="text" class="form-control" placeholder="Descripción de la etiqueta" aria-label="Username" aria-describedby="basic-addon1">
+					    <input id="description" name="description" type="text" class="form-control" placeholder="Descripción de la etiqueta" aria-label="Username" aria-describedby="basic-addon1" required>
 					</div>
 
 					<div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Slug</span>
-					    <input id="slug" name="slug" type="text" class="form-control" placeholder="Slug de la etiqueta" aria-label="Username" aria-describedby="basic-addon1">
+					    <input id="slug" name="slug" pattern="^[a-z0-9]+(?:-[a-z0-9]+)*$" type="text" class="form-control" placeholder="Slug de la etiqueta" aria-label="Username" aria-describedby="basic-addon1" required>
 					</div>
-					
+
 			    </div>
 			    <div class="modal-footer">
 			        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
