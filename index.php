@@ -1,6 +1,6 @@
 <?php
 	include_once "app/config.php";
-?> 
+?>
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
 
@@ -64,17 +64,17 @@
                                     <form action="<?= BASE_PATH ?>auth" method="post">
                                         <div class="mb-3">
                                             <label for="username" class="form-label">Correo Electronico</label>
-                                            <input type="text" name="email" class="form-control" id="username" placeholder="Ingrese su Correo Electronico">
+                                            <input type="text" name="email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" class="form-control" id="username" placeholder="Ingrese su Correo Electronico" required>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label" for="password-input">Contraseña</label>
                                             <div class="position-relative auth-pass-inputgroup mb-3">
-                                                <input type="password" name="password" class="form-control pe-5 password-input" placeholder="Ingrese su Contraseña" id="password-input">
+                                                <input type="password" name="password" pattern="[\S\s]{10,}" class="form-control pe-5 password-input" placeholder="Ingrese su Contraseña" id="password-input" required>
                                                 <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted shadow-none password-addon" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
                                             </div>
                                         </div>
-                                        <input type="hidden" value="access" name="action"> 
-                                        <input type="hidden" name="global_token" value="<?php echo $_SESSION['global_token'] ?>"> 
+                                        <input type="hidden" value="access" name="action">
+                                        <input type="hidden" name="global_token" value="<?php echo $_SESSION['global_token'] ?>">
                                         <div class="mt-4">
                                             <button class="btn btn-success w-100" type="submit">Ingresar</button>
                                         </div>
