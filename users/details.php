@@ -9,7 +9,7 @@
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
 
 
-<head>  
+<head>
 
     <meta charset="utf-8" />
     <title>Mi Perfil</title>
@@ -50,7 +50,7 @@
                     <div class="profile-foreground position-relative mx-n4 mt-n4">
                         <div class="profile-wid-bg">
                             <img src="<?= BASE_PATH ?>public/images/profile-bg.jpg" alt="" class="profile-wid-img" />
-                            
+
                         </div>
                     </div>
                     <div class="pt-4 mb-4 mb-lg-3 pb-lg-4">
@@ -90,7 +90,7 @@
                                 <div class="tab-content pt-4 text-muted">
                                     <div class="tab-pane active" id="overview-tab" role="tabpanel">
                                         <div class="row">
-                                            <div class="col-xxl-3">
+                                            <div class="col-12">
                                                 <div class="card">
                                                     <div class="card-body">
                                                         <h5 class="card-title mb-3">Información</h5>
