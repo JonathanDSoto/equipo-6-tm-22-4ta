@@ -172,12 +172,13 @@
             let clients = JSON.parse(target.getAttribute("data-client-edit"));
 
 						console.log(clients);
+						document.getElementById("editId").value = clients.id;
             document.getElementById("editName").value = clients.name;
             document.getElementById("editEmail").value = clients.email;
             document.getElementById("editPassword").value = clients.password;
             document.getElementById("editPhone_number").value = clients.phone_number;
             document.getElementById("editLevel").selectedIndex = clients.level_id;
-						document.getElementById("editId").value = clients.id;
+
         }
     </script>
 
