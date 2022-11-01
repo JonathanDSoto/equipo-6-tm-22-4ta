@@ -15,22 +15,22 @@
 
 					<div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Código</span>
-					    <input id="description" name="description" type="text" class="form-control" placeholder="Código de la presentacion" aria-label="Username" aria-describedby="basic-addon1">
+					    <input id="description" name="description" pattern="^[a-zA-Z ]+$" type="text" class="form-control" placeholder="Código de la presentacion" aria-label="Username" aria-describedby="basic-addon1">
 					</div>
 
 					<div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Peso en gramos</span>
-					    <input id="slug" name="slug" type="text" class="form-control" placeholder="Peso en gramos de la presentacion" aria-label="Username" aria-describedby="basic-addon1">
+					    <input id="slug" name="slug" type="text" pattern="^[0-9]+$" class="form-control" placeholder="Peso en gramos de la presentacion" aria-label="Username" aria-describedby="basic-addon1">
 					</div>
 
                     <div class="input-group mb-3">
 					    <span class="input-group-text" id="basic-addon1">Stock</span>
-					    <input id="slug" name="slug" type="text" class="form-control" placeholder="Stock de la presentacion" aria-label="Username" aria-describedby="basic-addon1">
+					    <input id="slug" name="slug" type="text" pattern="^[0-9]+$" class="form-control" placeholder="Stock de la presentacion" aria-label="Username" aria-describedby="basic-addon1">
 					</div>
 
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">Stock mínimo</span>
-                        <input id="slug" name="slug" type="text" class="form-control" placeholder="Stock mínimo de la presentacion" aria-label="Username" aria-describedby="basic-addon1">
+                        <input id="slug" name="slug" pattern="^[0-9]+$" type="text" class="form-control" placeholder="Stock mínimo de la presentacion" aria-label="Username" aria-describedby="basic-addon1">
                     </div>
 
                     <div class="input-group mb-3">
@@ -40,7 +40,7 @@
 
                     <!-- Status ponerlo como active -->
                     <!-- En el postman pide un id de producto, asignale el del producto que se estan viendo los detalles -->
-					
+
 			    </div>
 			    <div class="modal-footer">
 			        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
